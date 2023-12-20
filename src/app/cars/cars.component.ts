@@ -9,6 +9,7 @@ import {CARS, ICar} from "../models/car";
 export class CarsComponent {
   cars = CARS;
   selectedCar?: ICar;
+  
 
   onSelect(car: ICar): void {
     this.selectedCar = car;
