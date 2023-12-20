@@ -4,6 +4,7 @@ export interface ICar {
 }
 
 export const CARS: ICar[] = [
+  { vin: 1, brand: 'Tesla' },
   { vin: 2, brand: 'Ford' },
   { vin: 3, brand: 'Hyundai' },
   { vin: 4, brand: 'BMW' },
@@ -11,6 +12,6 @@ export const CARS: ICar[] = [
   { vin: 6, brand: 'Opel' },
   { vin: 7, brand: 'Audi' },
   { vin: 8, brand: 'Mazda' },
-  { vin: 9, brand: 'Hoda' },
+  { vin: 9, brand: 'Honda' },
   { vin: 10, brand: 'Toyota' },
 ];
