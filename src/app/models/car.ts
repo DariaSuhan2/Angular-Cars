@@ -1,6 +1,9 @@
-import { Car} from './car';
+export interface ICar {
+  vin: number;
+  brand: string;
+}
 
-export const CARS: Car[] = [
+export const CARS: ICar[] = [
   { vin: 2, brand: 'Ford' },
   { vin: 3, brand: 'Hyundai' },
   { vin: 4, brand: 'BMW' },
