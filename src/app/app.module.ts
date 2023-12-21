@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { CarsComponent } from './cars/cars.component';
 import {NgFor, NgIf, UpperCasePipe} from "@angular/common";
 import { CarDetailComponent } from './car-detail/car-detail.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
     CarsComponent,
     AppComponent,
-    CarDetailComponent
+    CarDetailComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

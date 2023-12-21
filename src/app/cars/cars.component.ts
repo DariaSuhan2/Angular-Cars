@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CARS, ICar} from "../models/car";
 import { CarService } from '../service/car.service';
-import { map } from 'rxjs';
+import { MessageService } from '../service-message/message.service';
 
 
 
@@ -10,25 +10,24 @@ import { map } from 'rxjs';
   templateUrl: './cars.component.html',
   styleUrl: './cars.component.css'
 })
-export class CarsComponent {
-  //cars = CARS;
+export class CarsComponent implements OnInit {
+ 
   selectedCar?: ICar;
   cars: ICar[] = [];
-  constructor (private carService: CarService) {}
+  constructor (private carService: CarService, private messageService: MessageService) {}
   
-
-  onSelect(car: ICar): void {
-    this.selectedCar = car;
-  }
-
-  getCars(): void {
-    //this.carService.getCars().pipe(map(cars) => {this.cars = cars}));
-    //this.carService.getCars().subscribe((cars) => {this.cars = cars});
-    this.carService.getCars().subscribe(cars => this.cars = cars);
-  }
-
-
   ngOnInit(): void {
     this.getCars();
   }
+
+  onSelect(car: ICar): void {
+    this.selectedCar = car;
+    this.messageService.add(`CarsComponent: Selected car vin=${car.vin}`);
+  }
+
+
+  getCars(): void {
+      this.carService.getCars().subscribe(cars => this.cars = cars);
+  }
+
 }
