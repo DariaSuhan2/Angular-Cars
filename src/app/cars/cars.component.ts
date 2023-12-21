@@ -22,9 +22,9 @@ export class CarsComponent {
   }
 
   getCars(): void {
-    this.carService.getCars().pipe(map(cars) => {this.cars = cars}));
+    //this.carService.getCars().pipe(map(cars) => {this.cars = cars}));
     //this.carService.getCars().subscribe((cars) => {this.cars = cars});
-    //this.carService.getCars().subscribe(cars => this.cars = cars);
+    this.carService.getCars().subscribe(cars => this.cars = cars);
   }
 
 

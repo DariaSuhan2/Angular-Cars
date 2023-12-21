@@ -1,0 +1,10 @@
+<div *ngIf="car">
+    <h2>{{car.brand | uppercase}} Details</h2>
+    <div><span>vin: </span>{{car.vin}}</div>
+    <div>
+      <label for="car-brand">Car brand: </label>
+      <input vin="car-brand" [(ngModel)]="car.brand" placeholder="brand">
+    </div>
+  </div>
+  <h2>this is from car-detail.component</h2>
+ 
