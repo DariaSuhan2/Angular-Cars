@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {CARS, ICar} from "../models/car";
 import { CarService } from '../service/car.service';
+import { map } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-cars',
@@ -19,8 +22,11 @@ export class CarsComponent {
   }
 
   getCars(): void {
-    this.cars = this.carService.getCars();
+    this.carService.getCars().pipe(map(cars) => {this.cars = cars}));
+    //this.carService.getCars().subscribe((cars) => {this.cars = cars});
+    //this.carService.getCars().subscribe(cars => this.cars = cars);
   }
+
 
   ngOnInit(): void {
     this.getCars();
