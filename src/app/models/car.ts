@@ -1,6 +1,17 @@
 export interface ICar {
   vin: number;
+ // color: string;
   brand: string;
+  /*doorNr: number;
+  carCategory: string;
+  AirConditioning: boolean;
+  ElectricWindow: boolean;
+  ParkingSenzor: */
+
+
+
+
+
 }
 
 export const CARS: ICar[] = [

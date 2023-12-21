@@ -1,0 +1,7 @@
+[
+{"vin":1,"Color":"Red","Brand":"Ford","DoorNr":2,"Category":{"Name":"Smallcar","EngineCapacity":2000,"Weight":4},"AirConditioning":false,"ElectricWindow":false,"ParkingSenzor":false,"USBPort":false,"ParktronicSystem":false,"InfotainmentSystem":false,"Radio":0,"Type":"Budget"}
+,{"vin":2,"Color":"Black","Brand":"Opel","DoorNr":4,"Category":{"Name":"Smallcar","EngineCapacity":2000,"Weight":4},"AirConditioning":false,"ElectricWindow":false,"ParkingSenzor":false,"USBPort":false,"ParktronicSystem":false,"InfotainmentSystem":false,"Radio":0,"Type":"Budget"}
+,{"vin":3,"Color":"White","Brand":"Ford","DoorNr":4,"Category":{"Name":"Smallcar","EngineCapacity":2000,"Weight":4},"AirConditioning":false,"ElectricWindow":false,"ParkingSenzor":false,"USBPort":false,"ParktronicSystem":false,"InfotainmentSystem":false,"Radio":0,"Type":"Budget"}
+,{"vin":4,"Color":"Red","Brand":"Nissan","DoorNr":4,"Category":{"Name":"Smallcar","EngineCapacity":2000,"Weight":4},"AirConditioning":true,"ElectricWindow":true,"ParkingSenzor":true,"USBPort":true,"ParktronicSystem":false,"InfotainmentSystem":false,"Radio":1,"Type":"Premium"}
+,{"vin":5,"Color":"Green","Brand":"Hyundai","DoorNr":4,"Category":{"Name":"Smallcar","EngineCapacity":2000,"Weight":4},"AirConditioning":true,"ElectricWindow":true,"ParkingSenzor":true,"USBPort":true,"ParktronicSystem":true,"InfotainmentSystem":true,"Radio":1,"Type":"Luxury"}
+]
