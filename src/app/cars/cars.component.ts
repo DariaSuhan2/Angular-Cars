@@ -9,12 +9,14 @@ import { MessageService } from '../service-message/message.service';
   selector: 'app-cars',
   templateUrl: './cars.component.html',
   styleUrl: './cars.component.css'
+  //providers: [CarService] - register service for one component and child components
 })
 export class CarsComponent implements OnInit {
  
   selectedCar?: ICar;
   cars: ICar[] = [];
-  constructor (private carService: CarService, private messageService: MessageService) {}
+
+  constructor (private _carService: CarService, private _messageService: MessageService) {}
   
   ngOnInit(): void {
     this.getCars();
@@ -22,12 +24,12 @@ export class CarsComponent implements OnInit {
 
   onSelect(car: ICar): void {
     this.selectedCar = car;
-    this.messageService.add(`CarsComponent: Selected car vin=${car.vin}`);
+    this._messageService.add(`CarsComponent: Selected car vin=${car.vin}`);
   }
 
 
   getCars(): void {
-      this.carService.getCars().subscribe(cars => this.cars = cars);
+      this._carService.getCars().subscribe(cars => this.cars = cars);
   }
 
 }

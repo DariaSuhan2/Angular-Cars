@@ -7,6 +7,8 @@ import { CarsComponent } from './cars/cars.component';
 import {NgFor, NgIf, UpperCasePipe} from "@angular/common";
 import { CarDetailComponent } from './car-detail/car-detail.component';
 import { MessageComponent } from './message/message.component';
+import { HttpClient } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { MessageComponent } from './message/message.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     NgIf,
     NgFor,
     UpperCasePipe
