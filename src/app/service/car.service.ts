@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CARS, ICar} from "../models/car";
+import { ICar} from "../models/car";
 import {Observable, of, catchError, tap, throwError} from 'rxjs';
 import { MessageService } from '../service-message/message.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -20,7 +20,7 @@ export class CarService {
     //return cars;
     return this._http.get<ICar[]>(this._carUrl).pipe(
       tap(data => console.log('All', JSON.stringify(data))),
-      catchError(this.handleError)
+      catchError(err => this.handleError(err))
       );
     
   }

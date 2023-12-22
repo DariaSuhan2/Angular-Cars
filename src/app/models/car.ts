@@ -3,17 +3,25 @@ export interface ICar {
   color: string;
   brand: string;
   doorNr: number;
-  carCategory: string;
-  AirConditioning: boolean;
-  ElectricWindow: boolean;
-  ParkingSenzor: boolean;
-  USBPort: boolean;
-  ParktronicSystem: boolean;
-  InfotainmentSystem: boolean;
-  Radio: string;
-  Type: string;
-  
+  carCategory: ICarCarCategory;
+  airConditioning: boolean;
+  electricWindow: boolean;
+  parkingSenzor: boolean;
+  uSBPort: boolean;
+  parktronicSystem: boolean;
+  infotainmentSystem: boolean;
+  radio: RadioType;
+  type: string;
+ }
+export interface ICarCarCategory {
+  name : string;
+  engineCapacity : number;
+  weight : number;
+}
 
+enum RadioType {
+    ANALOG,
+    DIGITAL
 }
 
 /*export const CARS: ICar[] = [
