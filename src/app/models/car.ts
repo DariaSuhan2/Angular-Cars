@@ -1,20 +1,22 @@
 export interface ICar {
   vin: number;
- // color: string;
+  color: string;
   brand: string;
-  /*doorNr: number;
+  doorNr: number;
   carCategory: string;
   AirConditioning: boolean;
   ElectricWindow: boolean;
-  ParkingSenzor: */
-
-
-
-
+  ParkingSenzor: boolean;
+  USBPort: boolean;
+  ParktronicSystem: boolean;
+  InfotainmentSystem: boolean;
+  Radio: string;
+  Type: string;
+  
 
 }
 
-export const CARS: ICar[] = [
+/*export const CARS: ICar[] = [
   { vin: 1, brand: 'Dacia' },
   { vin: 2, brand: 'Ford' },
   { vin: 3, brand: 'Hyundai' },
@@ -25,4 +27,4 @@ export const CARS: ICar[] = [
   { vin: 8, brand: 'Mazda' },
   { vin: 9, brand: 'Honda' },
   { vin: 10, brand: 'Toyota' },
-];
+];*/
