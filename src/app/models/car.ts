@@ -1,3 +1,5 @@
+import { ICarCarCategory } from "./category";
+
 export interface ICar {
   vin: number;
   color: string;
@@ -13,11 +15,7 @@ export interface ICar {
   radio: RadioType;
   type: string;
  }
-export interface ICarCarCategory {
-  name : string;
-  engineCapacity : number;
-  weight : number;
-}
+
 
 enum RadioType {
     ANALOG,

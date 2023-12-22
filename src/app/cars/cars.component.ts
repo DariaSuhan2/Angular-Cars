@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ICar} from "../models/car";
 import { CarService } from '../service/car.service';
 import { MessageService } from '../service-message/message.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cars',
@@ -9,15 +10,29 @@ import { MessageService } from '../service-message/message.service';
   styleUrl: './cars.component.css'
   //providers: [CarService] - register service for one component and child components
 })
-export class CarsComponent implements OnInit {
+export class CarsComponent implements OnInit, OnDestroy {
  
   selectedCar?: ICar;
+  selectedCars: ICar[] = [];
   cars: ICar[] = [];
+  errorMessage: string = '';
+  sub!: Subscription;
 
   constructor (private _carService: CarService, private _messageService: MessageService) {}
   
   ngOnInit(): void {
-    this.getCars();
+    //this.getCars();
+    this.sub = this._carService.getCars().subscribe({
+      next: cars => {
+        this.cars = cars;
+        this.selectedCars = this.cars;
+      },
+      error: err => this.errorMessage = err
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   onSelect(car: ICar): void {
