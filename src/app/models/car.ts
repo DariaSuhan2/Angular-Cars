@@ -5,7 +5,7 @@ export interface ICar {
   color: string;
   brand: string;
   doorNr: number;
-  carCategory: ICarCarCategory;
+  category: ICarCarCategory;
   airConditioning: boolean;
   electricWindow: boolean;
   parkingSenzor: boolean;

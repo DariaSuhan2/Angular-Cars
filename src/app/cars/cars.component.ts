@@ -26,6 +26,8 @@ export class CarsComponent implements OnInit, OnDestroy {
       next: cars => {
         this.cars = cars;
         this.selectedCars = this.cars;
+        //debugger;
+        
       },
       error: err => this.errorMessage = err
     });
@@ -44,5 +46,8 @@ export class CarsComponent implements OnInit, OnDestroy {
   getCars(): void {
       this._carService.getCars().subscribe(cars => this.cars = cars);
   }
+
+  
+
 
 }
