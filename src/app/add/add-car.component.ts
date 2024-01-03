@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-car',
@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './add-car.component.css'
 })
 export class AddCarComponent {
+  pageTitle: string = 'Add a car';
+
+
+  constructor() { }
+
+  ngOnInit() {
+  }
 
 }

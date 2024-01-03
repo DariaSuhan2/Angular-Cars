@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   
 })
 export class WelcomeComponent {
-  public pageTitle = 'Welcome';
+  public pageTitle = 'Angular Cars';
 }

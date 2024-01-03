@@ -18,6 +18,7 @@ import { AddCarComponent } from './add/add-car.component';
     WelcomeComponent,
     AppComponent,
     CarDetailComponent,
+    AddCarComponent,
     MessageComponent
   ],
   imports: [
