@@ -11,7 +11,10 @@ export class CarService {
   //private _carUrl = 'api/cars/cars.json';
   private _carUrl = 'http://localhost:5120/api/car';
   //private _carUrl = 'http://local.mydomain.example:5120/api/car';
-  //private _carUrl = 'http:// 127.0.0.1';
+  
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor(private _http: HttpClient, private messageService: MessageService) { }
 
@@ -33,12 +36,12 @@ export class CarService {
         );
       }  
       
-  /*updateCar(Car: ICar): Observable<any> {
-        return this._http.put(this._carUrl, Car, this.httpOptions).pipe(
-          tap(_ => console.log(`updated car vin=${Car.vin}`)),
+  updateCar(car: ICar): Observable<any> {
+        return this._http.put(this._carUrl, car, this.httpOptions).pipe(
+          tap(_ => console.log(`updated car vin=${car.vin}`)),
           catchError(err => this.handleError(err))
         );
-      }   */
+      }   
     
  
   private handleError(err: HttpErrorResponse) {

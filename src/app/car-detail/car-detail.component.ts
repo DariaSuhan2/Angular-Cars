@@ -14,6 +14,7 @@ import { Location } from '@angular/common';
 })
 export class CarDetailComponent implements OnInit {
   //car?: ICar;
+  pageTitle: string = 'Car Details';
   @Input() car?: ICar;
 
   constructor(private _carService: CarService,
@@ -34,12 +35,12 @@ export class CarDetailComponent implements OnInit {
     this.location.back();
   }
 
-  /*save(): void {
+  save(): void {
     if (this.car) {
       this._carService.updateCar(this.car)
         .subscribe(() => this.goBack());
     }
-  }*/
+  }
    
 }
 
