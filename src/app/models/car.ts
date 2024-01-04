@@ -1,11 +1,12 @@
-import { ICarCarCategory } from "./category";
+import { ICarCategory } from "./category";
+//import { RadioType } from "./enums";
 
 export interface ICar {
   vin: number;
   color: string;
   brand: string;
   doorNr: number;
-  category: ICarCarCategory;
+  category: ICarCategory;
   airConditioning: boolean;
   electricWindow: boolean;
   parkingSenzor: boolean;
@@ -16,11 +17,11 @@ export interface ICar {
   type: string;
  }
 
-
-enum RadioType {
-    ANALOG,
-    DIGITAL
+ export enum RadioType {
+  'ANALOG',
+  'DIGITAL'
 }
+
 
 /*export const CARS: ICar[] = [
   { vin: 1, brand: 'Dacia' },
