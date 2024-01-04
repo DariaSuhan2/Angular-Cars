@@ -31,8 +31,8 @@ import { AddCarComponent } from './add/add-car.component';
     UpperCasePipe,
     RouterModule.forRoot([
       {path: 'cars', component: CarsComponent},
-      {path: 'cars/:vin', component: CarDetailComponent},
       {path: 'cars/add', component: AddCarComponent},
+      {path: 'cars/:vin', component: CarDetailComponent},
       {path: 'welcome', component: WelcomeComponent},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
       {path: '**', redirectTo: 'welcome', pathMatch: 'full'},

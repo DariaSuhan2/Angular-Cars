@@ -1,5 +1,5 @@
 export interface ICarCategory {
-    name : string;
-    engineCapacity : number;
-    weight : number;
+    name : string | null;
+    engineCapacity : number | null;
+    weight : number | null;
 }

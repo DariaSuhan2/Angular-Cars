@@ -2,19 +2,19 @@ import { ICarCategory } from "./category";
 //import { RadioType } from "./enums";
 
 export interface ICar {
-  vin: number;
-  color: string;
-  brand: string;
-  doorNr: number;
-  category: ICarCategory;
-  airConditioning: boolean;
-  electricWindow: boolean;
-  parkingSenzor: boolean;
-  uSBPort: boolean;
-  parktronicSystem: boolean;
-  infotainmentSystem: boolean;
-  radio: RadioType;
-  type: string;
+  vin: number | null;
+  color: string | null;
+  brand: string | null;
+  doorNr: number | null;
+  category: ICarCategory | null;
+  airConditioning: boolean | null;
+  electricWindow: boolean | null;
+  parkingSenzor: boolean | null;
+  USBPort: boolean | null;
+  parktronicSystem: boolean | null;
+  infotainmentSystem: boolean | null;
+  radio: RadioType | null;
+  type: string| null;
  }
 
  export enum RadioType {
