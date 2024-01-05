@@ -31,7 +31,6 @@
     </div>  
 </div>
 
-      <br>
       <div class="form-group">
         <label for="brand">Brand</label>
         <input id="brand" name="brand" class="form-control" [(ngModel)]="addedCar.brand"
@@ -43,9 +42,7 @@
         Enter a brand for the car
         </div>  
     </div>
-
-
-      <br>
+     
       <div class="form-group">
         <label for="doorNr">Number of doors</label>
         <input id="doorNr" name="doorNr" class="form-control" [(ngModel)]="addedCar.doorNr"
@@ -67,6 +64,9 @@
          (blur)="onBlur(nameField)"
          [class.field-error]="form.submitted && nameField.invalid">
           <option selected disabled value="">Choose...</option> 
+          <!-- <option *ngFor = "let cat of presentedCategories">
+            {{cat}}
+          </option> -->
           <option>SmallCar</option>
           <option>Bus</option>
           <option>Goodvehicle</option>
@@ -100,3 +100,5 @@
   {{originalCar | json}}
    <br>
   {{form.value | json}}
+  <br>
+  {{addedCar | json}}

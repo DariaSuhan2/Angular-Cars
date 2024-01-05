@@ -5,7 +5,7 @@ import { MessageService } from '../service-message/message.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-cars',
+  //selector: 'app-cars',
   templateUrl: './cars.component.html',
   styleUrl: './cars.component.css'
   //providers: [CarService] - register service for one component and child components
