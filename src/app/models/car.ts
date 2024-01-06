@@ -15,6 +15,10 @@ export interface ICar {
   infotainmentSystem: boolean | null;
   radio: RadioType | null;
   type: string| null;
+
+ 
+
+
  }
 
  export enum RadioType {

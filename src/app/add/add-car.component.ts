@@ -62,6 +62,7 @@ export class AddCarComponent implements OnInit {
 
   addedCar : ICar = {...this.originalCar};
   
+  
   //spread syntax in js - copy of orginal object and stored it in an object
   //alternative Lodash - deep clone function
 
@@ -105,9 +106,22 @@ export class AddCarComponent implements OnInit {
       this.addedCar.infotainmentSystem = true;
       this.addedCar.radio = RadioType.DIGITAL;
    }
-
-
    
+  //this.originalCar.category?.name
+  if (this.addedCar.category = { "name": 'SmallCar', "engineCapacity": null, "weight": null }) {
+    this.addedCar.category.engineCapacity = 2000;
+    this.addedCar.category.weight = 2;
+  }
+  else if (this.addedCar.category = { "name": 'Bus', "engineCapacity": null, "weight": null }) {
+    this.addedCar.category.engineCapacity = 3000;
+    this.addedCar.category.weight = 2;
+  }
+  else if (this.addedCar.category = { "name": 'Goodvehicle', "engineCapacity": null, "weight": null }) {
+  
+    this.addedCar.category.engineCapacity = 5000;
+    this.addedCar.category.weight = 6;
+  }
+    
     this._carService.addCar(this.addedCar).subscribe(
       result => console.log('success: ', result),
       error => console.log('error', error)
