@@ -33,9 +33,10 @@ import { AddCarComponent } from './add/add-car.component';
       {path: 'cars', component: CarsComponent},
       {path: 'cars/add', component: AddCarComponent},
       {path: 'cars/:vin', component: CarDetailComponent},
+     // {path: 'cars/:vin', component: DeleteCarComponent},
       {path: 'welcome', component: WelcomeComponent},
-      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-      {path: '**', redirectTo: 'welcome', pathMatch: 'full'},
+      {path: '', redirectTo: 'cars', pathMatch: 'full'},
+      {path: '**', redirectTo: 'cars', pathMatch: 'full'},
 
     ])
   ],
