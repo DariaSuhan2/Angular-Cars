@@ -4,10 +4,12 @@
     <div><span>vin: </span>{{car.vin}}</div>
     <div>
       <label for="car-brand">Car brand: </label>
-      <input vin="car-brand" [(ngModel)]="car.brand" placeholder="brand">
+      <input id="car-brand" [(ngModel)]="car.brand" placeholder="brand">
+      <label for="car-brand">Car Color: </label>
+      <input id="car-brand" [(ngModel)]="car.color" placeholder="color">
     </div>
-    <button type="button" (click)="goBack()">go back</button>
-    <button type="button" (click)="save()">save</button>
+    <button type="button" (click)="goBack()">Go back</button>
+    <button type="button" (click)="save()">Save</button>
   </div>
 
 

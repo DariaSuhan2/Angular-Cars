@@ -3,6 +3,7 @@ import {ICar} from "../models/car";
 import { CarService } from '../service/car.service';
 import { MessageService } from '../service-message/message.service';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   //selector: 'app-cars',
@@ -18,7 +19,9 @@ export class CarsComponent implements OnInit, OnDestroy {
   errorMessage: string = '';
   sub!: Subscription;
 
-  constructor (private _carService: CarService, private _messageService: MessageService) {}
+  constructor (private _carService: CarService, 
+    private _messageService: MessageService,
+    private route: ActivatedRoute) {}
   
   ngOnInit(): void {
     //this.getCars();
@@ -26,7 +29,7 @@ export class CarsComponent implements OnInit, OnDestroy {
       next: cars => {
         this.cars = cars;
         this.selectedCars = this.cars;
-        //debugger;
+     
         
       },
       error: err => this.errorMessage = err
@@ -47,7 +50,16 @@ export class CarsComponent implements OnInit, OnDestroy {
       this._carService.getCars().subscribe(cars => this.cars = cars);
   }
 
+  delete(car: ICar): void {
+    const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
+    this.cars = this.cars.filter(c => c !== car);
+    this._carService.deleteCar(vin).subscribe();
+  }
   
-
+  // const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
+  // this._carService.deleteCar(vin).subscribe(
+  //   result => console.log('success: ', result),
+  //   error => console.log('error', error)
+  // );
 
 }

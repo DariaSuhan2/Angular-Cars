@@ -11,7 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import {WelcomeComponent} from './home/welcome.component';
 import { AddCarComponent } from './add/add-car.component';
-import { DeleteCarComponent } from './delete-car.component';
+
 
 @NgModule({
   declarations: [
@@ -20,8 +20,7 @@ import { DeleteCarComponent } from './delete-car.component';
     AppComponent,
     CarDetailComponent,
     AddCarComponent,
-    MessageComponent,
-    DeleteCarComponent
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +34,6 @@ import { DeleteCarComponent } from './delete-car.component';
       {path: 'cars', component: CarsComponent},
       {path: 'cars/add', component: AddCarComponent},
       {path: 'cars/:vin', component: CarDetailComponent},
-     // {path: 'cars/:vin', component: DeleteCarComponent},
       {path: 'welcome', component: WelcomeComponent},
       {path: '', redirectTo: 'cars', pathMatch: 'full'},
       {path: '**', redirectTo: 'cars', pathMatch: 'full'},

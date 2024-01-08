@@ -12,7 +12,7 @@ export class CarService {
   
   //private _carUrl = 'api/cars/cars.json';
   private _carUrl = 'http://localhost:5120/api/car';
-  private _categoryUrl = 'http://localhost:5120/api/category';
+  //private _categoryUrl = 'http://localhost:5120/api/category';
   //private _carUrl = 'http://local.mydomain.example:5120/api/car';
   
   httpOptions = {
@@ -67,12 +67,22 @@ export class CarService {
 
   addCar(car: ICar) : Observable<ICar> {
     //return of(car);
+    debugger;
     return this._http.post<ICar>(this._carUrl, car, this.httpOptions).pipe(
-      tap((newCar:ICar) => console.log(`added car w/ vin=${newCar.vin}`),
-      catchError(err => this.handleError(err)))
+      tap((newCar:ICar) => console.log(`added car w/ vin=${newCar.vin}`)),
+      catchError(err => this.handleError(err))
     );
 
   }
+
+ 
+  deleteCar(vin: number): Observable<ICar> {
+    const url = `${this._carUrl}/${vin}`;
+    return this._http.delete<ICar>(url).pipe(
+    tap(_ => console.log(`deleted car vin=${vin}`)),
+    catchError(err => this.handleError(err))
+  );
+}
   
   
 }
