@@ -32,12 +32,16 @@ export class CarService {
   }
 
   getCar(vin: number): Observable<ICar> {
+      if (vin!= null){
         const url = `${this._carUrl}/${vin}`;
         return this._http.get<ICar>(url).pipe(
           tap(_ => console.log(`fetched car vin=${vin}`)),
           catchError(err => this.handleError(err))
         );
-  }  
+    } else {
+      return of();
+    } 
+  }
 
   // getCategories(): Observable<ICarCategory[]> {
   //   return this._http.get<ICarCategory[]>(this._categoryUrl).pipe(
@@ -69,7 +73,7 @@ export class CarService {
     //return of(car);
     debugger;
     return this._http.post<ICar>(this._carUrl, car, this.httpOptions).pipe(
-      tap((newCar:ICar) => console.log(`added car w/ vin=${newCar.vin}`)),
+      tap((newCar:ICar) => console.log(`added car`)),
       catchError(err => this.handleError(err))
     );
   //   return this._http.post<ICar>(this._carUrl, car, this.httpOptions).pipe(
@@ -100,24 +104,25 @@ export class CarService {
   );
   }
 
-  category1  = {
+  category1: ICarCategory  = {
     name : "SmallCar",
     engineCapacity : 2000,
     weight : 2
   };
-  category2  = {
+  category2 : ICarCategory  = {
     name : "Bus",
     engineCapacity : 3000,
     weight : 2
   };
-  category3  = {
+  category3 : ICarCategory  = {
     name : "Goodvehicle",
     engineCapacity : 5000,
     weight : 6
   };
   
-  getCategories(): Observable<ICarCategory[]> {
-    return of ([this.category1, this.category2, this.category3])
+  getCategories(): Array<ICarCategory> {
+    return  [this.category1, this.category2, this.category3]
+    //return of ([this.category1, this.category2, this.category3])
   }
 
   

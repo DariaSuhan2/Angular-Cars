@@ -5,8 +5,18 @@
     <div>
       <label for="car-brand">Car brand: </label>
       <input id="car-brand" [(ngModel)]="car.brand" placeholder="brand">
-      <label for="car-brand">Car Color: </label>
-      <input id="car-brand" [(ngModel)]="car.color" placeholder="color">
+      <br><br>
+      <label for="car-color">Car Color: </label>
+      <input id="car-color" [(ngModel)]="car.color" placeholder="color">
+      <br><br>
+      <label for="car-doorNr">The number of doors: </label>
+      <input id="car-doorNr" [(ngModel)]="car.doorNr" placeholder="doorNr">
+      <br><br>
+      <label for="car-category">Car category: </label>
+      <input id="car-category" [(ngModel)]=car.category placeholder="category">  
+      <br><br>
+      <label for="car-type">Car type: </label>
+      <input id="car-type" [(ngModel)]="car.type" placeholder="type">
     </div>
     <button type="button" (click)="goBack()">Go back</button>
     <button type="button" (click)="save()">Save</button>

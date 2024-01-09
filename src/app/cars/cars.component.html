@@ -11,7 +11,8 @@
         <button [class.selected]="car === selectedCar" type="button" (click)="onSelect(car)">
             <span class="badge">{{car.vin}}</span>
             <span class="name">{{car.brand}}</span>
-            <button class = "delete" type="button" (click)="delete(car)">Delete</button>
+            <!-- ;<button class = "delete" type="button" (click)="delete(car)">Delete</button> -->
+            <button type="button" class="delete" title="delete car" (click)="delete(car)">Delete</button>
         
             <!-- <span class="delete">Delete a car</span> -->
             

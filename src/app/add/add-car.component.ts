@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class AddCarComponent implements OnInit {
   pageTitle: string = 'Add a car';
-  addedCategory? :  ICarCategory;
+  addedCategory? :  string;
 
   constructor(private _carService: CarService,
     private router: Router
@@ -32,11 +32,7 @@ export class AddCarComponent implements OnInit {
     color: null,
     brand: null,
     doorNr: null,
-    category: this.addedCategory = {
-      name : null,
-      engineCapacity : null,
-      weight : null
-    },
+    category: null,
     airConditioning: null,
     electricWindow: null,
     parkingSenzor: null,
@@ -95,6 +91,7 @@ export class AddCarComponent implements OnInit {
 
   addedCar : ICar = {...this.originalCar};
   subscriptionCategories = Observable<ICarCategory[]>;
+
   category1  = {
     name : "SmallCar",
     engineCapacity : 2000,
@@ -125,7 +122,7 @@ export class AddCarComponent implements OnInit {
   onBlur(field: NgModel){
     console.log('in onBlur: ', field.valid);
   }
- 
+
 
   onSubmit(form: NgForm) {
     console.log('in onSubmit: ', form.valid);
@@ -168,7 +165,15 @@ export class AddCarComponent implements OnInit {
       this.addedCar.infotainmentSystem = true;
       this.addedCar.radio = RadioType.DIGITAL;
    }
+    if(this.addedCategory != null){
+      //const categories = this._carService.getCategories();
+      const categories =[this.category1, this.category2, this.category3];
+      debugger;
+      const selectedCategory = categories.find(s => s.name == this.addedCategory);
+      this.addedCar.category = selectedCategory != null ? selectedCategory : null;
+      //this.addedCar.category?.weight = selectedCategory?.weight != null ? selectedCategory.weight : null;
     
+    }
     // if (this.addedCar.category?.name == "SmallCar"){
     //   this.addedCar.category.engineCapacity = 2000;
     //   this.addedCar.category.weight = 2;
@@ -180,9 +185,8 @@ export class AddCarComponent implements OnInit {
     // else if (this.addedCar.category?.name =="Goodvehicle") {
     //   this.addedCar.category.engineCapacity = 5000;
     //   this.addedCar.category.weight = 6;
-  debugger;
     // }
-    
+    debugger;
     this._carService.addCar(this.addedCar).subscribe(
       result =>{ 
        console.log('success: ', result);

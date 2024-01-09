@@ -3,7 +3,7 @@ import {ICar} from "../models/car";
 import { CarService } from '../service/car.service';
 import { MessageService } from '../service-message/message.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   //selector: 'app-cars',
@@ -21,7 +21,8 @@ export class CarsComponent implements OnInit, OnDestroy {
 
   constructor (private _carService: CarService, 
     private _messageService: MessageService,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    private router: Router) {}
   
   ngOnInit(): void {
     //this.getCars();
@@ -43,6 +44,8 @@ export class CarsComponent implements OnInit, OnDestroy {
   onSelect(car: ICar): void {
     this.selectedCar = car;
     this._messageService.add(`CarsComponent: Selected car vin=${car.vin}`);
+    this.router.navigate([`/car/details/${car.vin}`]);
+    // router navigate to car/details/{car.vin}
   }
 
 
@@ -51,10 +54,22 @@ export class CarsComponent implements OnInit, OnDestroy {
   }
 
   delete(car: ICar): void {
-    const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
     this.cars = this.cars.filter(c => c !== car);
-    this._carService.deleteCar(vin).subscribe();
+    if(car.vin != null){
+      this._carService.deleteCar(car.vin).subscribe(
+        result => {
+            console.log('success: ', result);
+            this.getCars();
+        },
+        error => {
+          console.log('error', error);
+          debugger;
+        }
+      );
+    }
   }
+  
+
   
   // const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
   // this._carService.deleteCar(vin).subscribe(

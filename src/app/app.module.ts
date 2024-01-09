@@ -33,7 +33,7 @@ import { AddCarComponent } from './add/add-car.component';
     RouterModule.forRoot([
       {path: 'cars', component: CarsComponent},
       {path: 'cars/add', component: AddCarComponent},
-      {path: 'cars/:vin', component: CarDetailComponent},
+      {path: 'car/details/:vin', component: CarDetailComponent},
       {path: 'welcome', component: WelcomeComponent},
       {path: '', redirectTo: 'cars', pathMatch: 'full'},
       {path: '**', redirectTo: 'cars', pathMatch: 'full'},

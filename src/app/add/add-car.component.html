@@ -60,19 +60,21 @@
     <div class="form-group">
         <!-- <label for="category" class="form-label">Category</label> -->
         <label for="category">Car Category</label>
-        <select class="form-control" id="category" name="category" [(ngModel)]="addedCar.category"
+        <select class="form-control" id="category" name="category" [(ngModel)]="addedCategory"
          required #nameField = "ngModel"
          (blur)="onBlur(nameField)"
+
          [class.field-error]="form.submitted && nameField.invalid">
           <option selected disabled value="">Choose...</option> 
         
            <!-- <option value = "SmallCar, 2000, 2">SmallCar</option>
            <option value = "{"Bus", 3000, 2}">Bus</option>
            <option value = "Goodvehicle, 5000, 6">Goodvehicle</option>  -->
-          <option value = "{{category1}}">SmallCar</option>
-          <option value = "{{category2}}">Bus</option>
-          <option value = "{{category3}}">Goodvehicle</option>
+          <option value="{{category1.name}}" click >SmallCar</option>
+          <option value="{{category2.name}}" >Bus</option>
+          <option value="{{category3.name}}">Goodvehicle</option>
           <!-- <option *ngFor="let category of subscriptionCategories | async"></option> -->
+          <!-- <option *ngFor="let category of subscriptionCategories | async"> {{category.name}}</option> -->
           <!-- <option value = "{"Bus", 3000, 2}">Bus</option> -->
           
           
@@ -104,12 +106,12 @@
       
     </form>
   </div>
-  {{originalCar | json}}
+  <div>Original Car: {{originalCar | json}}</div>
    <br>
   {{form.value | json}}
   <br>
   {{addedCar | json}}
- 
+  <br>
   {{this.addedCar.category?.name | json}}
 
  

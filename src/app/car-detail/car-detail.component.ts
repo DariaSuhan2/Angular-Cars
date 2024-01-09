@@ -28,8 +28,11 @@ export class CarDetailComponent implements OnInit {
 
   getCar(): void {
     const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
-    this._carService.getCar(vin)
+    if(vin != null){
+      this._carService.getCar(vin)
       .subscribe(car => this.car = car);
+    }
+    
   }
   goBack(): void {
     this.location.back();
