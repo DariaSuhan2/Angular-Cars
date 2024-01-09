@@ -65,12 +65,17 @@
          (blur)="onBlur(nameField)"
          [class.field-error]="form.submitted && nameField.invalid">
           <option selected disabled value="">Choose...</option> 
-          <!-- <option *ngFor = "let cat of presentedCategories">
-            {{cat}}
-          </option> -->
-          <option>SmallCar</option>
-          <option>Bus</option>
-          <option>Goodvehicle</option>
+        
+           <!-- <option value = "SmallCar, 2000, 2">SmallCar</option>
+           <option value = "{"Bus", 3000, 2}">Bus</option>
+           <option value = "Goodvehicle, 5000, 6">Goodvehicle</option>  -->
+          <option value = "{{category1}}">SmallCar</option>
+          <option value = "{{category2}}">Bus</option>
+          <option value = "{{category3}}">Goodvehicle</option>
+          <!-- <option *ngFor="let category of subscriptionCategories | async"></option> -->
+          <!-- <option value = "{"Bus", 3000, 2}">Bus</option> -->
+          
+          
         </select>
         <div [hidden]="!form.submitted || nameField.valid"
         class="alert alert-danger">
@@ -106,3 +111,5 @@
   {{addedCar | json}}
  
   {{this.addedCar.category?.name | json}}
+
+ 

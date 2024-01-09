@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ICar} from "../models/car";
-import {Observable, of, catchError, tap, throwError} from 'rxjs';
+import {Observable, of, catchError, tap, throwError, map} from 'rxjs';
 import { MessageService } from '../service-message/message.service';
 import { HttpClient, HttpErrorResponse,  HttpHeaders  } from '@angular/common/http';
 import { ICarCategory } from '../models/category';
@@ -72,7 +72,23 @@ export class CarService {
       tap((newCar:ICar) => console.log(`added car w/ vin=${newCar.vin}`)),
       catchError(err => this.handleError(err))
     );
+  //   return this._http.post<ICar>(this._carUrl, car, this.httpOptions).pipe(
+  //     map(this.extractData),
+  //     catchError(err => this.handleError(err))
+  // );
+    // return this._http.post<ICar>(this._carUrl, car, this.httpOptions).
+  //     pipe(catchError((error: any, caught: Observable<any>): Observable<any> => {
+  //       this.handleError(error)
 
+  //     // after handling error, return a new observable 
+  //     // that doesn't emit any values and completes
+  //     return of();
+  // }))
+  //     .subscribe(newCar => {
+  //       this.postId = car.vin;
+  // });
+
+   
   }
 
  
@@ -82,7 +98,28 @@ export class CarService {
     tap(_ => console.log(`deleted car vin=${vin}`)),
     catchError(err => this.handleError(err))
   );
-}
+  }
+
+  category1  = {
+    name : "SmallCar",
+    engineCapacity : 2000,
+    weight : 2
+  };
+  category2  = {
+    name : "Bus",
+    engineCapacity : 3000,
+    weight : 2
+  };
+  category3  = {
+    name : "Goodvehicle",
+    engineCapacity : 5000,
+    weight : 6
+  };
+  
+  getCategories(): Observable<ICarCategory[]> {
+    return of ([this.category1, this.category2, this.category3])
+  }
+
   
   
 }

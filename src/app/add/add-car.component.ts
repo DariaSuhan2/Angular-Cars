@@ -21,10 +21,12 @@ export class AddCarComponent implements OnInit {
   constructor(private _carService: CarService,
     private router: Router
     ) {}
+
+ 
   
   //radioType?: RadioType;
   
-  //originalCar? : ICar; 
+  //originalCar? : ICar;
   originalCar : ICar = { 
     vin: null,
     color: null,
@@ -32,7 +34,7 @@ export class AddCarComponent implements OnInit {
     doorNr: null,
     category: this.addedCategory = {
       name : null,
-      engineCapacity :null,
+      engineCapacity : null,
       weight : null
     },
     airConditioning: null,
@@ -44,8 +46,32 @@ export class AddCarComponent implements OnInit {
     radio: null,
     type: null
 
-  }; 
+  };  
+  // originalCar : ICar = { 
+  //   vin: null,
+  //   color: null,
+  //   brand: null,
+  //   doorNr: null,
+  //   category: this.addedCategory = {
+  //     name : null,
+  //     engineCapacity : null,
+  //     weight : null
+  //   },
+  //   airConditioning: null,
+  //   electricWindow: null,
+  //   parkingSenzor: null,
+  //   USBPort: null,
+  //   parktronicSystem: null,
+  //   infotainmentSystem: null,
+  //   radio: null,
+  //   type: null
+
+  // };  
   
+  
+   
+    
+   
   /*originalCar : ICar = { 
     vin: 10,
     color: 'red',
@@ -68,7 +94,22 @@ export class AddCarComponent implements OnInit {
   };*/
 
   addedCar : ICar = {...this.originalCar};
-  
+  subscriptionCategories = Observable<ICarCategory[]>;
+  category1  = {
+    name : "SmallCar",
+    engineCapacity : 2000,
+    weight : 2
+  };
+  category2  = {
+    name : "Bus",
+    engineCapacity : 3000,
+    weight : 2
+  };
+  category3  = {
+    name : "Goodvehicle",
+    engineCapacity : 5000,
+    weight : 6
+  };
   
   //spread syntax in js - copy of orginal object and stored it in an object
   //alternative Lodash - deep clone function
@@ -78,7 +119,7 @@ export class AddCarComponent implements OnInit {
  
 
   ngOnInit() {
-  
+    //this.subscriptionCategories = this._carService.getCategories();
   }
 
   onBlur(field: NgModel){
@@ -88,6 +129,18 @@ export class AddCarComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     console.log('in onSubmit: ', form.valid);
+    if (this.addedCar.vin){ 
+      let vinn: number = + this.addedCar.vin ;
+      this.addedCar.vin = vinn;
+    }
+    if (this.addedCar.doorNr){ 
+      let nr: number = + this.addedCar.doorNr ;
+      this.addedCar.doorNr = nr;
+    }
+            // let vinn = parseInt(this.addedCar, 10) 
+    // this.addedCar.vin = vinn;
+
+
     if (this.addedCar.type == "Budget") {
       this.addedCar.airConditioning = false;
       this.addedCar.electricWindow = false;
@@ -115,20 +168,20 @@ export class AddCarComponent implements OnInit {
       this.addedCar.infotainmentSystem = true;
       this.addedCar.radio = RadioType.DIGITAL;
    }
-   
-    if (this.addedCar.category?.name == "SmallCar"){
-      this.addedCar.category.engineCapacity = 2000;
-      this.addedCar.category.weight = 2;
-    }
-    else if (this.addedCar.category?.name ==  "Bus") {
-       this.addedCar.category.engineCapacity = 3000;
-       this.addedCar.category.weight = 2;
-    }
-    else if (this.addedCar.category?.name =="Goodvehicle") {
-      this.addedCar.category.engineCapacity = 5000;
-      this.addedCar.category.weight = 6;
-  
-    }
+    
+    // if (this.addedCar.category?.name == "SmallCar"){
+    //   this.addedCar.category.engineCapacity = 2000;
+    //   this.addedCar.category.weight = 2;
+    // }
+    // else if (this.addedCar.category?.name ==  "Bus") {
+    //    this.addedCar.category.engineCapacity = 3000;
+    //    this.addedCar.category.weight = 2;
+    // }
+    // else if (this.addedCar.category?.name =="Goodvehicle") {
+    //   this.addedCar.category.engineCapacity = 5000;
+    //   this.addedCar.category.weight = 6;
+  debugger;
+    // }
     
     this._carService.addCar(this.addedCar).subscribe(
       result =>{ 
