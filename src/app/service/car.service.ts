@@ -11,7 +11,7 @@ import { ICarCategory } from '../models/category';
 export class CarService {
   
   //private _carUrl = 'api/cars/cars.json';
-  private _carUrl = 'http://localhost:5120/api/car';
+  private _carUrl = 'http://localhost:55726/api/car';
   //private _categoryUrl = 'http://localhost:5120/api/category';
   //private _carUrl = 'http://local.mydomain.example:5120/api/car';
   
@@ -23,7 +23,7 @@ export class CarService {
 
   getCars(): Observable<ICar[]> {
     //const cars = of(CARS);
-    this.messageService.add('CarService: fetched cars');
+    //this.messageService.add('CarService: fetched cars');
     //return cars;
     return this._http.get<ICar[]>(this._carUrl).pipe(
       tap(data => console.log('All', JSON.stringify(data))),
@@ -90,9 +90,7 @@ export class CarService {
   // }))
   //     .subscribe(newCar => {
   //       this.postId = car.vin;
-  // });
-
-   
+  // }); 
   }
 
  
@@ -101,7 +99,14 @@ export class CarService {
     return this._http.delete<ICar>(url).pipe(
     tap(_ => console.log(`deleted car vin=${vin}`)),
     catchError(err => this.handleError(err))
-  );
+    );
+  }
+  deleteAll():void{
+    const url = `${this._carUrl}`;
+    this._http.delete<void>(url).pipe(
+    tap(data => console.log('deleteAll', JSON.stringify(data)),
+    catchError(err => this.handleError(err))
+    ));
   }
 
   category1: ICarCategory  = {

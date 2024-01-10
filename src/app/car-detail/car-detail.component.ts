@@ -5,6 +5,8 @@ import {ICar} from "../models/car";
 import { CarService } from '../service/car.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
+import { ICarCategory } from '../models/category';
 
 
 @Component({
@@ -16,6 +18,7 @@ export class CarDetailComponent implements OnInit {
   //car?: ICar;
   pageTitle: string = 'Car Details';
   @Input() car?: ICar;
+  //Categories :  Observable<ICarCategory[]>;
 
   constructor(private _carService: CarService,
     private route: ActivatedRoute,
@@ -23,7 +26,9 @@ export class CarDetailComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.getCar();
+    const car = this.getCar();
+    //const categories = this._carService.getCategories();
+    //if (categories == car.category.name)
   }
 
   getCar(): void {

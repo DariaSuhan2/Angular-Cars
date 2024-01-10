@@ -166,13 +166,16 @@ export class AddCarComponent implements OnInit {
       this.addedCar.radio = RadioType.DIGITAL;
    }
     if(this.addedCategory != null){
-      //const categories = this._carService.getCategories();
-      const categories =[this.category1, this.category2, this.category3];
+      const categories = this._carService.getCategories();
+      //const categories =[this.category1, this.category2, this.category3];
       debugger;
       const selectedCategory = categories.find(s => s.name == this.addedCategory);
       this.addedCar.category = selectedCategory != null ? selectedCategory : null;
-      //this.addedCar.category?.weight = selectedCategory?.weight != null ? selectedCategory.weight : null;
-    
+      if (this.addedCar.category != undefined) {
+        this.addedCar.category.engineCapacity = selectedCategory?.engineCapacity != null ? selectedCategory.engineCapacity : null;
+        this.addedCar.category.weight = selectedCategory?.weight != null ? selectedCategory.weight : null;
+      }
+      
     }
     // if (this.addedCar.category?.name == "SmallCar"){
     //   this.addedCar.category.engineCapacity = 2000;

@@ -43,7 +43,7 @@ export class CarsComponent implements OnInit, OnDestroy {
 
   onSelect(car: ICar): void {
     this.selectedCar = car;
-    this._messageService.add(`CarsComponent: Selected car vin=${car.vin}`);
+   // this._messageService.add(`CarsComponent: Selected car vin=${car.vin}`);
     this.router.navigate([`/car/details/${car.vin}`]);
     // router navigate to car/details/{car.vin}
   }
@@ -54,7 +54,7 @@ export class CarsComponent implements OnInit, OnDestroy {
   }
 
   delete(car: ICar): void {
-    this.cars = this.cars.filter(c => c !== car);
+   // this.cars = this.cars.filter(c => c !== car);
     if(car.vin != null){
       this._carService.deleteCar(car.vin).subscribe(
         result => {
@@ -69,7 +69,11 @@ export class CarsComponent implements OnInit, OnDestroy {
     }
   }
   
-
+  deleteAll(): void {
+    //this._carService.deleteAll().subscribe();
+    this._carService.deleteAll();
+  }
+  
   
   // const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
   // this._carService.deleteCar(vin).subscribe(
