@@ -165,30 +165,35 @@ export class AddCarComponent implements OnInit {
       this.addedCar.infotainmentSystem = true;
       this.addedCar.radio = RadioType.DIGITAL;
    }
+  
+
     if(this.addedCategory != null){
       const categories = this._carService.getCategories();
       //const categories =[this.category1, this.category2, this.category3];
-  
+      
       const selectedCategory = categories.find(s => s.name == this.addedCategory);
-      this.addedCar.category = selectedCategory != null ? selectedCategory : null;
+        this.addedCar.category = selectedCategory != null ? selectedCategory : null;
+       
+      
       // if (this.addedCar.category != undefined) {
+      //   // this.addedCar.category. = selectedCategory?.weight != null ? selectedCategory.weight : null;
       //   this.addedCar.category.engineCapacity = selectedCategory?.engineCapacity != null ? selectedCategory.engineCapacity : null;
       //   this.addedCar.category.weight = selectedCategory?.weight != null ? selectedCategory.weight : null;
       // }
       
     }
-    if (this.addedCar.category?.name == "SmallCar"){
-      this.addedCar.category.engineCapacity = 2000;
-      this.addedCar.category.weight = 2;
-    }
-    else if (this.addedCar.category?.name ==  "Bus") {
-       this.addedCar.category.engineCapacity = 3000;
-       this.addedCar.category.weight = 2;
-    }
-    else if (this.addedCar.category?.name =="Goodvehicle") {
-      this.addedCar.category.engineCapacity = 5000;
-      this.addedCar.category.weight = 6;
-    }
+    // if (this.addedCar.category?.name == "SmallCar"){
+    //   this.addedCar.category.engineCapacity = 2000;
+    //   this.addedCar.category.weight = 2;
+    // }
+    // else if (this.addedCar.category?.name ==  "Bus") {
+    //    this.addedCar.category.engineCapacity = 3000;
+    //    this.addedCar.category.weight = 2;
+    // }
+    // else if (this.addedCar.category?.name =="Goodvehicle") {
+    //   this.addedCar.category.engineCapacity = 5000;
+    //   this.addedCar.category.weight = 6;
+    // }
    
     this._carService.addCar(this.addedCar).subscribe(
       result =>{ 
