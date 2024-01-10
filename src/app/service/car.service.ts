@@ -71,7 +71,6 @@ export class CarService {
 
   addCar(car: ICar) : Observable<ICar> {
     //return of(car);
-    debugger;
     return this._http.post<ICar>(this._carUrl, car, this.httpOptions).pipe(
       tap((newCar:ICar) => console.log(`added car`)),
       catchError(err => this.handleError(err))
@@ -101,12 +100,20 @@ export class CarService {
     catchError(err => this.handleError(err))
     );
   }
-  deleteAll():void{
-    const url = `${this._carUrl}`;
-    this._http.delete<void>(url).pipe(
-    tap(data => console.log('deleteAll', JSON.stringify(data)),
-    catchError(err => this.handleError(err))
-    ));
+  deleteAllCars():void{
+    const url = `${this._carUrl}/delete-all`;
+    // this._http.delete<void>(url).pipe(
+    // tap(data => console.log('deletedAll', JSON.stringify(data)),
+    // catchError(err => this.handleError(err))
+    // ));
+    // this._http.delete<void>(url).subscribe(
+    //   data => console.log('deletedAll', JSON.stringify(data)),
+    //   catchError(err => this.handleError(err))
+    //   );
+      this._http.delete(url).subscribe(
+        data => console.log('deletedAll', JSON.stringify(data)),
+        catchError(err => this.handleError(err))
+        );
   }
 
   category1: ICarCategory  = {

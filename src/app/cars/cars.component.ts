@@ -20,7 +20,7 @@ export class CarsComponent implements OnInit, OnDestroy {
   sub!: Subscription;
 
   constructor (private _carService: CarService, 
-    private _messageService: MessageService,
+   // private _messageService: MessageService,
     private route: ActivatedRoute,
     private router: Router) {}
   
@@ -29,9 +29,7 @@ export class CarsComponent implements OnInit, OnDestroy {
     this.sub = this._carService.getCars().subscribe({
       next: cars => {
         this.cars = cars;
-        this.selectedCars = this.cars;
-     
-        
+        this.selectedCars = this.cars;  
       },
       error: err => this.errorMessage = err
     });
@@ -54,7 +52,7 @@ export class CarsComponent implements OnInit, OnDestroy {
   }
 
   delete(car: ICar): void {
-   // this.cars = this.cars.filter(c => c !== car);
+   this.cars = this.cars.filter(c => c !== car);
     if(car.vin != null){
       this._carService.deleteCar(car.vin).subscribe(
         result => {
@@ -71,10 +69,19 @@ export class CarsComponent implements OnInit, OnDestroy {
   
   deleteAll(): void {
     //this._carService.deleteAll().subscribe();
-    this._carService.deleteAll();
+    this._carService.deleteAllCars();
+ 
+    window.location.reload();
+    // this.router.navigate(['/cars']);
+     this._carService.getCars();
+    //this.redirectTo(['/cars']);
+    // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    //   this.router.navigate(['/cars']);
+    // });
+   
   }
   
-  
+
   // const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
   // this._carService.deleteCar(vin).subscribe(
   //   result => console.log('success: ', result),

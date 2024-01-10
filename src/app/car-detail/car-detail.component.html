@@ -1,4 +1,4 @@
-<h2>{{pageTitle}}</h2>
+<!-- <h2>{{pageTitle}}</h2> -->
 <div *ngIf="car">
     <h2>{{car.brand | uppercase}} Details</h2>
     <div><span>vin: </span>{{car.vin}}</div>
@@ -22,6 +22,8 @@
       <label for="car-type">Car type: </label>
       <input id="car-type" [(ngModel)]="car.type" placeholder="type">
     </div>
+    <!-- <button class="btn btn-primary"(click)="goBack()">Go back</button> 
+    <button class="btn btn-primary"(click)="save()">Save</button>  -->
     <button type="button" (click)="goBack()">Go back</button>
     <button type="button" (click)="save()">Save</button>
   </div>
@@ -29,5 +31,5 @@
 
 
 
-  <h2>this is from car-detail.component</h2>
+  <!-- <h2>this is from car-detail.component</h2> -->
  
