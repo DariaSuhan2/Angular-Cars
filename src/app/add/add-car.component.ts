@@ -113,6 +113,15 @@ export class AddCarComponent implements OnInit {
           console.log('success: ', result);
           const selectedCategory = result.find(s => s.name == this.addedCategory);
           this.addedCar.category = selectedCategory != null ? selectedCategory : null;
+          this._carService.addCar(this.addedCar).subscribe(
+            result =>{ 
+             console.log('success: ', result);
+             this.router.navigate(['/cars']);
+            },
+            error => {
+              console.log('error', error);
+            }
+          );
          },
          error => {
            console.log('error', error);
@@ -131,16 +140,6 @@ export class AddCarComponent implements OnInit {
        //this.addedCar.category = selectedCategory != null ? selectedCategory : null;
             
     }
-       
-    this._carService.addCar(this.addedCar).subscribe(
-      result =>{ 
-       console.log('success: ', result);
-       this.router.navigate(['/cars']);
-      },
-      error => {
-        console.log('error', error);
-      }
-    );
     //const win: Window = window;
     //win.location = "http://localhost:4200/cars";
     //window.location.assign( "http://localhost:5120/api/car");
