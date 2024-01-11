@@ -12,10 +12,9 @@
             <span class="badge">{{car.vin}}</span>
             <span class="name">{{car.brand}}</span>
             <!-- ;<button class = "delete" type="button" (click)="delete(car)">Delete</button> -->
-            <button type="button" class="delete" title="delete car" (click)="delete(car)">Delete</button>
             <!-- <span class="delete">Delete a car</span> -->
             </button>
-           
+            <button type="button" class="delete" title="delete car" (click)="delete(car)">Delete</button>
       </li>
       <br>
       <ng-container *ngIf="cars.length; then showMessage1; else showMessage2">

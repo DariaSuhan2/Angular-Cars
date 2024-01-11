@@ -17,7 +17,7 @@ import { ICarCategory } from '../models/category';
 export class CarDetailComponent implements OnInit {
   //car?: ICar;
   pageTitle: string = 'Car Details';
-  @Input() car?: ICar;
+  car?: ICar;
   //Categories :  Observable<ICarCategory[]>;
 
   constructor(private _carService: CarService,
@@ -26,7 +26,7 @@ export class CarDetailComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    const car = this.getCar();
+    this.getCar();
     //const categories = this._carService.getCategories();
     //if (categories == car.category.name)
   }
