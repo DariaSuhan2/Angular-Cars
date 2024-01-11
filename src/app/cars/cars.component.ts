@@ -80,12 +80,13 @@ export class CarsComponent implements OnInit, OnDestroy {
     // });
    
   }
-  
 
-  // const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
-  // this._carService.deleteCar(vin).subscribe(
-  //   result => console.log('success: ', result),
-  //   error => console.log('error', error)
-  // );
+  // save(): void {
+  //   if (this.car) {
+  //     this._carService.updateCar(this.car)
+  //       .subscribe(() => this.goBack());
+  //   }
+  // }
+  
 
 }

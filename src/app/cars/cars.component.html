@@ -15,7 +15,11 @@
             <!-- <span class="delete">Delete a car</span> -->
             </button>
             <button type="button" class="delete" title="delete car" (click)="delete(car)">Delete</button>
+            <!-- <label for="car-color">Update Car Color: </label>
+            <input id="car-color" [(ngModel)]="car.color" placeholder="color">
+            <br><br> -->
       </li>
+      
       <br>
       <ng-container *ngIf="cars.length; then showMessage1; else showMessage2">
       </ng-container>
@@ -41,6 +45,7 @@
       
             <!-- <button type="button" (click)="deleteAll()">Delete all cars</button> -->
       <button type="button" class="btn btn-primary" (click)="deleteAll()">Delete all cars</button>
+      <!-- <button type="button" class="btn btn-primary" (click)="save()">Update car color</button> -->
 
 <app-car-detail [car]="selectedCar"></app-car-detail>
 <br>

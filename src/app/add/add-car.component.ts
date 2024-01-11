@@ -4,7 +4,7 @@ import { ICarCategory } from "../models/category";
 import {RadioType} from "../models/car";
 import { NgForm, NgModel } from '@angular/forms';
 import { CarService } from '../service/car.service';
-import { Observable } from 'rxjs';
+import { Observable, find } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -43,71 +43,12 @@ export class AddCarComponent implements OnInit {
     type: null
 
   };  
-  // originalCar : ICar = { 
-  //   vin: null,
-  //   color: null,
-  //   brand: null,
-  //   doorNr: null,
-  //   category: this.addedCategory = {
-  //     name : null,
-  //     engineCapacity : null,
-  //     weight : null
-  //   },
-  //   airConditioning: null,
-  //   electricWindow: null,
-  //   parkingSenzor: null,
-  //   USBPort: null,
-  //   parktronicSystem: null,
-  //   infotainmentSystem: null,
-  //   radio: null,
-  //   type: null
-
-  // };  
-  
-  
-   
-    
-   
-  /*originalCar : ICar = { 
-    vin: 10,
-    color: 'red',
-    brand: 'Opel',
-    doorNr: 4,
-    category: this.addedCategory = {
-      name : 'SmallCar',
-      engineCapacity :2000,
-      weight : 2
-    },
-    airConditioning: true,
-    electricWindow: true,
-    parkingSenzor: true,
-    USBPort: false,
-    parktronicSystem: false,
-    infotainmentSystem: false,
-    radio: RadioType.DIGITAL,
-    type: 'Premium'
-
-  };*/
+ 
 
   addedCar : ICar = {...this.originalCar};
   subscriptionCategories = Observable<ICarCategory[]>;
 
-  category1  = {
-    name : "SmallCar",
-    engineCapacity : 2000,
-    weight : 2
-  };
-  category2  = {
-    name : "Bus",
-    engineCapacity : 3000,
-    weight : 2
-  };
-  category3  = {
-    name : "Goodvehicle",
-    engineCapacity : 5000,
-    weight : 6
-  };
-  
+
   //spread syntax in js - copy of orginal object and stored it in an object
   //alternative Lodash - deep clone function
 
@@ -134,9 +75,8 @@ export class AddCarComponent implements OnInit {
       let nr: number = + this.addedCar.doorNr ;
       this.addedCar.doorNr = nr;
     }
-            // let vinn = parseInt(this.addedCar, 10) 
+    // let vinn = parseInt(this.addedCar, 10) 
     // this.addedCar.vin = vinn;
-
 
     if (this.addedCar.type == "Budget") {
       this.addedCar.airConditioning = false;
@@ -168,33 +108,30 @@ export class AddCarComponent implements OnInit {
   
 
     if(this.addedCategory != null){
-      const categories = this._carService.getCategories();
+      this._carService.getCategories().subscribe(
+        result =>{ 
+          console.log('success: ', result);
+          const selectedCategory = result.find(s => s.name == this.addedCategory);
+          this.addedCar.category = selectedCategory != null ? selectedCategory : null;
+         },
+         error => {
+           console.log('error', error);
+         }
+      );
+      //subcribe
       //const categories =[this.category1, this.category2, this.category3];
-      
-      const selectedCategory = categories.find(s => s.name == this.addedCategory);
-        this.addedCar.category = selectedCategory != null ? selectedCategory : null;
-       
-      
-      // if (this.addedCar.category != undefined) {
-      //   // this.addedCar.category. = selectedCategory?.weight != null ? selectedCategory.weight : null;
-      //   this.addedCar.category.engineCapacity = selectedCategory?.engineCapacity != null ? selectedCategory.engineCapacity : null;
-      //   this.addedCar.category.weight = selectedCategory?.weight != null ? selectedCategory.weight : null;
-      // }
-      
+      // this.categories.array.forEach((selectedCategory) =>
+      //   this.addedCar.category = selectedCategory != null ? selectedCategory : null)
+        
+      // ;
+      //const selectedCategory = categories.find(s => s.name == this.addedCategory);
+      // obs.pipe(find((v) => v>3))
+        //  const selectedCategory = categories.pipe(find(v => v.name == this.addedCategory));
+       // const selectedCategory = categories.pipe(find(v => v.name == ));
+       //this.addedCar.category = selectedCategory != null ? selectedCategory : null;
+            
     }
-    // if (this.addedCar.category?.name == "SmallCar"){
-    //   this.addedCar.category.engineCapacity = 2000;
-    //   this.addedCar.category.weight = 2;
-    // }
-    // else if (this.addedCar.category?.name ==  "Bus") {
-    //    this.addedCar.category.engineCapacity = 3000;
-    //    this.addedCar.category.weight = 2;
-    // }
-    // else if (this.addedCar.category?.name =="Goodvehicle") {
-    //   this.addedCar.category.engineCapacity = 5000;
-    //   this.addedCar.category.weight = 6;
-    // }
-   
+       
     this._carService.addCar(this.addedCar).subscribe(
       result =>{ 
        console.log('success: ', result);

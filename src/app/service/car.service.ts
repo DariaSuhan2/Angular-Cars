@@ -12,7 +12,7 @@ export class CarService {
   
   //private _carUrl = 'api/cars/cars.json';
   private _carUrl = 'http://localhost:55726/api/car';
-  //private _categoryUrl = 'http://localhost:5120/api/category';
+  private _categoryUrl = 'http://localhost:55726/api/category';
   //private _carUrl = 'http://local.mydomain.example:5120/api/car';
   
   httpOptions = {
@@ -56,6 +56,12 @@ export class CarService {
           catchError(err => this.handleError(err))
         );
   }   
+  updateColorCar(car: ICar): Observable<any> {
+    return this._http.patch(this._carUrl, car, this.httpOptions).pipe(
+      tap(_ => console.log(`updated the color of car vin=${car.vin}`)),
+      catchError(err => this.handleError(err))
+    );
+}  
     
  
   private handleError(err: HttpErrorResponse) {
@@ -117,24 +123,33 @@ export class CarService {
         );
   }
 
-  category1: ICarCategory  = {
-    name : "SmallCar",
-    engineCapacity : 2000,
-    weight : 2
-  };
-  category2 : ICarCategory  = {
-    name : "Bus",
-    engineCapacity : 3000,
-    weight : 2
-  };
-  category3 : ICarCategory  = {
-    name : "Goodvehicle",
-    engineCapacity : 5000,
-    weight : 6
-  };
+  // category1: ICarCategory  = {
+  //   name : "SmallCar",
+  //   engineCapacity : 2000,
+  //   weight : 2
+  // };
+  // category2 : ICarCategory  = {
+  //   name : "Bus",
+  //   engineCapacity : 3000,
+  //   weight : 2
+  // };
+  // category3 : ICarCategory  = {
+  //   name : "Goodvehicle",
+  //   engineCapacity : 5000,
+  //   weight : 6
+  // };
   
-  getCategories(): Array<ICarCategory> {
-    return  [this.category1, this.category2, this.category3]
+  getCategories(): Observable<ICarCategory[]> {
+    //return  [this.category1, this.category2, this.category3]
+
+    return this._http.get<ICarCategory[]>(this._categoryUrl).pipe(
+      tap(data => { 
+       // data;  
+        console.log('All', JSON.stringify(data));
+    
+    }),
+      catchError(err => this.handleError(err))
+      );
     //return of ([this.category1, this.category2, this.category3])
   }
 
