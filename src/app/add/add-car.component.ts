@@ -127,18 +127,7 @@ export class AddCarComponent implements OnInit {
            console.log('error', error);
          }
       );
-      //subcribe
-      //const categories =[this.category1, this.category2, this.category3];
-      // this.categories.array.forEach((selectedCategory) =>
-      //   this.addedCar.category = selectedCategory != null ? selectedCategory : null)
-        
-      // ;
-      //const selectedCategory = categories.find(s => s.name == this.addedCategory);
-      // obs.pipe(find((v) => v>3))
-        //  const selectedCategory = categories.pipe(find(v => v.name == this.addedCategory));
-       // const selectedCategory = categories.pipe(find(v => v.name == ));
-       //this.addedCar.category = selectedCategory != null ? selectedCategory : null;
-            
+     
     }
     //const win: Window = window;
     //win.location = "http://localhost:4200/cars";

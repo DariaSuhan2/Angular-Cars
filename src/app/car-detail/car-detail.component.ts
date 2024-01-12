@@ -35,7 +35,9 @@ export class CarDetailComponent implements OnInit {
     const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
     if(vin != null){
       this._carService.getCar(vin)
-      .subscribe(car => this.car = car);
+      .subscribe(car => {
+        this.car = car;
+      });
     }
     
   }
@@ -49,6 +51,17 @@ export class CarDetailComponent implements OnInit {
         .subscribe(() => this.goBack());
     }
   }
+
+
+  // subscribe(
+  //   result =>{ 
+  //    console.log('success: ', result);
+  //    this.router.navigate(['/cars']);
+  //   },
+  //   error => {
+  //     console.log('error', error);
+  //   }
+  // );
    
 }
 
