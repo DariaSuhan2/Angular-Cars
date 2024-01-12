@@ -116,6 +116,7 @@ export class AddCarComponent implements OnInit {
           this._carService.addCar(this.addedCar).subscribe(
             result =>{ 
              console.log('success: ', result);
+             return this.addedCategory;
              this.router.navigate(['/cars']);
             },
             error => {

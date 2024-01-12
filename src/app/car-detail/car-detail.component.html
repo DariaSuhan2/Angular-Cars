@@ -1,7 +1,8 @@
 <!-- <h2>{{pageTitle}}</h2> -->
 <div *ngIf="car">
     <h2>{{car.brand | uppercase}} Details</h2>
-    <div><span>vin: </span>{{car.vin}}</div>
+    <label for="car">Car VIN: {{car.vin}} </label>
+    <!-- <div><span>vin: </span>{{car.vin}}</div> -->
     <div>
       <label for="car-brand">Car brand: </label>
       <input id="car-brand" [(ngModel)]="car.brand" placeholder="brand">
@@ -12,15 +13,66 @@
       <label for="car-doorNr">The number of doors: </label>
       <input id="car-doorNr" [(ngModel)]="car.doorNr" placeholder="doorNr">
       <br><br>
+      <!-- <label for="car-type">Car category name: {{car.category?.name}} </label>
+      <select class="form-control" id="category" name="category" [(ngModel)]="car.category">
+        <select class="form-control" id="category" name="category" [(ngModel)]="addedCategory" >
+        <option selected disabled value="">Choose...</option> 
+        <option>SmallCar</option>
+        <option>Bus</option>
+        <option>Goodvehicle</option>
+      </select> -->
+
+
       <label for="car-category">Car category name: </label>
       <input *ngIf="car.category !=null" id="car-category" [(ngModel)]="car.category.name" placeholder="category name">  
-      <label for="car-category">Car category engine capacity: </label>
-      <input *ngIf="car.category !=null" id="car-category" [(ngModel)]="car.category.engineCapacity" placeholder="category engine power"> 
-      <label for="car-category">Car category weight: </label>
-      <input *ngIf="car.category !=null" id="car-category" [(ngModel)]="car.category.weight" placeholder="category weight"> 
+      <br> 
+      <label for="car-category">Car category engine capacity: {{car.category?.engineCapacity}}</label>
+      
+      <!-- <label id="car-category"*ngIf="car.category !=null" for="vin">{{car.category.engineCapacity}}</label> -->
+      <!-- <div><span>{{car.category?.engineCapacity}}</span></div> -->
+      <br>
+      <!-- <input *ngIf="car.category !=null" id="car-category" [(ngModel)]="car.category.engineCapacity" placeholder="category engine power">  -->
+      <label for="car-category">Car category weight: {{car.category?.weight}} </label>
+      <!-- <label id="car-category"*ngIf="car.category !=null" for="vin">{{car.category.weight}}</label> -->
+      <!-- <div><span></span>{{car.category?.weight}}</div> -->
+      <!-- <input  id="car-category"*ngIf="car.category !=null" [(ngModel)]="car.category.weight" placeholder="category weight">  -->
       <br><br>
       <label for="car-type">Car type: </label>
-      <input id="car-type" [(ngModel)]="car.type" placeholder="type">
+      <select class="form-control" id="type" name="type" [(ngModel)]="car.type">
+        <option selected disabled value="">Choose...</option> 
+        <option>Budget</option>
+        <option>Premium</option>
+        <option>Luxury</option>
+      </select>
+      <label for="airConditioning">Car air conditioning: {{car.airConditioning}} </label>
+      <br>
+      <label for="electricWindow">Car electric window: {{car.electricWindow}} </label>
+      <br>
+      <label for="parkingSenzor">Car parking senzor: {{car.parkingSenzor}} </label>
+      <br>
+      <div *ngIf="car.USBPort == true else elseBlock">
+        <label for="USBPort">Car USB port: true </label>
+      </div>
+      <ng-template #elseBlock>
+        <label for="USBPort">Car USB port: false </label>
+      </ng-template>
+      <!-- <label for="USBPort">Car USB port: {{car.USBPort}} </label> -->
+      <br>
+      <label for="parktronicSystem">Car parktronic system: {{car.parktronicSystem}} </label>
+      <br>
+      <label for="infotainmentSystem">Car infotainment system: {{car.infotainmentSystem}} </label>
+      <br>
+      <div *ngIf="car.radio ==0 else elseBlock2">
+        <label for="radio">Car radio: analog </label>
+      </div>
+      <ng-template #elseBlock2>
+        <label for="radio">Car radio: digital </label>
+      </ng-template>
+
+      
+      
+      <!-- <label for="car-type">Car type: </label>
+      <input id="car-type" [(ngModel)]="car.type" placeholder="type"> -->
     </div>
     <!-- <button class="btn btn-primary"(click)="goBack()">Go back</button> 
     <button class="btn btn-primary"(click)="save()">Save</button>  -->
@@ -28,7 +80,7 @@
     <button type="button" (click)="save()">Save</button>
   </div>
 
-
+  {{car | json}}
 
 
   <!-- <h2>this is from car-detail.component</h2> -->
