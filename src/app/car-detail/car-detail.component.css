@@ -1,7 +1,8 @@
 /* HeroDetailComponent's private CSS styles */
 label {
-    color: #435960;
+    color: #076483;
     font-weight: bold;
+    padding-right: .5rem;
   }
   input {
     font-size: 1em;
@@ -23,3 +24,25 @@ label {
     color: #ccc;
     cursor: auto;
   }
+
+  /* .ng-select.custom {
+    border:0px;
+    min-height: 0px;
+    border-radius: 0;
+}
+.ng-select.custom .ng-select-container  {            
+    min-height: 0px;
+    border-radius: 0;
+} */
+
+.ng-select.custom ::ng-deep .ng-select-container  {            
+  min-height: 0px;
+  border-radius: 0;
+}
+
+ .ng-dropdown-panel .ng-dropdown-panel-items .ng-option .highlighted { 
+  background-color: orange !important;
+  font-weight: bold !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+} 

@@ -1,7 +1,9 @@
 <!-- <h2>{{pageTitle}}</h2> -->
 <div *ngIf="car">
     <h2>{{car.brand | uppercase}} Details</h2>
-    <label for="car">Car VIN: {{car.vin}} </label>
+    <img width="400" align="right"  alt="Angular Logo" src="./assets/images/DSC_0245.jpg">
+    <label for="car">Car VIN: </label>
+    <div>   {{car.vin}} </div>
     <!-- <div><span>vin: </span>{{car.vin}}</div> -->
     <div>
       <label for="car-brand">Car brand: </label>
@@ -21,22 +23,96 @@
         <option>Bus</option>
         <option>Goodvehicle</option>
       </select> -->
+      <!-- <div style="width: 300px; margin-bottom: 20px;">
+        <h3>Select a category</h3>
+        <ng-select [allowClear]="true"
+                    [items]="categories"
+                    [disabled]="disabled"
+                    (data)="refreshValue($event)"
+                    (selected)="selected($event)"
+                    (removed)="removed($event)"
+                    (typed)="typed($event)"
+                    placeholder="No category selected">
+        </ng-select>
+        <p></p>
+        <pre>{{categories}}</pre>
+        <div>
+          <button type="button" class="btn btn-primary"
+                  [(ngModel)]="_disabledV" btnCheckbox
+                  btnCheckboxTrue="1" btnCheckboxFalse="0"> -->
+            <!-- {{disabled === '1' ? 'Enable' : 'Disable'}} -->
+          <!-- </button>
+        </div>
+      </div> -->
 
+      <!-- <ng-select [items]="categories"
+      [(ngModel)]="selectedCategory">
+        </ng-select> -->
 
-      <label for="car-category">Car category name: </label>
-      <input *ngIf="car.category !=null" id="car-category" [(ngModel)]="car.category.name" placeholder="category name">  
-      <br> 
-      <label for="car-category">Car category engine capacity: {{car.category?.engineCapacity}}</label>
+     
+       
       
-      <!-- <label id="car-category"*ngIf="car.category !=null" for="vin">{{car.category.engineCapacity}}</label> -->
-      <!-- <div><span>{{car.category?.engineCapacity}}</span></div> -->
-      <br>
-      <!-- <input *ngIf="car.category !=null" id="car-category" [(ngModel)]="car.category.engineCapacity" placeholder="category engine power">  -->
-      <label for="car-category">Car category weight: {{car.category?.weight}} </label>
+     
+
+       <!-- <ng-select [(ngModel)]="selectedCategory">
+        <ng-option  *ngFor="let cat of categories" [value]="selectedCategory">{{car.category?.name}}</ng-option>
+     </ng-select> -->
+       
+       <!-- <ng-select class="db w-100"
+          [items]="categories"
+          bindLabel="value"
+          bindValue="id"
+          
+          [(ngModel)]="selectedCategory">
+        </ng-select> -->
+        
+        <!-- <ng-select [(ngModel)]="selectedCategory">
+          <ng-option *ngFor="let cat of categories" [value]="selectedCategory">{{selectedCategory}}</ng-option>
+       </ng-select> -->
+       <label for="car-category">Car category name: </label>
+
+      <ng-select *ngIf="categories != null" 
+              [items]="categories"
+              name="category"
+              bindLabel="name"
+              bindValue="name"
+              [(ngModel)]="selectedCategory">               
+      </ng-select>
+
+    
+      
+      <!-- <ng-select class="custom"></ng-select>
+     -->
+
+
+     
+      
+      
+      
+      <!-- <label for="car-category">Car category name: </label>
+      <input *ngIf="car.category !=null" id="car-category" [(ngModel)]="car.category.name" placeholder="category name">   -->
+   
+      <label for="car-category">Car category engine capacity: </label>
+      <div>   {{car.category?.engineCapacity}} </div>
+    
+      <label for="car-category">Car category engine capacity: </label>
+      <div>  {{car.category?.weight}} </div>
       <!-- <label id="car-category"*ngIf="car.category !=null" for="vin">{{car.category.weight}}</label> -->
       <!-- <div><span></span>{{car.category?.weight}}</div> -->
       <!-- <input  id="car-category"*ngIf="car.category !=null" [(ngModel)]="car.category.weight" placeholder="category weight">  -->
       <br><br>
+      <label for="car-category">Car type: </label>
+
+      <ng-select *ngIf="types != null" 
+        [items]="types"
+        name="type"
+       
+        [(ngModel)]="car.type">               
+      </ng-select>
+
+      <br>  <br>
+
+
       <label for="car-type">Car type: </label>
       <select class="form-control" id="type" name="type" [(ngModel)]="car.type">
         <option selected disabled value="">Choose...</option> 
@@ -44,29 +120,44 @@
         <option>Premium</option>
         <option>Luxury</option>
       </select>
-      <label for="airConditioning">Car air conditioning: {{car.airConditioning}} </label>
-      <br>
-      <label for="electricWindow">Car electric window: {{car.electricWindow}} </label>
-      <br>
-      <label for="parkingSenzor">Car parking senzor: {{car.parkingSenzor}} </label>
-      <br>
-      <div *ngIf="car.USBPort == true else elseBlock">
+      <label for="airConditioning">Car air conditioning:  </label>
+      <div>  {{car.airConditioning}} </div>
+     
+      <label for="electricWindow">Car electric window:  </label>
+      <div>  {{car.electricWindow}}</div>
+      <label for="parkingSenzor">Car parking senzor: </label>
+      <div>  {{car.parkingSenzor}}  </div>
+      <!-- <div *ngIf="car.USBPort == true else elseBlock1">
         <label for="USBPort">Car USB port: true </label>
+        <div>  {{car.USBPort}} </div>
+      <ng-template #elseBlock1>
+        <label for="USBPort">Car USB port: false </label>
+        <div>  {{car.USBPort}} </div>
+      </ng-template> -->
+
+      <div *ngIf="car.USBPort ==true else elseBlock">
+        <label for="USBPort">Car USB port:  </label>
+        <div>  true </div>
       </div>
       <ng-template #elseBlock>
-        <label for="USBPort">Car USB port: false </label>
+        <label for="USBPort">Car USB port: </label>
+        <div>  false  </div>
       </ng-template>
       <!-- <label for="USBPort">Car USB port: {{car.USBPort}} </label> -->
-      <br>
-      <label for="parktronicSystem">Car parktronic system: {{car.parktronicSystem}} </label>
-      <br>
-      <label for="infotainmentSystem">Car infotainment system: {{car.infotainmentSystem}} </label>
-      <br>
+  
+      <label for="parktronicSystem">Car parktronic system:  </label>
+      <div>  {{car.parktronicSystem}} </div>
+ 
+      <label for="infotainmentSystem">Car infotainment system:  </label>
+      <div>  {{car.infotainmentSystem}} </div>
+  
       <div *ngIf="car.radio ==0 else elseBlock2">
-        <label for="radio">Car radio: analog </label>
+        <label for="radio">Car radio:  </label>
+        <div>  analog </div>
       </div>
       <ng-template #elseBlock2>
-        <label for="radio">Car radio: digital </label>
+        <label for="radio">Car radio: </label>
+        <div>  digital  </div>
       </ng-template>
 
       

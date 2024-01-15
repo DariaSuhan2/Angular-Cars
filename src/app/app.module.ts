@@ -1,4 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,7 @@ import { AddCarComponent } from './add/add-car.component';
     HttpClientModule,
     NgIf,
     NgFor,
+    NgSelectModule,
     UpperCasePipe,
     RouterModule.forRoot([
       {path: 'cars', component: CarsComponent},

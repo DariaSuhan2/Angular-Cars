@@ -7,6 +7,7 @@
 
 <h2>My Cars</h2>
 <ul class="cars">
+ 
     <li *ngFor="let car of cars">
         <button [class.selected]="car === selectedCar" type="button" (click)="onSelect(car)">
             <span class="badge">{{car.vin}}</span>
