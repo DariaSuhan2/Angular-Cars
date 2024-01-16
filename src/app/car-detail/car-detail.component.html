@@ -1,7 +1,7 @@
 <!-- <h2>{{pageTitle}}</h2> -->
 <div *ngIf="car">
     <h2>{{car.brand | uppercase}} Details</h2>
-    <img width="400" align="right"  alt="Angular Logo" src="./assets/images/DSC_0245.jpg">
+    <img width="400" align="right"  alt="Angular Logo" src="./assets/images/DSC_0565.jpg">
     <label for="car">Car VIN: </label>
     <div>   {{car.vin}} </div>
     <!-- <div><span>vin: </span>{{car.vin}}</div> -->
@@ -48,12 +48,7 @@
       <!-- <ng-select [items]="categories"
       [(ngModel)]="selectedCategory">
         </ng-select> -->
-
-     
-       
       
-     
-
        <!-- <ng-select [(ngModel)]="selectedCategory">
         <ng-option  *ngFor="let cat of categories" [value]="selectedCategory">{{car.category?.name}}</ng-option>
      </ng-select> -->
@@ -65,10 +60,7 @@
           
           [(ngModel)]="selectedCategory">
         </ng-select> -->
-        
-        <!-- <ng-select [(ngModel)]="selectedCategory">
-          <ng-option *ngFor="let cat of categories" [value]="selectedCategory">{{selectedCategory}}</ng-option>
-       </ng-select> -->
+      
        <label for="car-category">Car category name: </label>
 
       <ng-select *ngIf="categories != null" 
@@ -79,16 +71,7 @@
               [(ngModel)]="selectedCategory">               
       </ng-select>
 
-    
-      
-      <!-- <ng-select class="custom"></ng-select>
-     -->
-
-
-     
-      
-      
-      
+          
       <!-- <label for="car-category">Car category name: </label>
       <input *ngIf="car.category !=null" id="car-category" [(ngModel)]="car.category.name" placeholder="category name">   -->
    
@@ -100,26 +83,21 @@
       <!-- <label id="car-category"*ngIf="car.category !=null" for="vin">{{car.category.weight}}</label> -->
       <!-- <div><span></span>{{car.category?.weight}}</div> -->
       <!-- <input  id="car-category"*ngIf="car.category !=null" [(ngModel)]="car.category.weight" placeholder="category weight">  -->
-      <br><br>
+   <br>
       <label for="car-category">Car type: </label>
-
       <ng-select *ngIf="types != null" 
         [items]="types"
         name="type"
-       
         [(ngModel)]="car.type">               
       </ng-select>
 
-      <br>  <br>
-
-
-      <label for="car-type">Car type: </label>
+      <!-- <label for="car-type">Car type: </label>
       <select class="form-control" id="type" name="type" [(ngModel)]="car.type">
         <option selected disabled value="">Choose...</option> 
         <option>Budget</option>
         <option>Premium</option>
         <option>Luxury</option>
-      </select>
+      </select> -->
       <label for="airConditioning">Car air conditioning:  </label>
       <div>  {{car.airConditioning}} </div>
      

@@ -3,7 +3,7 @@
  @import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
 
 h1 {
-    color: #369;
+    color: rgb(11, 52, 93);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 250%;
   }

@@ -22,6 +22,8 @@ export class CarDetailComponent implements OnInit {
   selectedCategory : string | null = null;
   categories?: Array<ICarCategory>;
   types?: Array<string>;
+
+  
   //selectedCategory?: ICarCategory ;
   
   //addedCategory? :  string;
@@ -59,7 +61,7 @@ export class CarDetailComponent implements OnInit {
     this.getCar();
     //this.categories = this._carService.getCategories()
     this.categories = [this.category1, this.category2, this.category3];
-    const types = ["Budget", "Premium", "Luxury"];
+    this.types = ["Budget", "Premium", "Luxury"];
     // this.selectedCategory = 
       
     //const categories = this._carService.getCategories();
