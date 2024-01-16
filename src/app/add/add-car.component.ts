@@ -97,9 +97,10 @@ export class AddCarComponent implements OnInit {
           this.addedCar.category = selectedCategory != null ? selectedCategory : null;
           this._carService.addCar(this.addedCar).subscribe(
             result =>{ 
+             this.router.navigate(['/cars']);
              console.log('success: ', result);
              return this.addedCategory;
-             this.router.navigate(['/cars']);
+             
             },
             error => {
               console.log('error', error);
@@ -117,5 +118,4 @@ export class AddCarComponent implements OnInit {
     //window.location.assign( "http://localhost:5120/api/car");
   
   }
-
 }
