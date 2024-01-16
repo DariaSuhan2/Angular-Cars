@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CarsComponent } from './cars/cars.component';
@@ -32,6 +33,7 @@ import { AddCarComponent } from './add/add-car.component';
     NgFor,
     NgSelectModule,
     UpperCasePipe,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {path: 'cars', component: CarsComponent},
       {path: 'cars/add', component: AddCarComponent},

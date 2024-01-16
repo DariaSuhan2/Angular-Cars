@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {ICar} from "../models/car";
 import { ICarCategory } from "../models/category";
 import {RadioType} from "../models/car";
-import { NgForm, NgModel } from '@angular/forms';
+import { FormBuilder, NgForm, NgModel } from '@angular/forms';
 import { CarService } from '../service/car.service';
 import { Observable, find } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-add-car',
@@ -15,13 +16,40 @@ import { Router } from '@angular/router';
   styleUrl: './add-car.component.css'
 })
 export class AddCarComponent implements OnInit {
-  pageTitle: string = 'Add a car';
+ // pageTitle: string = 'Add a car';
   addedCategory? :  string;
   subscriptionCategories = Observable<ICarCategory[]>;
+  types?: Array<string>;
+  categories?: Array<ICarCategory>;
+
+  carForm= new FormGroup({
+    vin: new FormControl(),
+    color: new FormControl(),
+    brand: new FormControl(),
+    doorNr:new FormControl(),
+    category: new FormGroup({
+      name : new FormControl(),
+      engineCapacity : new FormControl(),
+      weight : new FormControl(),
+    }),
+    airConditioning: new FormControl(),
+    electricWindow: new FormControl(),
+    parkingSenzor: new FormControl(),
+    USBPort: new FormControl(),
+    parktronicSystem: new FormControl(),
+    infotainmentSystem: new FormControl(),
+    radio: new FormControl(),
+    type: new FormControl()
+
+  }
+  );
 
   constructor(private _carService: CarService,
     private router: Router
+    // private fb: FormBuilder
     ) {}
+
+
 
   originalCar : ICar = { 
     vin: null,
@@ -41,24 +69,30 @@ export class AddCarComponent implements OnInit {
   };  
  
   addedCar : ICar = {...this.originalCar};
-
+   
   ngOnInit() {
+    //this.carForm.setValue(this.addedCar);
+    this._carService.getCategories().subscribe(categories => this.categories = categories);
+     this.types = ["Budget", "Premium", "Luxury"];
   }
 
-  onBlur(field: NgModel){
-    console.log('in onBlur: ', field.valid);
-  }
+  // onBlur(field: NgModel){
+  //   console.log('in onBlur: ', field.valid);
+  // }
 
 
-  onSubmit(form: NgForm) {
-    console.log('in onSubmit: ', form.valid);
-    if (this.addedCar.vin){ 
-      let vinn: number = + this.addedCar.vin ;
-      this.addedCar.vin = vinn;
+  onSubmit() {
+    console.log('in onSubmit: ', this.carForm.valid);
+
+
+    
+    if (this.carForm.controls.vin){ 
+      let vinn: number = + this.carForm.controls.vin ;
+      //this.carForm.controls.vin = vinn;
     }
-    if (this.addedCar.doorNr){ 
-      let nr: number = + this.addedCar.doorNr ;
-      this.addedCar.doorNr = nr;
+    if (this.carForm.controls.doorNr){ 
+      let nr: number = + this.carForm.controls.doorNr ;
+      //this.carForm.controls.doorNr = nr;
     }
 
     if (this.addedCar.type == "Budget") {

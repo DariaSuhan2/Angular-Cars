@@ -1,7 +1,47 @@
 <div class="container">
     <h2>Car fields</h2>
-    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-              
+    
+      <form [formGroup]="carForm" (ngSubmit)="onSubmit()">  
+        <div>
+            <label for="vin">Car VIN:</label>
+            <input formControlName="VIN" placeholder="VIN"/>
+            <br>
+            <label for="color">Car color:</label>
+            <input formControlName="color" placeholder="Color"/>
+            <br>
+            <label for="brand">Car brand:</label>
+            <input formControlName="brand" placeholder="Brand"/>
+            <br>
+            <label for="doorNr">Car number of doors:</label>
+            <input formControlName="doorNr" placeholder="DoorNr"/>
+            <br>
+            <div formGroupName="category" class="category">
+            <label for="category">Car category:</label>
+            <!-- <select formControlName="category" placeholder="Category"> </select>-->
+            <ng-select *ngIf="categories != null" 
+              [items]="categories"
+              formControlName="category"
+              placeholder="Category"
+              bindLabel="name"
+              bindValue="name"
+              [(ngModel)]="carForm.controls.category">               
+      </ng-select>
+
+            
+            
+            <br>
+            <label for="type">Car type:</label>
+            <!-- <select formControlName="type" placeholder="type">  </select>-->
+            <ng-select *ngIf="types != null" 
+                [items]="types"
+                formControlName="type"
+                placeholder="Type"
+                [(ngModel)]="carForm.controls.type">               
+            </ng-select>
+           
+        </div>
+        
+     <!-- <form #form="ngForm" (ngSubmit)="onSubmit(form)">
       <div class="form-group">
         <label for="vin">Car VIN:</label>
         <input id="vin" name="vin" class="form-control" [(ngModel)]="addedCar.vin"
@@ -12,7 +52,7 @@
         class="alert alert-danger">
         Enter a vin for the car
         </div>  
-    </div>
+    </div> -->
 
     <!-- template reference = namefield  = property values; validation classes for styling the form-->
     <!-- <h6>pristine - {{nameField.pristine}}</h6>
@@ -20,7 +60,7 @@
     <h6>valid - {{nameField.valid}}</h6>
    -->
       <!-- <br> -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="color">Car color:</label>
         <input id="color" name="color" class="form-control" [(ngModel)]="addedCar.color"
         required #nameField1 = "ngModel"
@@ -57,8 +97,8 @@
     </div>
      
     <div class="form-group">
-        <!-- <label for="category" class="form-label">Category</label> -->
-        <label for="category">Car category name:</label>
+         <label for="category" class="form-label">Category</label> -->
+        <!-- <label for="category">Car category name:</label>
         <select class="form-control" id="category" name="category" [(ngModel)]="addedCategory"
          required #nameField4 = "ngModel"
          (blur)="onBlur(nameField4)"
@@ -66,15 +106,11 @@
          [class.field-error]="form.submitted && nameField4.invalid">
           <option selected disabled value="">Choose...</option> 
         
-           <!-- <option value = "SmallCar, 2000, 2">SmallCar</option>
-           <option value = "{"Bus", 3000, 2}">Bus</option>
-           <option value = "Goodvehicle, 5000, 6">Goodvehicle</option>  -->
+          
           <option value="SmallCar" click >SmallCar</option>
           <option value="Bus" >Bus</option>
           <option value="Goodvehicle">Goodvehicle</option>
-          <!-- <option *ngFor="let category of subscriptionCategories | async"></option> -->
-          <!-- <option *ngFor="let category of subscriptionCategories | async"> {{category.name}}</option> -->
-          <!-- <option value = "{"Bus", 3000, 2}">Bus</option> -->
+        
           
           
         </select>
@@ -100,14 +136,14 @@
         Please select a type of confort for the car
         </div>
       </div>
-      <!-- <button type="button">Save</button> -->
+     
       <button class="btn btn-primary">Save</button> 
       
     </form>
-  </div>
+  </div> -->
   <div>Original Car: {{originalCar | json}}</div>
    <br>
-   <div>Form value: {{form.value | json}}</div>
+   <!-- <div>Form value: {{form.value | json}}</div> -->
   <br>
   <div>Added Car value: {{addedCar | json}}</div>
 
