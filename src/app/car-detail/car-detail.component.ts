@@ -23,49 +23,15 @@ export class CarDetailComponent implements OnInit {
   categories?: Array<ICarCategory>;
   types?: Array<string>;
 
-  
-  //selectedCategory?: ICarCategory ;
-  
-  //addedCategory? :  string;
-  
-  
-  //Categories :  Observable<ICarCategory[]>;
-
   constructor(private _carService: CarService,
     private route: ActivatedRoute,
     private location: Location
     ) {}
 
-    
-//selectedCategory = null;
-
- category1: ICarCategory  = {
-    name : "SmallCar",
-    engineCapacity : 2000,
-    weight : 2
-  };
-  category2 : ICarCategory  = {
-    name : "Bus",
-    engineCapacity : 3000,
-    weight : 2
-  };
-  category3 : ICarCategory  = {
-    name : "Goodvehicle",
-    engineCapacity : 5000,
-    weight : 6
-  };
- //categories:Observable<ICarCategory[]> = this._carService.getCategories();
- 
- 
   ngOnInit(): void {
-    this.getCar();
-    //this.categories = this._carService.getCategories()
-    this.categories = [this.category1, this.category2, this.category3];
-    this.types = ["Budget", "Premium", "Luxury"];
-    // this.selectedCategory = 
-      
-    //const categories = this._carService.getCategories();
-    //if (categories == car.category.name)
+     this.getCar();
+     this._carService.getCategories().subscribe(categories => this.categories = categories);
+     this.types = ["Budget", "Premium", "Luxury"];
   }
 
   getCar(): void {
@@ -75,16 +41,10 @@ export class CarDetailComponent implements OnInit {
       .subscribe(carFromServer => {
         this.car = carFromServer;
         this.selectedCategory= carFromServer.category?.name || null;
-        
-        //this.car.category.name = (this.selectedCategory != null) ? this.selectedCategory : null;
-        // if (this.car.category != null) {
-        //   this.car.category.name = this.selectedCategory;
-        // }
       });
-    }
-    
-    
+    }    
   }
+
   goBack(): void {
     this.location.back();
   }
@@ -117,79 +77,16 @@ export class CarDetailComponent implements OnInit {
         this.car.parktronicSystem = true;
         this.car.infotainmentSystem = true;
         this.car.radio = RadioType.DIGITAL;
-      
-     }
-       if (this.car.category != null) {
+      }
+      if (this.car.category != null) {
           this.car.category.name = this.selectedCategory;
         }
      
       this._carService.updateCar(this.car)
-        .subscribe(() => this.goBack());
-
-      // this._carService.getCategories().subscribe(
-      //   result =>{ 
-      //     console.log('success: ', result);
-      //     const selectedCategory = result.find(s => s.name == this.addedCategory);
-      //     if (this.car != null) {
-      //       this.car.category = selectedCategory != null ? selectedCategory : null;
-          
-      //       this._carService.updateCar(this.car).subscribe(
-      //         result =>{ 
-      //          console.log('success: ', result);
-      //         },
-      //         error => {
-      //           console.log('error', error);
-      //         }
-      //       );
-      //     }},
-      //     error => {
-      //        console.log('error', error);
-      //     }
-      // );
-
-      // this._carService.updateCar(this.car)
-      //   .subscribe(
-      //     result =>{ 
-      //       console.log('success: ', result);
-      //       const selectedCategory = result.find(s => s.name == this.addedCategory);
-      //       this.car?.category= selectedCategory != null ? selectedCategory : null;
-      //       this._carService.addCar(this.car).subscribe(
-      //         result =>{ 
-      //          console.log('success: ', result);
-      //          //this.router.navigate(['/cars']);
-      //         },
-      //         error => {
-      //           console.log('error', error);
-      //         }
-      //       );
-      //      },
-      //      error => {
-      //        console.log('error', error);
-      //      }
-      //   );
-          
-          
-      //     () => this.goBack());
-
-
-
-
-
-        
+        .subscribe(() => this.goBack())
+ 
     }
   }
-
-
-  // subscribe(
-  //   result =>{ 
-  //    console.log('success: ', result);
-  //    this.router.navigate(['/cars']);
-  //   },
-  //   error => {
-  //     console.log('error', error);
-  //   }
-  // );
-   
 }
 
 

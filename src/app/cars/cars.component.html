@@ -7,21 +7,21 @@
 
 <h2>My Cars</h2>
 <ul class="cars">
- 
+  
     <li *ngFor="let car of cars">
         <button [class.selected]="car === selectedCar" type="button" (click)="onSelect(car)">
             <span class="badge">{{car.vin}}</span>
             <span class="name">{{car.brand}}</span>
             <!-- ;<button class = "delete" type="button" (click)="delete(car)">Delete</button> -->
             <!-- <span class="delete">Delete a car</span> -->
-            </button>
-            <button type="button" class="delete" title="delete car" (click)="delete(car)">Delete</button>
+        </button>
+        <button type="button" class="delete" title="delete car" (click)="delete(car)">Delete</button>
             <!-- <label for="car-color">Update Color: </label>
             <input id="car-color" [(ngModel)]="car.color" placeholder="color">
             <br><br> -->
       </li>
       
-      <br>
+    
       <ng-container *ngIf="cars.length; then showMessage1; else showMessage2">
       </ng-container>
       <ng-template #showMessage1>

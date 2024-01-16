@@ -17,16 +17,12 @@ import { Router } from '@angular/router';
 export class AddCarComponent implements OnInit {
   pageTitle: string = 'Add a car';
   addedCategory? :  string;
+  subscriptionCategories = Observable<ICarCategory[]>;
 
   constructor(private _carService: CarService,
     private router: Router
     ) {}
 
- 
-  
-  //radioType?: RadioType;
-  
-  //originalCar? : ICar;
   originalCar : ICar = { 
     vin: null,
     color: null,
@@ -44,20 +40,9 @@ export class AddCarComponent implements OnInit {
 
   };  
  
-
   addedCar : ICar = {...this.originalCar};
-  subscriptionCategories = Observable<ICarCategory[]>;
-
-
-  //spread syntax in js - copy of orginal object and stored it in an object
-  //alternative Lodash - deep clone function
-
-  // constructor(private _carService: CarService
-  //   ) { }
- 
 
   ngOnInit() {
-    //this.subscriptionCategories = this._carService.getCategories();
   }
 
   onBlur(field: NgModel){
@@ -75,8 +60,6 @@ export class AddCarComponent implements OnInit {
       let nr: number = + this.addedCar.doorNr ;
       this.addedCar.doorNr = nr;
     }
-    // let vinn = parseInt(this.addedCar, 10) 
-    // this.addedCar.vin = vinn;
 
     if (this.addedCar.type == "Budget") {
       this.addedCar.airConditioning = false;
@@ -106,7 +89,6 @@ export class AddCarComponent implements OnInit {
       this.addedCar.radio = RadioType.DIGITAL;
    }
   
-
     if(this.addedCategory != null){
       this._carService.getCategories().subscribe(
         result =>{ 

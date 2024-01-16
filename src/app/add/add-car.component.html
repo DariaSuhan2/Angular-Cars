@@ -3,7 +3,7 @@
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
               
       <div class="form-group">
-        <label for="vin">VIN</label>
+        <label for="vin">Car VIN:</label>
         <input id="vin" name="vin" class="form-control" [(ngModel)]="addedCar.vin"
             required #nameField = "ngModel"
             (blur)="onBlur(nameField)"
@@ -15,13 +15,13 @@
     </div>
 
     <!-- template reference = namefield  = property values; validation classes for styling the form-->
-    <h6>pristine - {{nameField.pristine}}</h6>
+    <!-- <h6>pristine - {{nameField.pristine}}</h6>
     <h6>touched - {{nameField.touched}}</h6>
     <h6>valid - {{nameField.valid}}</h6>
-  
-      <br>
+   -->
+      <!-- <br> -->
       <div class="form-group">
-        <label for="color">Color</label>
+        <label for="color">Car color:</label>
         <input id="color" name="color" class="form-control" [(ngModel)]="addedCar.color"
         required #nameField1 = "ngModel"
         (blur)="onBlur(nameField)"
@@ -33,7 +33,7 @@
 </div>
 
       <div class="form-group">
-        <label for="brand">Brand</label>
+        <label for="brand">Car brand:</label>
         <input id="brand" name="brand" class="form-control" [(ngModel)]="addedCar.brand"
             required #nameField2 = "ngModel"
             (blur)="onBlur(nameField2)"
@@ -45,7 +45,7 @@
     </div>
      
       <div class="form-group">
-        <label for="doorNr">Number of doors</label>
+        <label for="doorNr">Car number of doors:</label>
         <input id="doorNr" name="doorNr" class="form-control" [(ngModel)]="addedCar.doorNr"
             required #nameField3 = "ngModel"
             (blur)="onBlur(nameField3)"
@@ -56,10 +56,9 @@
         </div>  
     </div>
      
-
     <div class="form-group">
         <!-- <label for="category" class="form-label">Category</label> -->
-        <label for="category">Car Category</label>
+        <label for="category">Car category name:</label>
         <select class="form-control" id="category" name="category" [(ngModel)]="addedCategory"
          required #nameField4 = "ngModel"
          (blur)="onBlur(nameField4)"
@@ -86,7 +85,7 @@
     </div>
                
       <div class="form-group">
-        <label for="type">Car Type</label>
+        <label for="type">Car type:</label>
         <select class="form-control" id="type" name="type" [(ngModel)]="addedCar.type"
         required #nameField5 = "ngModel"
          (blur)="onBlur(nameField5)"
@@ -111,10 +110,7 @@
    <div>Form value: {{form.value | json}}</div>
   <br>
   <div>Added Car value: {{addedCar | json}}</div>
-  <!-- <br>
-  <div>AddedCar.category.name value: {{this.addedCar.category?.name | json}}</div>
-  <br>
-  <div>AddedCar.category.weight value: {{this.addedCar.category?.weight | json}}</div> -->
+
 
  
  
