@@ -14,7 +14,7 @@ import { ICarCategory } from '../models/category';
   templateUrl: './car-detail.component.html',
   styleUrl: './car-detail.component.css'
 })
-export class CarDetailComponent implements OnInit {
+export class CarDetailComponent implements OnInit{
   //car?: ICar;
   pageTitle: string = 'Car Details';
   car?: ICar;
@@ -30,7 +30,7 @@ export class CarDetailComponent implements OnInit {
 
   ngOnInit(): void {
      this.getCar();
-     this._carService.getCategories().subscribe(categories => this.categories = categories);
+      this._carService.getCategories().subscribe(categories => this.categories = categories);
      this.types = ["Budget", "Premium", "Luxury"];
   }
 
@@ -42,7 +42,7 @@ export class CarDetailComponent implements OnInit {
         this.car = carFromServer;
         this.selectedCategory= carFromServer.category?.name || null;
       });
-    }    
+    }
   }
 
   goBack(): void {
@@ -59,7 +59,7 @@ export class CarDetailComponent implements OnInit {
         this.car.parktronicSystem = false;
         this.car.infotainmentSystem = false;
         this.car.radio = RadioType.ANALOG;
-      } 
+      }
       else if (this.car.type == "Premium"){
         this.car.airConditioning = true;
         this.car.electricWindow = true;
@@ -81,10 +81,10 @@ export class CarDetailComponent implements OnInit {
       if (this.car.category != null) {
           this.car.category.name = this.selectedCategory;
         }
-     
+
       this._carService.updateCar(this.car)
         .subscribe(() => this.goBack())
- 
+
     }
   }
 }

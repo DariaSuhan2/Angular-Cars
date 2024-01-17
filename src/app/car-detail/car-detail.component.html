@@ -1,8 +1,8 @@
 <!-- <h2>{{pageTitle}}</h2> -->
 <div *ngIf="car">
     <h2>{{car.brand | uppercase}} Details</h2>
-    <img width="400" align="right"  alt="Angular Logo" src="./assets/images/DSC_0565.jpg">
-    <label for="car">Car VIN: </label>
+    <img width="300" align="right"  alt="Angular Logo" src="./assets/images/DSC_0565.jpg">
+    <label for="car-vin">Car VIN: </label>
     <div>   {{car.vin}} </div>
     <!-- <div><span>vin: </span>{{car.vin}}</div> -->
     <div>
@@ -18,7 +18,7 @@
       <!-- <label for="car-type">Car category name: {{car.category?.name}} </label>
       <select class="form-control" id="category" name="category" [(ngModel)]="car.category">
         <select class="form-control" id="category" name="category" [(ngModel)]="addedCategory" >
-        <option selected disabled value="">Choose...</option> 
+        <option selected disabled value="">Choose...</option>
         <option>SmallCar</option>
         <option>Bus</option>
         <option>Goodvehicle</option>
@@ -48,36 +48,36 @@
       <!-- <ng-select [items]="categories"
       [(ngModel)]="selectedCategory">
         </ng-select> -->
-      
+
        <!-- <ng-select [(ngModel)]="selectedCategory">
         <ng-option  *ngFor="let cat of categories" [value]="selectedCategory">{{car.category?.name}}</ng-option>
      </ng-select> -->
-       
+
        <!-- <ng-select class="db w-100"
           [items]="categories"
           bindLabel="value"
           bindValue="id"
-          
+
           [(ngModel)]="selectedCategory">
         </ng-select> -->
-      
+
        <label for="car-category">Car category name: </label>
 
-      <ng-select *ngIf="categories != null" 
+      <ng-select *ngIf="categories != null"
               [items]="categories"
               name="category"
               bindLabel="name"
               bindValue="name"
-              [(ngModel)]="selectedCategory">               
+              [(ngModel)]="selectedCategory">
       </ng-select>
 
-          
+
       <!-- <label for="car-category">Car category name: </label>
       <input *ngIf="car.category !=null" id="car-category" [(ngModel)]="car.category.name" placeholder="category name">   -->
-   
+
       <label for="car-category">Car category engine capacity: </label>
       <div>   {{car.category?.engineCapacity}} </div>
-    
+
       <label for="car-category">Car category engine capacity: </label>
       <div>  {{car.category?.weight}} </div>
       <!-- <label id="car-category"*ngIf="car.category !=null" for="vin">{{car.category.weight}}</label> -->
@@ -85,22 +85,22 @@
       <!-- <input  id="car-category"*ngIf="car.category !=null" [(ngModel)]="car.category.weight" placeholder="category weight">  -->
    <br>
       <label for="car-category">Car type: </label>
-      <ng-select *ngIf="types != null" 
+      <ng-select *ngIf="types != null"
         [items]="types"
         name="type"
-        [(ngModel)]="car.type">               
+        [(ngModel)]="car.type">
       </ng-select>
 
       <!-- <label for="car-type">Car type: </label>
       <select class="form-control" id="type" name="type" [(ngModel)]="car.type">
-        <option selected disabled value="">Choose...</option> 
+        <option selected disabled value="">Choose...</option>
         <option>Budget</option>
         <option>Premium</option>
         <option>Luxury</option>
       </select> -->
       <label for="airConditioning">Car air conditioning:  </label>
       <div>  {{car.airConditioning}} </div>
-     
+
       <label for="electricWindow">Car electric window:  </label>
       <div>  {{car.electricWindow}}</div>
       <label for="parkingSenzor">Car parking senzor: </label>
@@ -122,13 +122,13 @@
         <div>  false  </div>
       </ng-template>
       <!-- <label for="USBPort">Car USB port: {{car.USBPort}} </label> -->
-  
+
       <label for="parktronicSystem">Car parktronic system:  </label>
       <div>  {{car.parktronicSystem}} </div>
- 
+
       <label for="infotainmentSystem">Car infotainment system:  </label>
       <div>  {{car.infotainmentSystem}} </div>
-  
+
       <div *ngIf="car.radio ==0 else elseBlock2">
         <label for="radio">Car radio:  </label>
         <div>  analog </div>
@@ -138,12 +138,12 @@
         <div>  digital  </div>
       </ng-template>
 
-      
-      
+
+
       <!-- <label for="car-type">Car type: </label>
       <input id="car-type" [(ngModel)]="car.type" placeholder="type"> -->
     </div>
-    <!-- <button class="btn btn-primary"(click)="goBack()">Go back</button> 
+    <!-- <button class="btn btn-primary"(click)="goBack()">Go back</button>
     <button class="btn btn-primary"(click)="save()">Save</button>  -->
     <button  type="button" class="btn btn-primary"  (click)="goBack()">Go back</button>
     <button type="button" class="btn btn-primary" (click)="save()">Save</button>
@@ -153,4 +153,4 @@
 
 
   <!-- <h2>this is from car-detail.component</h2> -->
- 
+

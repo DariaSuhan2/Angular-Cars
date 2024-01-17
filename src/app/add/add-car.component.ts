@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
+import {Validators} from '@angular/forms'
 
 @Component({
   selector: 'app-add-car',
@@ -25,11 +26,11 @@ export class AddCarComponent implements OnInit {
 
   carForm = this.fb.nonNullable.group({
     vin: <number | null>null,
-    color: '',
-    brand: '',
+    color: ['', Validators.required],
+    brand: ['', Validators.required],
     doorNr: <number | null>null,
     category: this.fb.nonNullable.group({
-      name: '',
+      name: ['', Validators.required],
       engineCapacity: <number | null>null,
       weight: <number | null>null,
     }),
@@ -40,7 +41,7 @@ export class AddCarComponent implements OnInit {
     parktronicSystem: <boolean | null>null,
     infotainmentSystem: <boolean | null>null,
     radio: <RadioType | null>null,
-    type: ''
+    type: ['', Validators.required]
 
   }
   );
@@ -52,13 +53,6 @@ export class AddCarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    //   this.carForm = this.fb.group({
-    //     // name: ['', Validators.required],
-
-    //     // email: ['', [Validators.required, Validators.email]],
-    //     // phone: ['', Validators.required],
-    //  });
     this._carService.getCategories().subscribe(categories => this.categories = categories);
     this.types = ["Budget", "Premium", "Luxury"];
     // const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
@@ -76,17 +70,17 @@ export class AddCarComponent implements OnInit {
     console.log('in onSubmit: ', this.carForm.valid);
      this.addedCar = this.carForm.getRawValue();
 
-     if (this.addedCar.vin){ 
+     if (this.addedCar.vin){
         let vinn: number = + this.addedCar.vin ;
         this.addedCar.vin = vinn;
       }
-      if (this.addedCar.doorNr){ 
+      if (this.addedCar.doorNr){
         let nr: number = + this.addedCar.doorNr ;
         this.addedCar.doorNr = nr;
       }
 
-      
-    
+
+
       if (this.addedCar.type == "Budget") {
         this.addedCar.airConditioning = false;
         this.addedCar.electricWindow = false;
@@ -95,7 +89,7 @@ export class AddCarComponent implements OnInit {
         this.addedCar.parktronicSystem = false;
         this.addedCar.infotainmentSystem = false;
         this.addedCar.radio = RadioType.ANALOG;
-      } 
+      }
       else if (this.addedCar.type == "Premium"){
         this.addedCar.airConditioning = true;
         this.addedCar.electricWindow = true;
@@ -114,7 +108,13 @@ export class AddCarComponent implements OnInit {
         this.addedCar.infotainmentSystem = true;
         this.addedCar.radio = RadioType.DIGITAL;
      }
-     this._carService.getCategories().subscribe(categories => this.categories = categories);
+     this._carService.getCategories().subscribe(
+        categories =>{ this.categories = categories},
+        error => {
+
+          console.log('error', error)
+          }
+        );
      if (this.categories != null){
      const selectedCategory = this.categories.find(s => s.name == this.addedCar?.category?.name);
      if (this.addedCar!= null){
@@ -122,9 +122,7 @@ export class AddCarComponent implements OnInit {
      }}
 
      this._carService.addCar(this.addedCar).subscribe(
-              result =>{ 
-            
-
+              result =>{
                this.router.navigate(['/cars']);
                console.log('success: ', result);
 
@@ -135,7 +133,7 @@ export class AddCarComponent implements OnInit {
       );
 
 
-    
+
     //const win: Window = window;
     //win.location = "http://localhost:4200/cars";
     //window.location.assign( "http://localhost:5120/api/car");

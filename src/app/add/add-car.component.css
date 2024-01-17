@@ -1,6 +1,12 @@
-.field-error {
+/*.field-error {
     border: 1px solid red;
+}*/
+input.error,
+select.error,
+.error {
+border: 1px solid red;
 }
+
 label {
     color: #076483;
     font-weight: bold;

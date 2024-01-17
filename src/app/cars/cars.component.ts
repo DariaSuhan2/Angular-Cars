@@ -12,27 +12,28 @@ import { ActivatedRoute, Router } from '@angular/router';
   //providers: [CarService] - register service for one component and child components
 })
 export class CarsComponent implements OnInit, OnDestroy {
- 
+
   selectedCar?: ICar;
   selectedCars: ICar[] = [];
   cars: ICar[] = [];
   errorMessage: string = '';
   sub!: Subscription;
 
-  constructor (private _carService: CarService, 
+  constructor (private _carService: CarService,
    // private _messageService: MessageService,
     private route: ActivatedRoute,
     private router: Router) {}
-  
+
   ngOnInit(): void {
     //this.getCars();
-    this.sub = this._carService.getCars().subscribe({
-      next: cars => {
+    this.sub = this._carService.getCars().subscribe((cars) => {
         this.cars = cars;
-        this.selectedCars = this.cars;  
+        this.selectedCars = this.cars;
       },
-      error: err => this.errorMessage = err
-    });
+        error => {
+          console.log('error', error);
+        }
+    );
   }
 
   ngOnDestroy() {
@@ -66,11 +67,11 @@ export class CarsComponent implements OnInit, OnDestroy {
       );
     }
   }
-  
+
   deleteAll(): void {
     //this._carService.deleteAll().subscribe();
     this._carService.deleteAllCars();
- 
+
     window.location.reload();
     // this.router.navigate(['/cars']);
      this._carService.getCars();
@@ -78,7 +79,7 @@ export class CarsComponent implements OnInit, OnDestroy {
     // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
     //   this.router.navigate(['/cars']);
     // });
-   
+
   }
 
   // save(): void {
@@ -87,6 +88,6 @@ export class CarsComponent implements OnInit, OnDestroy {
   //       .subscribe(() => this.goBack());
   //   }
   // }
-  
+
 
 }

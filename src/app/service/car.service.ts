@@ -9,12 +9,12 @@ import { ICarCategory } from '../models/category';
   providedIn: 'root'
 })
 export class CarService {
-  
+
   //private _carUrl = 'api/cars/cars.json';
   private _carUrl = 'http://localhost:55726/api/car';
   private _categoryUrl = 'http://localhost:55726/api/category';
   //private _carUrl = 'http://local.mydomain.example:5120/api/car';
-  
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -40,7 +40,7 @@ export class CarService {
         );
     } else {
       return of();
-    } 
+    }
   }
 
   // getCategories(): Observable<ICarCategory[]> {
@@ -49,22 +49,22 @@ export class CarService {
   //     catchError(err => this.handleError(err))
   //     );
   // }
-      
+
   updateCar(car: ICar): Observable<any> {
     const url = `${this._carUrl}/${car.vin}`;
         return this._http.put(url, car, this.httpOptions).pipe(
           tap(_ => console.log(`updated car vin=${car.vin}`)),
           catchError(err => this.handleError(err))
         );
-  }   
+  }
   // updateColorCar(car: ICar): Observable<any> {
   //   return this._http.patch(this._carUrl, car, this.httpOptions).pipe(
   //     tap(_ => console.log(`updated the color of car vin=${car.vin}`)),
   //     catchError(err => this.handleError(err))
   //   );
-  // }  
-    
- 
+  // }
+
+
   private handleError(err: HttpErrorResponse) {
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {
@@ -78,7 +78,7 @@ export class CarService {
 
   addCar(car: ICar) : Observable<ICar> {
     //return of(car);
-   
+
     return this._http.post<ICar>(this._carUrl, car, this.httpOptions).pipe(
       tap((newCar:ICar) => console.log(`added car`)),
       catchError(err => this.handleError(err))
@@ -91,16 +91,16 @@ export class CarService {
   //     pipe(catchError((error: any, caught: Observable<any>): Observable<any> => {
   //       this.handleError(error)
 
-  //     // after handling error, return a new observable 
+  //     // after handling error, return a new observable
   //     // that doesn't emit any values and completes
   //     return of();
   // }))
   //     .subscribe(newCar => {
   //       this.postId = car.vin;
-  // }); 
+  // });
   }
 
- 
+
   deleteCar(vin: number): Observable<ICar> {
     const url = `${this._carUrl}/${vin}`;
     return this._http.delete<ICar>(url).pipe(
@@ -123,19 +123,19 @@ export class CarService {
         catchError(err => this.handleError(err))
         );
   }
-   
+
   getCategories(): Observable<ICarCategory[]> {
     //return  [this.category1, this.category2, this.category3]
 
     return this._http.get<ICarCategory[]>(this._categoryUrl).pipe(
-      tap(data => { 
-       // data;  
+      tap(data => {
+       // data;
         console.log('All', JSON.stringify(data));
-    
+
     }),
       catchError(err => this.handleError(err))
       );
-    
+
   }
 
    // category1: ICarCategory  = {
@@ -154,7 +154,7 @@ export class CarService {
   //   weight : 6
   // };
 
-  
-  
+
+
 }
 
