@@ -1,152 +1,31 @@
 <div class="container">
-    <h2>Car fields</h2>
-    
-      <form [formGroup]="carForm" (ngSubmit)="onSubmit()">  
-        <div>
-            <label for="vin">Car VIN:</label>
-            <input formControlName="VIN" placeholder="VIN"/>
-            <br>
-            <label for="color">Car color:</label>
-            <input formControlName="color" placeholder="Color"/>
-            <br>
-            <label for="brand">Car brand:</label>
-            <input formControlName="brand" placeholder="Brand"/>
-            <br>
-            <label for="doorNr">Car number of doors:</label>
-            <input formControlName="doorNr" placeholder="DoorNr"/>
-            <br>
-            <div formGroupName="category" class="category">
-            <label for="category">Car category:</label>
-            <!-- <select formControlName="category" placeholder="Category"> </select>-->
-            <ng-select *ngIf="categories != null" 
-              [items]="categories"
-              formControlName="category"
-              placeholder="Category"
-              bindLabel="name"
-              bindValue="name"
-              [(ngModel)]="carForm.controls.category">               
-      </ng-select>
+  <h2>Car fields</h2>
 
-            
-            
-            <br>
-            <label for="type">Car type:</label>
-            <!-- <select formControlName="type" placeholder="type">  </select>-->
-            <ng-select *ngIf="types != null" 
-                [items]="types"
-                formControlName="type"
-                placeholder="Type"
-                [(ngModel)]="carForm.controls.type">               
-            </ng-select>
-           
-        </div>
-        
-     <!-- <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-      <div class="form-group">
-        <label for="vin">Car VIN:</label>
-        <input id="vin" name="vin" class="form-control" [(ngModel)]="addedCar.vin"
-            required #nameField = "ngModel"
-            (blur)="onBlur(nameField)"
-            [class.field-error]="form.submitted && nameField.invalid"/>
-        <div [hidden]="!form.submitted || nameField.valid"
-        class="alert alert-danger">
-        Enter a vin for the car
-        </div>  
-    </div> -->
+  <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="vin">Car VIN:</label>
+      <input formControlName="vin" placeholder="VIN" />
+      <br> <br>
+      <label for="color">Car color:</label>
+      <input formControlName="color" placeholder="Color" />
+      <br> <br>
+      <label for="brand">Car brand:</label>
+      <input formControlName="brand" placeholder="Brand" />
+      <br> <br>
+      <label for="doorNr">Car number of doors:</label>
+      <input formControlName="doorNr" placeholder="DoorNr" />
+      <br> <br>
+      <div formGroupName="category" class="category">
+        <label for="category">Car category:</label>
+        <ng-select *ngIf="categories != null" [items]="categories" formControlName="category.name"
+          placeholder="Category" bindLabel="name" bindValue="name">
+        </ng-select>
 
-    <!-- template reference = namefield  = property values; validation classes for styling the form-->
-    <!-- <h6>pristine - {{nameField.pristine}}</h6>
-    <h6>touched - {{nameField.touched}}</h6>
-    <h6>valid - {{nameField.valid}}</h6>
-   -->
-      <!-- <br> -->
-      <!-- <div class="form-group">
-        <label for="color">Car color:</label>
-        <input id="color" name="color" class="form-control" [(ngModel)]="addedCar.color"
-        required #nameField1 = "ngModel"
-        (blur)="onBlur(nameField)"
-        [class.field-error]="form.submitted && nameField1.invalid"/>
-    <div [hidden]="!form.submitted || nameField1.valid"
-    class="alert alert-danger">
-    Enter a color for the car
-    </div>  
-</div>
-
-      <div class="form-group">
-        <label for="brand">Car brand:</label>
-        <input id="brand" name="brand" class="form-control" [(ngModel)]="addedCar.brand"
-            required #nameField2 = "ngModel"
-            (blur)="onBlur(nameField2)"
-            [class.field-error]="form.submitted && nameField2.invalid"/>
-        <div [hidden]="!form.submitted || nameField2.valid"
-        class="alert alert-danger">
-        Enter a brand for the car
-        </div>  
-    </div>
-     
-      <div class="form-group">
-        <label for="doorNr">Car number of doors:</label>
-        <input id="doorNr" name="doorNr" class="form-control" [(ngModel)]="addedCar.doorNr"
-            required #nameField3 = "ngModel"
-            (blur)="onBlur(nameField3)"
-            [class.field-error]="form.submitted && nameField3.invalid"/>
-        <div [hidden]="!form.submitted || nameField3.valid"
-        class="alert alert-danger">
-        Enter the number of doors for the car
-        </div>  
-    </div>
-     
-    <div class="form-group">
-         <label for="category" class="form-label">Category</label> -->
-        <!-- <label for="category">Car category name:</label>
-        <select class="form-control" id="category" name="category" [(ngModel)]="addedCategory"
-         required #nameField4 = "ngModel"
-         (blur)="onBlur(nameField4)"
-
-         [class.field-error]="form.submitted && nameField4.invalid">
-          <option selected disabled value="">Choose...</option> 
-        
-          
-          <option value="SmallCar" click >SmallCar</option>
-          <option value="Bus" >Bus</option>
-          <option value="Goodvehicle">Goodvehicle</option>
-        
-          
-          
-        </select>
-        <div [hidden]="!form.submitted || nameField4.valid"
-        class="alert alert-danger">
-        Please select a category for the car
-        </div>
-    </div>
-               
-      <div class="form-group">
+        <br>
         <label for="type">Car type:</label>
-        <select class="form-control" id="type" name="type" [(ngModel)]="addedCar.type"
-        required #nameField5 = "ngModel"
-         (blur)="onBlur(nameField5)"
-         [class.field-error]="form.submitted && nameField5.invalid">
-          <option selected disabled value="">Choose...</option> 
-          <option>Budget</option>
-          <option>Premium</option>
-          <option>Luxury</option>
-        </select>
-        <div [hidden]="!form.submitted || nameField5.valid"
-        class="alert alert-danger">
-        Please select a type of confort for the car
-        </div>
+        <ng-select *ngIf="types != null" [items]="types" formControlName="type" placeholder="Type"></ng-select>
       </div>
-     
-      <button class="btn btn-primary">Save</button> 
-      
-    </form>
-  </div> -->
-  <div>Original Car: {{originalCar | json}}</div>
-   <br>
-   <!-- <div>Form value: {{form.value | json}}</div> -->
-  <br>
-  <div>Added Car value: {{addedCar | json}}</div>
-
-
- 
- 
+    </div>
+  </form>
+  <button class="btn btn-primary" (click)="onSubmit()">Save</button>
+</div>
