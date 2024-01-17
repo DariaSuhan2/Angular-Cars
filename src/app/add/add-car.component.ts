@@ -21,6 +21,7 @@ export class AddCarComponent implements OnInit {
   subscriptionCategories = Observable<ICarCategory[]>;
   types?: Array<string>;
   categories?: Array<ICarCategory>;
+  addedCar?: ICar;
 
   carForm = this.fb.nonNullable.group({
     vin: <number | null>null,
@@ -38,7 +39,7 @@ export class AddCarComponent implements OnInit {
     USBPort: <boolean | null>null,
     parktronicSystem: <boolean | null>null,
     infotainmentSystem: <boolean | null>null,
-    radio: '',
+    radio: <RadioType | null>null,
     type: ''
 
   }
@@ -73,70 +74,68 @@ export class AddCarComponent implements OnInit {
 
    onSubmit() {
     console.log('in onSubmit: ', this.carForm.valid);
+     this.addedCar = this.carForm.getRawValue();
+
+     if (this.addedCar.vin){ 
+        let vinn: number = + this.addedCar.vin ;
+        this.addedCar.vin = vinn;
+      }
+      if (this.addedCar.doorNr){ 
+        let nr: number = + this.addedCar.doorNr ;
+        this.addedCar.doorNr = nr;
+      }
+
+      
+    
+      if (this.addedCar.type == "Budget") {
+        this.addedCar.airConditioning = false;
+        this.addedCar.electricWindow = false;
+        this.addedCar.parkingSenzor = false;
+        this.addedCar.USBPort = false;
+        this.addedCar.parktronicSystem = false;
+        this.addedCar.infotainmentSystem = false;
+        this.addedCar.radio = RadioType.ANALOG;
+      } 
+      else if (this.addedCar.type == "Premium"){
+        this.addedCar.airConditioning = true;
+        this.addedCar.electricWindow = true;
+        this.addedCar.parkingSenzor = true;
+        this.addedCar.USBPort = true;
+        this.addedCar.parktronicSystem = false;
+        this.addedCar.infotainmentSystem = false;
+        this.addedCar.radio = RadioType.DIGITAL;
+      }
+      else if (this.addedCar.type == "Luxury"){
+        this.addedCar.airConditioning = true;
+        this.addedCar.electricWindow = true;
+        this.addedCar.parkingSenzor = true;
+        this.addedCar.USBPort = true;
+        this.addedCar.parktronicSystem = true;
+        this.addedCar.infotainmentSystem = true;
+        this.addedCar.radio = RadioType.DIGITAL;
+     }
+     this._carService.getCategories().subscribe(categories => this.categories = categories);
+     if (this.categories != null){
+     const selectedCategory = this.categories.find(s => s.name == this.addedCar?.category?.name);
+     if (this.addedCar!= null){
+         this.addedCar.category = selectedCategory != null ? selectedCategory : null;
+     }}
+
+     this._carService.addCar(this.addedCar).subscribe(
+              result =>{ 
+            
+
+               this.router.navigate(['/cars']);
+               console.log('success: ', result);
+
+              },
+              error => {
+                console.log('error', error);
+              }
+      );
 
 
-
-    // if (this.carForm.controls.vin){ 
-    //   let vinn: number = + this.carForm.controls.vin ;
-    //   this.carForm.controls.vin = vinn;
-    // }
-    // if (this.carForm.controls.doorNr){ 
-    //   let nr: number = + this.carForm.controls.doorNr ;
-    //   this.carForm.controls.doorNr = nr;
-    // }
-
-    //   if (this.addedCar.type == "Budget") {
-    //     this.addedCar.airConditioning = false;
-    //     this.addedCar.electricWindow = false;
-    //     this.addedCar.parkingSenzor = false;
-    //     this.addedCar.USBPort = false;
-    //     this.addedCar.parktronicSystem = false;
-    //     this.addedCar.infotainmentSystem = false;
-    //     this.addedCar.radio = RadioType.ANALOG;
-    //   } 
-    //   else if (this.addedCar.type == "Premium"){
-    //     this.addedCar.airConditioning = true;
-    //     this.addedCar.electricWindow = true;
-    //     this.addedCar.parkingSenzor = true;
-    //     this.addedCar.USBPort = true;
-    //     this.addedCar.parktronicSystem = false;
-    //     this.addedCar.infotainmentSystem = false;
-    //     this.addedCar.radio = RadioType.DIGITAL;
-    //   }
-    //   else if (this.addedCar.type == "Luxury"){
-    //     this.addedCar.airConditioning = true;
-    //     this.addedCar.electricWindow = true;
-    //     this.addedCar.parkingSenzor = true;
-    //     this.addedCar.USBPort = true;
-    //     this.addedCar.parktronicSystem = true;
-    //     this.addedCar.infotainmentSystem = true;
-    //     this.addedCar.radio = RadioType.DIGITAL;
-    //  }
-
-    // if(this.addedCategory != null){
-    //   this._carService.getCategories().subscribe(
-    //     result =>{ 
-    //       console.log('success: ', result);
-    //       const selectedCategory = result.find(s => s.name == this.addedCategory);
-    //       this.addedCar.category = selectedCategory != null ? selectedCategory : null;
-    //       this._carService.addCar(this.addedCar).subscribe(
-    //         result =>{ 
-    //          this.router.navigate(['/cars']);
-    //          console.log('success: ', result);
-    //          return this.addedCategory;
-
-    //         },
-    //         error => {
-    //           console.log('error', error);
-    //         }
-    //       );
-    //      },
-    //      error => {
-    //        console.log('error', error);
-    //      }
-    //   );
-
-    // }
+    
     //const win: Window = window;
     //win.location = "http://localhost:4200/cars";
     //window.location.assign( "http://localhost:5120/api/car");

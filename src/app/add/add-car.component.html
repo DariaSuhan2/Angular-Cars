@@ -8,24 +8,30 @@
       <br> <br>
       <label for="color">Car color:</label>
       <input formControlName="color" placeholder="Color" />
-      <br> <br>
+      <br> <br>cv
       <label for="brand">Car brand:</label>
       <input formControlName="brand" placeholder="Brand" />
       <br> <br>
       <label for="doorNr">Car number of doors:</label>
       <input formControlName="doorNr" placeholder="DoorNr" />
       <br> <br>
-      <div formGroupName="category" class="category">
+      <form formGroupName="category" class="category">
         <label for="category">Car category:</label>
-        <ng-select *ngIf="categories != null" [items]="categories" formControlName="category.name"
+        <ng-select *ngIf="categories != null" [items]="categories" formControlName="name"
           placeholder="Category" bindLabel="name" bindValue="name">
-        </ng-select>
+        </ng-select> 
+      </form>
 
         <br>
         <label for="type">Car type:</label>
-        <ng-select *ngIf="types != null" [items]="types" formControlName="type" placeholder="Type"></ng-select>
-      </div>
-    </div>
+        <ng-select *ngIf="types != null" [items]="types" formControlName="type" 
+         placeholder="Type"></ng-select>
+      
+     </div>
   </form>
   <button class="btn btn-primary" (click)="onSubmit()">Save</button>
 </div>
+
+{{addedCar | json}}
+<br><br>
+{{categories |json}}
