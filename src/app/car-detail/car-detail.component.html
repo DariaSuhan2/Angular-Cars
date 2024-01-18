@@ -61,7 +61,7 @@
           [(ngModel)]="selectedCategory">
         </ng-select> -->
 
-       <label for="car-category">Car category name: </label>
+       <label >Car category name: </label>
 
       <ng-select *ngIf="categories != null"
               [items]="categories"
@@ -75,16 +75,16 @@
       <!-- <label for="car-category">Car category name: </label>
       <input *ngIf="car.category !=null" id="car-category" [(ngModel)]="car.category.name" placeholder="category name">   -->
 
-      <label for="car-category">Car category engine capacity: </label>
+      <label>Car category engine capacity: </label>
       <div>   {{car.category?.engineCapacity}} </div>
 
-      <label for="car-category">Car category engine capacity: </label>
+      <label>Car category engine capacity: </label>
       <div>  {{car.category?.weight}} </div>
       <!-- <label id="car-category"*ngIf="car.category !=null" for="vin">{{car.category.weight}}</label> -->
       <!-- <div><span></span>{{car.category?.weight}}</div> -->
       <!-- <input  id="car-category"*ngIf="car.category !=null" [(ngModel)]="car.category.weight" placeholder="category weight">  -->
    <br>
-      <label for="car-category">Car type: </label>
+      <label>Car type: </label>
       <ng-select *ngIf="types != null"
         [items]="types"
         name="type"
@@ -98,12 +98,12 @@
         <option>Premium</option>
         <option>Luxury</option>
       </select> -->
-      <label for="airConditioning">Car air conditioning:  </label>
+      <label>Car air conditioning:  </label>
       <div>  {{car.airConditioning}} </div>
 
-      <label for="electricWindow">Car electric window:  </label>
+      <label>Car electric window:  </label>
       <div>  {{car.electricWindow}}</div>
-      <label for="parkingSenzor">Car parking senzor: </label>
+      <label>Car parking senzor: </label>
       <div>  {{car.parkingSenzor}}  </div>
       <!-- <div *ngIf="car.USBPort == true else elseBlock1">
         <label for="USBPort">Car USB port: true </label>
@@ -114,27 +114,27 @@
       </ng-template> -->
 
       <div *ngIf="car.USBPort ==true else elseBlock">
-        <label for="USBPort">Car USB port:  </label>
+        <label>Car USB port:  </label>
         <div>  true </div>
       </div>
       <ng-template #elseBlock>
-        <label for="USBPort">Car USB port: </label>
+        <label>Car USB port: </label>
         <div>  false  </div>
       </ng-template>
       <!-- <label for="USBPort">Car USB port: {{car.USBPort}} </label> -->
 
-      <label for="parktronicSystem">Car parktronic system:  </label>
+      <label>Car parktronic system:  </label>
       <div>  {{car.parktronicSystem}} </div>
 
-      <label for="infotainmentSystem">Car infotainment system:  </label>
+      <label>Car infotainment system:  </label>
       <div>  {{car.infotainmentSystem}} </div>
 
       <div *ngIf="car.radio ==0 else elseBlock2">
-        <label for="radio">Car radio:  </label>
+        <label>Car radio:  </label>
         <div>  analog </div>
       </div>
       <ng-template #elseBlock2>
-        <label for="radio">Car radio: </label>
+        <label>Car radio: </label>
         <div>  digital  </div>
       </ng-template>
 
