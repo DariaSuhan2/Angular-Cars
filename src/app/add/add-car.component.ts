@@ -25,14 +25,14 @@ export class AddCarComponent implements OnInit {
   addedCar?: ICar;
 
   carForm = this.fb.nonNullable.group({
-    vin: <number | null>null,
+    vin:  [0, Validators.min(1)],
     color: ['', Validators.required],
     brand: ['', Validators.required],
-    doorNr: <number | null>null,
+    doorNr: [0, Validators.min(1)],
     category: this.fb.nonNullable.group({
-      name: ['', Validators.required],
-      engineCapacity: <number | null>null,
-      weight: <number | null>null,
+      name: [null, Validators.required],
+      engineCapacity: [0, Validators.min(1)],
+      weight:[0, Validators.min(1)],
     }),
     airConditioning: <boolean | null>null,
     electricWindow: <boolean | null>null,
@@ -41,7 +41,7 @@ export class AddCarComponent implements OnInit {
     parktronicSystem: <boolean | null>null,
     infotainmentSystem: <boolean | null>null,
     radio: <RadioType | null>null,
-    type: ['', Validators.required]
+    type: [null, Validators.required]
 
   }
   );

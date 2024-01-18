@@ -32,7 +32,7 @@ export class CarService {
   }
 
   getCar(vin: number): Observable<ICar> {
-      if (vin!= null){
+      if ((vin!= null) || (vin!= Number.isNaN) || (vin != undefined)){
         const url = `${this._carUrl}/${vin}`;
         return this._http.get<ICar>(url).pipe(
           tap(_ => console.log(`fetched car vin=${vin}`)),

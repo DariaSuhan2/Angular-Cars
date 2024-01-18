@@ -1,11 +1,13 @@
 <div class="container">
   <h2>Car fields</h2>
 
-  <form [formGroup]="carForm" [class.error] = "carForm.invalid && carForm.dirty" (ngSubmit)="onSubmit()">
+<!--  <form [formGroup]="carForm" [class.error] = "carForm.invalid && carForm.dirty" (ngSubmit)="onSubmit()">-->
+  <form [formGroup]="carForm"  (ngSubmit)="onSubmit()">
     <div>
       <label >Car VIN:</label>
-      <input formControlName="vin"  placeholder="VIN" />
-
+      <input formControlName="vin" [class.error]="carForm.controls.vin.invalid && carForm.controls.vin.touched" placeholder="VIN" />
+      <br>
+      <em *ngIf = "carForm.controls.vin.invalid && carForm.controls.vin.touched">Please enter a vin</em>
       <br>
       {{carForm.controls.vin.valid}}
       <br> <br><br>
@@ -20,25 +22,30 @@
       <em *ngIf = "carForm.controls.brand.invalid && carForm.controls.brand.touched">Please enter a brand</em>
       <br> <br>
       <label>Car number of doors:</label>
-      <input formControlName="doorNr" placeholder="DoorNr" />
+      <input formControlName="doorNr" [class.error]="carForm.controls.doorNr.invalid && carForm.controls.doorNr.touched" placeholder="DoorNr" />
+      <br>
+      <em *ngIf = "carForm.controls.doorNr.invalid && carForm.controls.doorNr.touched">Please enter the number of doors</em>
+
       <br> <br>
       <form formGroupName="category" class="category">
         <label>Car category:</label>
-        <ng-select *ngIf="categories != null" [items]="categories" formControlName="name"
+        <ng-select *ngIf="categories != null" [items]="categories" [class.error]="carForm.controls.category.controls.name.invalid && carForm.controls.category.controls.name.touched" formControlName="name"
           placeholder="Category" bindLabel="name" bindValue="name">
         </ng-select>
+        <em *ngIf = "carForm.controls.category.controls.name.invalid && carForm.controls.category.controls.name.touched">Please enter the type of the car</em>
       </form>
 
         <br>
         <label>Car type:</label>
-        <ng-select *ngIf="types != null" [items]="types" formControlName="type"
+        <ng-select *ngIf="types != null" [items]="types" [class.error]="carForm.controls.type.invalid && carForm.controls.type.touched" formControlName="type"
          placeholder="Type"></ng-select>
-
+      <em *ngIf = "carForm.controls.type.invalid && carForm.controls.type.touched">Please enter the type of the car</em>
      </div>
     <br>
-    <em *ngIf="carForm.invalid && carForm.dirty">Incomplete form</em>
+<!--   <em *ngIf="carForm.invalid && carForm.dirty">Incomplete form</em>-->
   </form>
-  <button type="submit" class="btn btn-primary" [disabled]="carForm.invalid" (click)="onSubmit()">Save</button>
+<!--  <button type="submit" class="btn btn-primary" [disabled]="carForm.invalid" (click)="onSubmit()">Save</button>-->
+  <button type="submit" class="btn btn-primary"  (click)="onSubmit()">Save</button>
 </div>
 
 {{addedCar | json}}

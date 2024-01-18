@@ -13,6 +13,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import {WelcomeComponent} from './home/welcome.component';
 import { AddCarComponent } from './add/add-car.component';
+// import { CarService } from '../service/car.service';
+
 
 
 @NgModule({

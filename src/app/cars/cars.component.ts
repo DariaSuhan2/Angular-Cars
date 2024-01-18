@@ -69,9 +69,7 @@ export class CarsComponent implements OnInit, OnDestroy {
   }
 
   deleteAll(): void {
-    //this._carService.deleteAll().subscribe();
     this._carService.deleteAllCars();
-
     window.location.reload();
     // this.router.navigate(['/cars']);
      this._carService.getCars();
@@ -82,12 +80,7 @@ export class CarsComponent implements OnInit, OnDestroy {
 
   }
 
-  // save(): void {
-  //   if (this.car) {
-  //     this._carService.updateCar(this.car)
-  //       .subscribe(() => this.goBack());
-  //   }
-  // }
+
 
 
 }

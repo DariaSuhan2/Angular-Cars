@@ -7,52 +7,32 @@
 
 <h2>My Cars</h2>
 <ul class="cars">
-  
+
     <li *ngFor="let car of cars">
         <button [class.selected]="car === selectedCar" type="button" (click)="onSelect(car)">
             <span class="badge">{{car.vin}}</span>
             <span class="name">{{car.brand}}</span>
-            <!-- ;<button class = "delete" type="button" (click)="delete(car)">Delete</button> -->
-            <!-- <span class="delete">Delete a car</span> -->
         </button>
         <button type="button" class="delete" title="delete car" (click)="delete(car)">Delete</button>
-            <!-- <label for="car-color">Update Color: </label>
-            <input id="car-color" [(ngModel)]="car.color" placeholder="color">
-            <br><br> -->
+
       </li>
-      
-    
+
       <ng-container *ngIf="cars.length; then showMessage1; else showMessage2">
       </ng-container>
       <ng-template #showMessage1>
-      </ng-template> 
+      </ng-template>
       <ng-template #showMessage2>
         <h6>There aren't any cars in the list</h6>
       </ng-template>
   </ul>
-      <!-- <input *ngIf="cars ==null"  [(ngModel)]="selectedCars" placeholder="selectedCars"> 
-      <label for="type">No car in the list of cars</label> -->
-      <!-- <div *ngIf = "cars != null; else printNothing"></div> -->
-      <!-- <ng-template [ngIf]="cars==[]">
-        <div>here aren't any cars in the list</div>
-      </ng-template> -->
-      <!-- <ng-container *ngIf="cars.length; then showMessage1; else showMessage2">
-      </ng-container>
-      <ng-template #showMessage1>
-      </ng-template> 
-      <ng-template #showMessage2>
-        <h5>There aren't any cars in the list</h5>
-      </ng-template> -->
-      
-            <!-- <button type="button" (click)="deleteAll()">Delete all cars</button> -->
+      <!-- <button type="button" (click)="deleteAll()">Delete all cars</button> -->
       <button type="button" class="btn btn-primary" (click)="deleteAll()">Delete all cars</button>
       <!-- <button type="button" class="btn btn-primary" (click)="save()">Update car color</button> -->
       <br>
-      
+
 
 <app-car-detail [car]="selectedCar"></app-car-detail>
 <br>
 {{cars | json}}
 
-<!-- <h1>this is from cars.component</h1> -->
-     
+

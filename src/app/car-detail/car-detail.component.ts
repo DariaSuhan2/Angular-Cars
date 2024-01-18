@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 //import {NgIf, UpperCasePipe} from '@angular/common';
-//import {FormsModule} from '@angular/forms';
 import {ICar, RadioType} from "../models/car";
 import { CarService } from '../service/car.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ICarCategory } from '../models/category';
@@ -14,8 +13,7 @@ import { ICarCategory } from '../models/category';
   templateUrl: './car-detail.component.html',
   styleUrl: './car-detail.component.css'
 })
-export class CarDetailComponent implements OnInit{
-  //car?: ICar;
+export class CarDetailComponent implements OnInit {
   pageTitle: string = 'Car Details';
   car?: ICar;
   rad = null;
@@ -25,19 +23,25 @@ export class CarDetailComponent implements OnInit{
 
   constructor(private _carService: CarService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
     ) {}
 
   ngOnInit(): void {
-     this.getCar();
+      this.getCar();
       this._carService.getCategories().subscribe(categories => this.categories = categories);
-     this.types = ["Budget", "Premium", "Luxury"];
+      this.types = ["Budget", "Premium", "Luxury"];
   }
+    /*ngOnDestroy() {
+      //this.sub.unsubscribe();
+      this.subb.unsubscribe();
+    }*/
 
   getCar(): void {
     const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
-    if(vin != null){
-      this._carService.getCar(vin)
+    var na = Number.isNaN(vin);
+    if(vin != null && !Number.isNaN(vin)){
+    this._carService.getCar(vin)
       .subscribe(carFromServer => {
         this.car = carFromServer;
         this.selectedCategory= carFromServer.category?.name || null;
@@ -46,8 +50,11 @@ export class CarDetailComponent implements OnInit{
   }
 
   goBack(): void {
-    this.location.back();
+    //this.location.back();
+    this.router.navigate([`/cars`]);
+
   }
+
 
   save(): void {
     if (this.car) {
@@ -82,8 +89,10 @@ export class CarDetailComponent implements OnInit{
           this.car.category.name = this.selectedCategory;
         }
 
+//       this.sub = this._carService.updateCar(this.car)
+//         .subscribe(() => this.goBack())
       this._carService.updateCar(this.car)
-        .subscribe(() => this.goBack())
+              .subscribe(() => this.goBack())
 
     }
   }
