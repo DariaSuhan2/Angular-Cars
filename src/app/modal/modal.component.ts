@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-modal',
@@ -11,20 +12,15 @@ export class ModalComponent implements OnInit {
     // @ViewChild('closeBtn') closeBtn: ElementRef;
 
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal,
+    public activeModal: NgbActiveModal) {
   }
+  //public activeModal: MdbModalRef<ModalComponent>
 
   ngOnInit(): void {
   }
 
-  modalClose():void {
-      //const closeMessage = 'Modal closed';
-     //$('.modal').modal('hide');
-      //this.ModalComponent.close(closeMessage);
-      //$("#myModal").modal("hide");
-      //this.modalController.dismiss();
-      //this.basicModal.hide();
-      //this.closeBtn.nativeElement.click();
-     
+  close():void {
+      this.activeModal.close();
   }
 }
