@@ -4,6 +4,8 @@ import { CarService } from '../service/car.service';
 import { MessageService } from '../service-message/message.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ModalComponent} from "../modal/modal.component";
 
 @Component({
   //selector: 'app-cars',
@@ -18,11 +20,13 @@ export class CarsComponent implements OnInit, OnDestroy {
   cars: ICar[] = [];
   errorMessage: string = '';
   sub!: Subscription;
+  //const modal = this.modalService.open(ModalComponent);
 
   constructor (private _carService: CarService,
    // private _messageService: MessageService,
     private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router,
+    public modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.sub = this._carService.getCars().subscribe((cars) => {
@@ -45,6 +49,10 @@ export class CarsComponent implements OnInit, OnDestroy {
     this.router.navigate([`/car/details/${car.vin}`]);
   }
 
+//   openModal() {
+//
+//   }
+
 
   getCars(): void {
       this._carService.getCars().subscribe(cars => this.cars = cars);
@@ -63,6 +71,14 @@ export class CarsComponent implements OnInit, OnDestroy {
           debugger;
         }
       );
+       //(<ModalComponent>modal.componentInstance).cheamaOMetodaDeInitializareDsacaVreiSaPaseziCeva(car.vin);
+            const modalComponent = this.modalService.open(ModalComponent);
+            modalComponent.componentInstance.car = this.car;
+            //return modal.result;
+            /* modal.result.then((car: ICar) => {
+                    }, (reason) => {
+                    }); */
+
     }
   }
 

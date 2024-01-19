@@ -13,6 +13,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import {WelcomeComponent} from './home/welcome.component';
 import { AddCarComponent } from './add/add-car.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './modal/modal.component';
 // import { CarService } from '../service/car.service';
 
 
@@ -24,7 +26,8 @@ import { AddCarComponent } from './add/add-car.component';
     AppComponent,
     CarDetailComponent,
     AddCarComponent,
-    MessageComponent
+    MessageComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { AddCarComponent } from './add/add-car.component';
     NgFor,
     NgSelectModule,
     UpperCasePipe,
+    NgbModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       {path: 'cars', component: CarsComponent},
