@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { CarsComponent } from './cars/cars.component';
 import {NgFor, NgIf, UpperCasePipe} from "@angular/common";
 import { CarDetailComponent } from './car-detail/car-detail.component';
-import { MessageComponent } from './message/message.component';
+//import { MessageComponent } from './message/message.component';
 import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import {WelcomeComponent} from './home/welcome.component';
@@ -17,8 +17,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal.component';
 // import { CarService } from '../service/car.service';
 
-
-
 @NgModule({
   declarations: [
     CarsComponent,
@@ -26,7 +24,6 @@ import { ModalComponent } from './modal/modal.component';
     AppComponent,
     CarDetailComponent,
     AddCarComponent,
-    MessageComponent,
     ModalComponent
   ],
   imports: [

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ICar} from "../models/car";
 import { CarService } from '../service/car.service';
-import { MessageService } from '../service-message/message.service';
+//import { MessageService } from '../service-message/message.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -73,7 +73,7 @@ export class CarsComponent implements OnInit, OnDestroy {
       );
        //(<ModalComponent>modal.componentInstance).cheamaOMetodaDeInitializareDsacaVreiSaPaseziCeva(car.vin);
             const modalComponent = this.modalService.open(ModalComponent);
-            modalComponent.componentInstance.car = this.car;
+            modalComponent.componentInstance.car = car;
             //return modal.result;
             /* modal.result.then((car: ICar) => {
                     }, (reason) => {
