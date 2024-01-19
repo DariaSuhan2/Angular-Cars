@@ -25,7 +25,6 @@ export class CarsComponent implements OnInit, OnDestroy {
     private router: Router) {}
 
   ngOnInit(): void {
-    //this.getCars();
     this.sub = this._carService.getCars().subscribe((cars) => {
         this.cars = cars;
         this.selectedCars = this.cars;
@@ -44,7 +43,6 @@ export class CarsComponent implements OnInit, OnDestroy {
     this.selectedCar = car;
    // this._messageService.add(`CarsComponent: Selected car vin=${car.vin}`);
     this.router.navigate([`/car/details/${car.vin}`]);
-    // router navigate to car/details/{car.vin}
   }
 
 
@@ -71,16 +69,6 @@ export class CarsComponent implements OnInit, OnDestroy {
   deleteAll(): void {
     this._carService.deleteAllCars();
     window.location.reload();
-    // this.router.navigate(['/cars']);
      this._carService.getCars();
-    //this.redirectTo(['/cars']);
-    // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-    //   this.router.navigate(['/cars']);
-    // });
-
-  }
-
-
-
-
+   }
 }

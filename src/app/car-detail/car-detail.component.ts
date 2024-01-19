@@ -7,12 +7,12 @@ import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ICarCategory } from '../models/category';
 
-
 @Component({
   selector: 'app-car-detail',
   templateUrl: './car-detail.component.html',
   styleUrl: './car-detail.component.css'
 })
+
 export class CarDetailComponent implements OnInit {
   pageTitle: string = 'Car Details';
   car?: ICar;
@@ -32,10 +32,6 @@ export class CarDetailComponent implements OnInit {
       this._carService.getCategories().subscribe(categories => this.categories = categories);
       this.types = ["Budget", "Premium", "Luxury"];
   }
-    /*ngOnDestroy() {
-      //this.sub.unsubscribe();
-      this.subb.unsubscribe();
-    }*/
 
   getCar(): void {
     const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
@@ -52,9 +48,7 @@ export class CarDetailComponent implements OnInit {
   goBack(): void {
     //this.location.back();
     this.router.navigate([`/cars`]);
-
   }
-
 
   save(): void {
     if (this.car) {
@@ -88,9 +82,6 @@ export class CarDetailComponent implements OnInit {
       if (this.car.category != null) {
           this.car.category.name = this.selectedCategory;
         }
-
-//       this.sub = this._carService.updateCar(this.car)
-//         .subscribe(() => this.goBack())
       this._carService.updateCar(this.car)
               .subscribe(() => this.goBack())
 

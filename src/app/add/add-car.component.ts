@@ -55,15 +55,6 @@ export class AddCarComponent implements OnInit {
   ngOnInit() {
     this._carService.getCategories().subscribe(categories => this.categories = categories);
     this.types = ["Budget", "Premium", "Luxury"];
-    // const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
-    // //const carVin = this.route.snapshot.params['vin'];
-    // if (!vin) return;
-    // this._carService.getCar(vin).subscribe((car) => {
-    //   if (!car) return;
-    //   this.carForm.controls["vin"].setValue(car.vin);
-
-    // });
-
   }
 
    onSubmit() {
@@ -78,8 +69,6 @@ export class AddCarComponent implements OnInit {
         let nr: number = + this.addedCar.doorNr ;
         this.addedCar.doorNr = nr;
       }
-
-
 
       if (this.addedCar.type == "Budget") {
         this.addedCar.airConditioning = false;
@@ -116,27 +105,19 @@ export class AddCarComponent implements OnInit {
           }
         );
      if (this.categories != null){
-     const selectedCategory = this.categories.find(s => s.name == this.addedCar?.category?.name);
-     if (this.addedCar!= null){
-         this.addedCar.category = selectedCategory != null ? selectedCategory : null;
+        const selectedCategory = this.categories.find(s => s.name == this.addedCar?.category?.name);
+        if (this.addedCar!= null){
+            this.addedCar.category = selectedCategory != null ? selectedCategory : null;
      }}
 
      this._carService.addCar(this.addedCar).subscribe(
               result =>{
                this.router.navigate(['/cars']);
                console.log('success: ', result);
-
               },
               error => {
                 console.log('error', error);
               }
       );
-
-
-
-    //const win: Window = window;
-    //win.location = "http://localhost:4200/cars";
-    //window.location.assign( "http://localhost:5120/api/car");
-
   }
 }
