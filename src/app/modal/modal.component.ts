@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,6 +8,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalComponent implements OnInit {
 //  @Input() car: ICar;
+    // @ViewChild('closeBtn') closeBtn: ElementRef;
+
 
   constructor(private modalService: NgbModal) {
   }
@@ -15,8 +17,14 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ModalClose():void {
-      const closeMessage = 'Modal closed';
-      this.ModalComponent.close(closeMessage)
+  modalClose():void {
+      //const closeMessage = 'Modal closed';
+     //$('.modal').modal('hide');
+      //this.ModalComponent.close(closeMessage);
+      //$("#myModal").modal("hide");
+      //this.modalController.dismiss();
+      //this.basicModal.hide();
+      //this.closeBtn.nativeElement.click();
+     
   }
 }

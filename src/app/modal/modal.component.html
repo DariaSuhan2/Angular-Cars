@@ -1,19 +1,48 @@
-<h1>
-  modal works!
-</h1>
+<div  id="basicModal"
+     class="fixed absolute-fill w-100 h-100 z-50 outline-0 overflow-y-auto pointer-events-auto bg-white scrolling-touch db">
+    <div class="flex flex-column min-vh-100">
+        <!--modal-header [modal]="activeModal"></modal-header-->
 
-<!--<div class="modal-header">-->
-<!--  <h5 class="modal-title" id="exampleModalLabel">Car deleted</h5>-->
-<!--&lt;!&ndash;  <button&ndash;&gt;-->
-<!--&lt;!&ndash;    type="button"&ndash;&gt;-->
-<!--&lt;!&ndash;    class="btn-close"&ndash;&gt;-->
-<!--&lt;!&ndash;    aria-label="Close"&ndash;&gt;-->
-<!--&lt;!&ndash;    (click)="ModalComponent.close()"&ndash;&gt;-->
-<!--&lt;!&ndash;  ></button>&ndash;&gt;-->
-<!--</div>-->
-<!--<div class="modal-body"> The car with {{car.vin}} was deleted!</div>-->
-<!--<div class="modal-footer">-->
-<!--  <button type="button" class="btn btn-secondary" (click)="ModalClose()">Close</button>-->
-<!--</div>-->
-
+        <div class="flex-1 flex flex-column items-center justify-center ph5 pb7">
+            <div class="w-100 mw3">
+                <div class="grid gap-4">
+                    <div class="pb4 bb b-gray-300">
+                        <div class="f4 fw6 ls-tight gray-900">Car</div>
+                    </div>
+                    <!--form class="" *ngIf="isLoaded == true" action="" method="" [formGroup]="form">
+                        <div class="grid gap-3">
+                            <div class="grid gap-1.5">
+                                <label class="db f6 fw5 gray-900">Name *</label>
+                                <input type="text" class="form-input" placeholder="Enter name"
+                                       [(ngModel)]="di.model.name"
+                                       [ngClass]="{ 'is-invalid': form.controls.name.errors && (form.controls.name.touched || form.controls.name.dirty)}"
+                                       formControlName="name"
+                                       (focusout)="validateName()"
+                                       required>
+                                <show-errors [control]="form.controls.name"></show-errors>
+                                <ng-container *ngIf="nameValidator.isValid == false">
+                                    <app-name-validator [validator]="nameValidator"
+                                                        (changeToValidNameEmitter)="changeToValidName($event)"></app-name-validator>
+                                </ng-container>
+                            </div>
+                            <div class="grid gap-1.5">
+                                <label class="db f6 fw5 gray-900">Description</label>
+                                <textarea class="form-textarea" placeholder="Enter description"
+                                          [(ngModel)]="di.model.description"
+                                          formControlName="description" spellcheck="false" rows="2"></textarea>
+                                <show-errors [control]="form.controls.description"></show-errors>
+                            </div>
+                        </div>
+                    </form-->
+                    <h1>The car was deleted</h1>
+                    <div class="flex items-center justify-end gap-2">
+                        <!-- <a (keyup.enter)="cancel()" (click)="cancel()" class="btn btn-white">Cancel</a> -->
+                        <button type="button" (click)="modalClose()" class="btn btn-green">Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
