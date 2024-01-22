@@ -10,6 +10,8 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import {Validators} from '@angular/forms'
+import { ModalComponent } from '../modal/modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-car',
@@ -46,10 +48,12 @@ export class AddCarComponent implements OnInit {
   }
   );
 
+
   constructor(private _carService: CarService,
     private router: Router,
     private fb: FormBuilder,
     private route: ActivatedRoute,
+    public modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -119,5 +123,10 @@ export class AddCarComponent implements OnInit {
                 console.log('error', error);
               }
       );
+
+      const modalComponent = this.modalService.open(ModalComponent);
+      modalComponent.componentInstance.car = this.addedCar;
+      modalComponent.componentInstance.from = 'addCar';
+
   }
 }

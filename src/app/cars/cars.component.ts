@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, Input} from '@angular/core';
 import {ICar} from "../models/car";
 import { CarService } from '../service/car.service';
 //import { MessageService } from '../service-message/message.service';
@@ -20,7 +20,8 @@ export class CarsComponent implements OnInit, OnDestroy {
   cars: ICar[] = [];
   errorMessage: string = '';
   sub!: Subscription;
-  closeResult: string = "";
+  //closeResult: string = "";
+  from: string = '';
   //const modal = this.modalService.open(ModalComponent);
 
   constructor (private _carService: CarService,
@@ -75,7 +76,8 @@ export class CarsComponent implements OnInit, OnDestroy {
        
     }
     const modalComponent = this.modalService.open(ModalComponent);
-     //modalComponent.componentInstance.car = car;
+    modalComponent.componentInstance.car = car;
+    modalComponent.componentInstance.from = 'deleteOne';
     // modalComponent.result.then((result) => {
     // this.closeResult = `Closed with: ${result}`;
     //   }, (reason) => {
@@ -86,8 +88,14 @@ export class CarsComponent implements OnInit, OnDestroy {
 
   deleteAll(): void {
     this._carService.deleteAllCars();
-    window.location.reload();
-     this._carService.getCars();
+         
+     const modalComponent = this.modalService.open(ModalComponent);
+     modalComponent.componentInstance.from = 'deleteAll';
+     if (!(this.modalService.open(ModalComponent))){
+      window.location.reload();
+      this._carService.getCars();
+     }
+    
    }
 
   //  private getDismissReason(reason: any): string {
