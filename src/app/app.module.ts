@@ -39,7 +39,7 @@ import { ModalComponent } from './modal/modal.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       {path: 'cars', component: CarsComponent},
-      {path: 'cars/add', component: AddCarComponent},
+      {path: 'car/add', component: AddCarComponent},
       {path: 'car/details/:vin', component: CarDetailComponent},
       {path: 'welcome', component: WelcomeComponent},
       {path: '', redirectTo: 'cars', pathMatch: 'full'},

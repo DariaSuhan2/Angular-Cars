@@ -18,7 +18,7 @@
   } */
 
 
-  .cars button {
+  .button {
     flex: 1;
     cursor: pointer;
     position: relative;
@@ -32,28 +32,28 @@
     height: 1.8em;
   }
   
-  .cars button:hover {
+  .button:hover {
     color: #2c3a41;
     background-color: #e6e6e6;
     left: .1em;
   }
   
-  .cars button:active {
+  .button:active {
     background-color: #525252;
     color: #fafafa;
   }
   
-  .cars button.selected {
+  .button.selected {
     background-color: black;
     color: white;
   }
   
-  .cars button.selected:hover {
+  .button.selected:hover {
     background-color: #505050;
     color: white;
   }
   
-  .cars button.selected:active {
+  .button.selected:active {
     background-color: black;
     color: white;
   }

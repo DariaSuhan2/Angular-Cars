@@ -35,13 +35,13 @@
                         </div>
                     </form-->
                     <div *ngIf="from =='deleteOne'">
-                        <h1>The car with VIN {{car?.vin}} was deleted</h1>
+                        <h2>The car with VIN {{car?.vin}} was deleted</h2>
                       </div>
                       <div *ngIf="from =='addCar'">
-                        <h1>The car with VIN {{car?.vin}} was added</h1>
+                        <h2>The car with VIN {{car?.vin}} was added</h2>
                     </div>
                       <div *ngIf="from =='deleteAll'">
-                        <h1>All the cars were deleted</h1>
+                        <h2>All the cars were deleted</h2>
                       </div>
                     <div class="flex items-center justify-end gap-2">
                         <!-- <a (keyup.enter)="cancel()" (click)="cancel()" class="btn btn-white">Cancel</a> -->

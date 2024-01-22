@@ -25,6 +25,6 @@ export class ModalComponent implements OnInit {
   close():void {
       this.activeModal.close();
       window.location.reload();
-      //this._carService.getCars();
+      
   }
 }
