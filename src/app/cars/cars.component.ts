@@ -91,10 +91,10 @@ export class CarsComponent implements OnInit, OnDestroy {
          
      const modalComponent = this.modalService.open(ModalComponent);
      modalComponent.componentInstance.from = 'deleteAll';
-     if (!(this.modalService.open(ModalComponent))){
-      window.location.reload();
-      this._carService.getCars();
-     }
+    //  if (this.modalService.open(ModalComponent)){
+    //   window.location.reload();
+       this._carService.getCars();
+    //  }
     
    }
 

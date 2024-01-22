@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { ICar } from '../models/car';
+import { CarService } from '../service/car.service';
 
 @Component({
   selector: 'app-modal',
@@ -11,9 +12,9 @@ import { ICar } from '../models/car';
 export class ModalComponent implements OnInit {
   @Input() car?: ICar;
   @Input() from: string = '';
-    
+ 
   constructor(private modalService: NgbModal,
-    public activeModal: NgbActiveModal) {
+    public activeModal: NgbActiveModal, private _carService: CarService ) {
   }
   //public activeModal: MdbModalRef<ModalComponent>
 
@@ -23,5 +24,7 @@ export class ModalComponent implements OnInit {
 
   close():void {
       this.activeModal.close();
+      window.location.reload();
+      //this._carService.getCars();
   }
 }
