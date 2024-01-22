@@ -56,4 +56,13 @@ h1 {
     border-radius: 0;
   }
 
+  input {
+   
+    border: radius 6px;
+    /* border-color: initial; */
+    /* border-color: #76767b;; */
+    /* color: #b9a0a0; */
+
+}
+
   

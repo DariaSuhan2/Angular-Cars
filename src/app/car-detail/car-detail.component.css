@@ -5,8 +5,10 @@ label {
     padding-right: .5rem;
   }
   input {
-    font-size: 1em;
-    padding: .5rem;
+    /* font-size: 1em;
+    padding: .5rem; */
+    border: radius 7px;
+ 
   }
 
 
@@ -92,3 +94,5 @@ label {
   font-weight: 500 !important;
   text-decoration: none !important;
 } */
+
+

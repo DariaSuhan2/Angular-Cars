@@ -13,9 +13,14 @@ import { NgSelectConfig } from '@ng-select/ng-select';
         <li><a class='nav-link' routerLinkActive='active' routerLink='/car/add'>Add a car</a></li>
       </ul>
   </nav>
+  
   <div class='container'>
     <router-outlet></router-outlet>
   </div>
+  <footer>
+  <p>2024</p>
+  <p><a href="mailto:hege@example.com">Email</a></p>
+  </footer>
   `,
    styleUrl: './app.component.css'
 })

@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Car fields</h2>
-  <img width="500" align="right"  alt="Angular Logo" src="./assets/images/DSC_0571.jpg">
+  <img width="350" align="right"  alt="Angular Logo" src="./assets/images/DSC_0571.jpg">
   <form [formGroup]="carForm"  (ngSubmit)="onSubmit()">
     <div>
       <label >Car VIN:</label>
@@ -8,24 +8,24 @@
       <br>
       <em *ngIf = "carForm.controls.vin.invalid && carForm.controls.vin.touched">Please enter a vin</em>
       <br>
-      {{carForm.controls.vin.valid}}
-      <br> <br><br>
+      <!-- {{carForm.controls.vin.valid}}
+      <br> <br><br> -->
       <label>Car color:</label>
-      <input formControlName="color" [class.error]="carForm.controls.color.invalid && carForm.controls.color.touched" placeholder="Color" />
+      <input formControlName="color" [class.error]="carForm.controls.color.invalid && carForm.controls.color.touched" placeholder="Color"  />
       <br>
       <em *ngIf = "carForm.controls.color.invalid && carForm.controls.color.touched">Please enter a color</em>
-      <br> <br>
+      <br> 
       <label>Car brand:</label>
       <input formControlName="brand" [class.error]="carForm.controls.brand.invalid && carForm.controls.brand.touched"placeholder="Brand" />
       <br>
       <em *ngIf = "carForm.controls.brand.invalid && carForm.controls.brand.touched">Please enter a brand</em>
-      <br> <br>
+      <br> 
       <label>Car number of doors:</label>
       <input formControlName="doorNr" [class.error]="carForm.controls.doorNr.invalid && carForm.controls.doorNr.touched" placeholder="DoorNr" />
       <br>
       <em *ngIf = "carForm.controls.doorNr.invalid && carForm.controls.doorNr.touched">Please enter the number of doors</em>
 
-      <br> <br>
+      <br> 
       <form formGroupName="category" class="category">
         <label>Car category:</label>
         <ng-select *ngIf="categories != null" [items]="categories" [class.error]="carForm.controls.category.controls.name.invalid && carForm.controls.category.controls.name.touched" formControlName="name"
@@ -47,6 +47,6 @@
   <button type="submit" class="btn btn-primary"  (click)="onSubmit()">Save</button>
 </div>
 
-{{addedCar | json}}
+<!-- {{addedCar | json}}
 <br><br>
-{{categories |json}}
+{{categories |json}} -->

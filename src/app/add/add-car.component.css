@@ -38,3 +38,12 @@ label {
     color: #ccc;
     cursor: auto;
   } */
+
+  input {
+   
+    border: radius 7px;
+    /* border-color: initial; */
+    /* border-color: #76767b;; */
+    /* color: #b9a0a0; */
+
+}

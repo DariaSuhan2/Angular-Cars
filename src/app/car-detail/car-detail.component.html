@@ -1,6 +1,6 @@
 <div *ngIf="car">
     <h2>{{car.brand | uppercase}} Details</h2>
-   <img width="400" align="right"  alt="Angular Logo" src="./assets/images/DSC_0565.jpg">
+   <img width="300" align="right"  alt="Angular Logo" src="./assets/images/DSC_0565.jpg">
     <label>Car VIN: </label>
     <div>   {{car.vin}} </div>
      <div>
@@ -12,7 +12,7 @@
       <br><br>
       <label for="car-doorNr">The number of doors: </label>
       <input id="car-doorNr" [(ngModel)]="car.doorNr" placeholder="doorNr">
-      <br><br>
+      <br><br><br>
        <label >Car category name: </label>
       <ng-select *ngIf="categories != null"
               [items]="categories"
@@ -64,6 +64,6 @@
     <button type="button" class="btn btn-primary" (click)="save()">Save</button>
   </div>
 
-  {{car | json}}
+  <!-- {{car | json}} -->
 
 

@@ -4,6 +4,7 @@
     list-style-type: none;
     padding: 0;
     width: 15em;
+    text-align: center;
   }
   
   .cars li {
@@ -22,6 +23,7 @@
     display: flex;
     align-items: stretch;
     height: 1.8em;
+    
   }
   
   .cars button:hover {
@@ -61,11 +63,17 @@
     border-radius: 4px 0 0 4px;
   }
 
-  /* .div {
-    background-image:  url('./assets/images/DSC_0134.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
+  /* .delete {
+   
+    text-align: center;
+  } */
+
+
+  /* #container {
+    background-image: url(../assets/images/DSC_0134.jpg);
+    /* background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: cover;
   } */
   
  
