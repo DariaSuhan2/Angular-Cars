@@ -81,7 +81,7 @@ label {
     border-radius: 0;
 } */
 
-.ng-select.custom ::ng-deep .ng-select-container  {
+/* .ng-select.custom ::ng-deep .ng-select-container  {
   min-height: 0px;
   border-radius: 0;
 }
@@ -91,4 +91,4 @@ label {
   font-weight: bold !important;
   font-weight: 500 !important;
   text-decoration: none !important;
-}
+} */

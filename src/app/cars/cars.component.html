@@ -1,6 +1,9 @@
-<h2>My Cars</h2>
+<h2>My Cars</h2>\
+<!-- <img width="400" align="right"  alt="Angular Logo" src="./assets/images/DSC_0134.jpg"> -->
+<div class="overflow">
+  <img width="400" align="right"  alt="Angular Logo" src="./assets/images/DSC_0134.jpg">
+</div>
 <ul class="cars">
-
     <li *ngFor="let car of cars">
         <button [class.selected]="car === selectedCar" type="button" (click)="onSelect(car)">
             <span class="badge">{{car.vin}}</span>

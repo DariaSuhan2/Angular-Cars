@@ -1,6 +1,6 @@
-.cars .brand {
+/* .car .brand {
     align-self: center;
-  }
+  } */
   /* .modal {
     display: block;
   }
@@ -15,7 +15,7 @@
   .modal-header:after {
     display: table;
     content: " ";
-  } */
+  }
 
 
   .button {
@@ -30,7 +30,7 @@
     display: flex;
     align-items: stretch;
     height: 1.8em;
-  }
+  } */
   
   .button:hover {
     color: #2c3a41;
@@ -58,3 +58,21 @@
     color: white;
   }
 
+  .btn-close {
+    color: #aaa;
+    float: right;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    /* cursor: pointer; */
+  }
+
+
+  /* .f4{
+  
+  }  */
