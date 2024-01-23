@@ -75,7 +75,10 @@
     background-attachment: fixed; 
     background-size: cover;
   } */
-  
+  .bg{
+    /* background-color: blue; */
+    background-image: url(/assets/images/DSC_0134.jpg);
+  }
  
 
 

@@ -5,6 +5,10 @@ import { NgSelectConfig } from '@ng-select/ng-select';
   selector: 'app-root',
   //templateUrl: './app.component.html',
   template: `
+    <header>
+    <h1>Logo</h1>
+    <p>Some additional information here</p>
+  </header>
   <nav class='navbar navbar-expand navbar-light bg-light'>
       <a class='navbar-brand'>{{title}}</a>
       <ul class='nav nav-pills'>

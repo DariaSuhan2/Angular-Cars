@@ -15,7 +15,7 @@
       <br>
       <em *ngIf = "carForm.controls.color.invalid && carForm.controls.color.touched">Please enter a color</em>
       <br> 
-      <label>Car brand:</label>
+      <label>Car make:</label>
       <input formControlName="brand" [class.error]="carForm.controls.brand.invalid && carForm.controls.brand.touched"placeholder="Brand" />
       <br>
       <em *ngIf = "carForm.controls.brand.invalid && carForm.controls.brand.touched">Please enter a brand</em>
