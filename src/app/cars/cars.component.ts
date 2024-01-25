@@ -55,6 +55,9 @@ export class CarsComponent implements OnInit, OnDestroy {
     
   }
 
+  add(): void {
+    
+  }
 //   openModal() {
 //
 //   }
