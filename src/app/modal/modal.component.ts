@@ -3,6 +3,7 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { ICar } from '../models/car';
 import { CarService } from '../service/car.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal',
@@ -14,7 +15,9 @@ export class ModalComponent implements OnInit {
   @Input() from: string = '';
  
   constructor(private modalService: NgbModal,
-    public activeModal: NgbActiveModal, private _carService: CarService ) {
+    public activeModal: NgbActiveModal, 
+    private _carService: CarService,
+    private router: Router ) {
   }
   //public activeModal: MdbModalRef<ModalComponent>
 
@@ -23,8 +26,9 @@ export class ModalComponent implements OnInit {
   }
 
   close():void {
-      this.activeModal.close();
+      this.activeModal.close(true);
       window.location.reload();
-      
+      //this.router.navigate([`/cars`]);
+      // this._carService.getCars();
   }
 }

@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {ModalComponent} from "../modal/modal.component";
+import {AddEditModalComponent} from "../add-edit-modal/add-edit-modal.component";
 
 @Component({
   //selector: 'app-cars',
@@ -52,11 +53,14 @@ export class CarsComponent implements OnInit, OnDestroy {
   }
 
   update(car:ICar): void {
-    
+    const modalComponent = this.modalService.open(AddEditModalComponent);
+    // modalComponent.componentInstance.car = car;
+    // modalComponent.componentInstance.from = 'update';
   }
 
   add(): void {
-    
+    const modalComponent = this.modalService.open(AddEditModalComponent);
+    // modalComponent.componentInstance.from = 'add';
   }
 //   openModal() {
 //
@@ -90,6 +94,9 @@ export class CarsComponent implements OnInit, OnDestroy {
     //   }, (reason) => {
     //   this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     // });
+    // modalComponent.result.then((result) => {
+    //   this._carService.getCars();
+    //  });
    
   }
 
@@ -98,6 +105,9 @@ export class CarsComponent implements OnInit, OnDestroy {
          
      const modalComponent = this.modalService.open(ModalComponent);
      modalComponent.componentInstance.from = 'deleteAll';
+     modalComponent.result.then((result) => {
+      this._carService.getCars();
+     });
     //  if (this.modalService.open(ModalComponent)){
     //   window.location.reload();
        this._carService.getCars();

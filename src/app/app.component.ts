@@ -14,7 +14,7 @@ import { NgSelectConfig } from '@ng-select/ng-select';
       <ul class='nav nav-pills'>
         <li><a class='nav-link' routerLinkActive='active' routerLink='/welcome'>Home</a></li>
         <li><a class='nav-link' routerLinkActive='active' routerLink='/cars'>Car List</a></li>
-    
+        
       </ul>
   </nav>
   
@@ -41,4 +41,6 @@ export class AppComponent {
     // Eg : <ng-select bindValue="some-new-value"></ng-select>
     this.config.bindValue = 'value';
   }
+
+  // <li><a class='nav-link' routerLinkActive='active' routerLink='car/add'>Car Add</a></li>
 }
