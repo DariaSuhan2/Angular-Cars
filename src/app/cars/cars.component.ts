@@ -51,6 +51,10 @@ export class CarsComponent implements OnInit, OnDestroy {
     this.router.navigate([`/car/details/${car.vin}`]);
   }
 
+  update(car:ICar): void {
+    
+  }
+
 //   openModal() {
 //
 //   }
@@ -97,6 +101,45 @@ export class CarsComponent implements OnInit, OnDestroy {
     //  }
     
    }
+
+
+  //    save(): void {
+  //   if (this.car) {
+  //     if (this.car.type == "Budget") {
+  //       this.car.airConditioning = false;
+  //       this.car.electricWindow = false;
+  //       this.car.parkingSenzor = false;
+  //       this.car.USBPort = false;
+  //       this.car.parktronicSystem = false;
+  //       this.car.infotainmentSystem = false;
+  //       this.car.radio = RadioType.ANALOG;
+  //     }
+  //     else if (this.car.type == "Premium"){
+  //       this.car.airConditioning = true;
+  //       this.car.electricWindow = true;
+  //       this.car.parkingSenzor = true;
+  //       this.car.USBPort = true;
+  //       this.car.parktronicSystem = false;
+  //       this.car.infotainmentSystem = false;
+  //       this.car.radio = RadioType.DIGITAL;
+  //     }
+  //     else if (this.car.type == "Luxury"){
+  //       this.car.airConditioning = true;
+  //       this.car.electricWindow = true;
+  //       this.car.parkingSenzor = true;
+  //       this.car.USBPort = true;
+  //       this.car.parktronicSystem = true;
+  //       this.car.infotainmentSystem = true;
+  //       this.car.radio = RadioType.DIGITAL;
+  //     }
+  //     if (this.car.category != null) {
+  //         this.car.category.name = this.selectedCategory;
+  //       }
+  //     this._carService.updateCar(this.car)
+  //             .subscribe(() => this.goBack())
+
+  //   }
+  // }
 
   //  private getDismissReason(reason: any): string {
   //   if (reason === ModalDismissReasons.ESC) {
