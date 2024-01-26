@@ -94,9 +94,9 @@ export class CarsComponent implements OnInit, OnDestroy {
     //   }, (reason) => {
     //   this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     // });
-    // modalComponent.result.then((result) => {
-    //   this._carService.getCars();
-    //  });
+    modalComponent.result.then((result) => {
+      this._carService.getCars();
+     });
    
   }
 
