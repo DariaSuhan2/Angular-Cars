@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {ModalComponent} from "../modal/modal.component";
 import {AddEditModalComponent} from "../add-edit-modal/add-edit-modal.component";
+import { ICarCategory } from '../models/category';
 
 @Component({
   //selector: 'app-cars',
@@ -17,10 +18,12 @@ import {AddEditModalComponent} from "../add-edit-modal/add-edit-modal.component"
 export class CarsComponent implements OnInit, OnDestroy {
 
   selectedCar?: ICar;
+  //selectedCategory : string | null = null;
   selectedCars: ICar[] = [];
   cars: ICar[] = [];
   errorMessage: string = '';
   sub!: Subscription;
+  categories?: Array<ICarCategory>;
   //closeResult: string = "";
   from: string = '';
   //const modal = this.modalService.open(ModalComponent);
@@ -53,23 +56,66 @@ export class CarsComponent implements OnInit, OnDestroy {
   }
 
   update(car:ICar): void {
-    const modalComponent = this.modalService.open(AddEditModalComponent);
-    // modalComponent.componentInstance.car = car;
-    // modalComponent.componentInstance.from = 'update';
+    // this.selectedCategory= car.category?.name || null;
+    this._carService.getCategories().subscribe(categories => this.categories = categories);
+    if (this.categories != null){
+      const selectedCategory = this.categories.find(s => s.name == car?.category?.name);
+      if (car!= null){
+          car.category = selectedCategory != null ? selectedCategory : null;
+   }}
+
+    // this._carService.getCategories().subscribe(categories => this.categories = categories);
+    // if (car.category?.name == this.categories){
+    //   car.category?.engineCapacity =this.categories?.engineCapacity;
+    // }
+    
+    const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
+  //  this.cars.category?.name = 
+    modalComponent.componentInstance.car = car;
+   // this._carService.getCategories().subscribe(categories => this.categories = categories);
+    // const cat = this.categories.filter(c => c = car.category?.name);
+    // modalComponent.componentInstance.category = car.category?.name;
+    //  modalComponent.componentInstance.engineCapacity = car.category?.engineCapacity;
+    //  modalComponent.componentInstance.weight = car.category?.weight;
+    modalComponent.componentInstance.from = 'update';
+    modalComponent.result.then((result) => {
+      this._carService.getCars();
+     });
+
+     
   }
 
+ 
+
   add(): void {
-    const modalComponent = this.modalService.open(AddEditModalComponent);
-    // modalComponent.componentInstance.from = 'add';
+    const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
+    modalComponent.componentInstance.from = 'add';
+     modalComponent.result.then((result) => {
+      this._carService.getCars();
+      
+     });
+   
   }
-//   openModal() {
-//
-//   }
+
 
 
   getCars(): void {
       this._carService.getCars().subscribe(cars => this.cars = cars);
   }
+
+
+
+  // getCar(): void {
+  //   const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
+  //   var na = Number.isNaN(vin);
+  //   if(vin != null && !Number.isNaN(vin)){
+  //   this._carService.getCar(vin)
+  //     .subscribe(carFromServer => {
+  //       this.selectedCar = carFromServer;
+  //       this.selectedCategory= carFromServer.category?.name || null;
+  //     });
+  //   }
+  // }
 
   delete(car: ICar): void {
    this.cars = this.cars.filter(c => c !== car);
@@ -108,10 +154,6 @@ export class CarsComponent implements OnInit, OnDestroy {
      modalComponent.result.then((result) => {
       this._carService.getCars();
      });
-    //  if (this.modalService.open(ModalComponent)){
-    //   window.location.reload();
-       this._carService.getCars();
-    //  }
     
    }
 

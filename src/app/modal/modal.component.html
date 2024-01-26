@@ -8,11 +8,13 @@
     <div *ngIf="from =='addCar'">
         <h2>The car with VIN {{car?.vin}} was added</h2>
     </div>
+    <div *ngIf="from =='updateCar'">
+        <h2>The car with VIN {{car?.vin}} was updated</h2>
+    </div>
     <div *ngIf="from =='deleteAll'">
         <h2>All the cars were deleted</h2>
     </div>
     <div class="flex items-center justify-end gap-2">
-        <button type="button" class="btn btn-primary" (click)="close()">Close
-        </button>
+        <button type="button" class="btn btn-primary" (click)="close()">Close</button>
     </div>
 </div>

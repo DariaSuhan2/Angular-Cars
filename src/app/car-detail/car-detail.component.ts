@@ -14,12 +14,12 @@ import { ICarCategory } from '../models/category';
 })
 
 export class CarDetailComponent implements OnInit {
-  pageTitle: string = 'Car Details';
+  // pageTitle: string = 'Car Details';
   car?: ICar;
-  rad = null;
+  // rad = null;
   selectedCategory : string | null = null;
-  categories?: Array<ICarCategory>;
-  types?: Array<string>;
+  // categories?: Array<ICarCategory>;
+  // types?: Array<string>;
 
   constructor(private _carService: CarService,
     private route: ActivatedRoute,
@@ -29,8 +29,8 @@ export class CarDetailComponent implements OnInit {
 
   ngOnInit(): void {
       this.getCar();
-      this._carService.getCategories().subscribe(categories => this.categories = categories);
-      this.types = ["Budget", "Premium", "Luxury"];
+      // this._carService.getCategories().subscribe(categories => this.categories = categories);
+      // this.types = ["Budget", "Premium", "Luxury"];
   }
 
   getCar(): void {
