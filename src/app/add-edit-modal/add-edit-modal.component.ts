@@ -63,13 +63,35 @@ export class AddEditModalComponent implements OnInit{
   //public activeModal: MdbModalRef<ModalComponent>
 
   ngOnInit(): void {
-    this._carService.getCategories().subscribe(categories => this.categories = categories);
-    if (this.car?.category != null){ 
-      this.selectedCategory= this.car?.category?.name;
-      this.x= this.car?.category?.engineCapacity;
-      this.y= this.car?.category?.weight;
-    }
+    // this._carService.getCategories().subscribe(categories => this.categories = categories);
+    // if (this.car?.category != null){ 
+    //   this.selectedCategory= this.car?.category?.name;
+      
+    // }
     
+    // this.x= this.car?.category?.engineCapacity;
+    // this.y= this.car?.category?.weight;
+
+
+    this._carService.getCategories().subscribe(
+      categories =>{ this.categories = categories;
+        if (this.car?.category != null){ 
+          this.selectedCategory= this.car?.category?.name;
+          if (this.categories != null){
+            const selectedCategory = this.categories.find(s => s.name == this.car?.category?.name);
+            if (this.car!= null){
+                this.car.category = selectedCategory != null ? selectedCategory : null;
+         }}
+        }
+        
+        this.x= this.car?.category?.engineCapacity;
+        this.y= this.car?.category?.weight;
+    },
+      error => {
+
+        console.log('error', error)
+        }
+      );
   //   if (this.categories != null){
   //     const selectedCategory = this.categories.find(s => s.name == this.addedCar?.category?.name);
   //     if (this.addedCar!= null){
@@ -103,47 +125,85 @@ export class AddEditModalComponent implements OnInit{
    }
    
 
+   save(): void {
+      if (this.car) {
+        if (this.car.type == "Budget") {
+          this.car.airConditioning = false;
+          this.car.electricWindow = false;
+          this.car.parkingSenzor = false;
+          this.car.USBPort = false;
+          this.car.parktronicSystem = false;
+          this.car.infotainmentSystem = false;
+          this.car.radio = RadioType.ANALOG;
+        }
+        else if (this.car.type == "Premium"){
+          this.car.airConditioning = true;
+          this.car.electricWindow = true;
+          this.car.parkingSenzor = true;
+          this.car.USBPort = true;
+          this.car.parktronicSystem = false;
+          this.car.infotainmentSystem = false;
+          this.car.radio = RadioType.DIGITAL;
+        }
+        else if (this.car.type == "Luxury"){
+          this.car.airConditioning = true;
+          this.car.electricWindow = true;
+          this.car.parkingSenzor = true;
+          this.car.USBPort = true;
+          this.car.parktronicSystem = true;
+          this.car.infotainmentSystem = true;
+          this.car.radio = RadioType.DIGITAL;
+        }
+        if (this.car.category != null) {
+            this.car.category.name = this.selectedCategory;
+          }
+        // this._carService.updateCar(this.car)
+        //         .subscribe(() => this.goBack())
+        this.activeModal.close();
+      }
+    }
+
   
 
   onSubmit() {
     console.log('in onSubmit: ', this.carForm.valid);
-     this.addedCar = this.carForm.getRawValue();
+     this.car = this.carForm.getRawValue();
 
-     if (this.addedCar.vin){
-        let vinn: number = + this.addedCar.vin ;
-        this.addedCar.vin = vinn;
+     if (this.car.vin){
+        let vinn: number = + this.car.vin ;
+        this.car.vin = vinn;
       }
-      if (this.addedCar.doorNr){
-        let nr: number = + this.addedCar.doorNr ;
-        this.addedCar.doorNr = nr;
+      if (this.car.doorNr){
+        let nr: number = + this.car.doorNr ;
+        this.car.doorNr = nr;
       }
 
-      if (this.addedCar.type == "Budget") {
-        this.addedCar.airConditioning = false;
-        this.addedCar.electricWindow = false;
-        this.addedCar.parkingSenzor = false;
-        this.addedCar.USBPort = false;
-        this.addedCar.parktronicSystem = false;
-        this.addedCar.infotainmentSystem = false;
-        this.addedCar.radio = RadioType.ANALOG;
+      if (this.car.type == "Budget") {
+        this.car.airConditioning = false;
+        this.car.electricWindow = false;
+        this.car.parkingSenzor = false;
+        this.car.USBPort = false;
+        this.car.parktronicSystem = false;
+        this.car.infotainmentSystem = false;
+        this.car.radio = RadioType.ANALOG;
       }
-      else if (this.addedCar.type == "Premium"){
-        this.addedCar.airConditioning = true;
-        this.addedCar.electricWindow = true;
-        this.addedCar.parkingSenzor = true;
-        this.addedCar.USBPort = true;
-        this.addedCar.parktronicSystem = false;
-        this.addedCar.infotainmentSystem = false;
-        this.addedCar.radio = RadioType.DIGITAL;
+      else if (this.car.type == "Premium"){
+        this.car.airConditioning = true;
+        this.car.electricWindow = true;
+        this.car.parkingSenzor = true;
+        this.car.USBPort = true;
+        this.car.parktronicSystem = false;
+        this.car.infotainmentSystem = false;
+        this.car.radio = RadioType.DIGITAL;
       }
-      else if (this.addedCar.type == "Luxury"){
-        this.addedCar.airConditioning = true;
-        this.addedCar.electricWindow = true;
-        this.addedCar.parkingSenzor = true;
-        this.addedCar.USBPort = true;
-        this.addedCar.parktronicSystem = true;
-        this.addedCar.infotainmentSystem = true;
-        this.addedCar.radio = RadioType.DIGITAL;
+      else if (this.car.type == "Luxury"){
+        this.car.airConditioning = true;
+        this.car.electricWindow = true;
+        this.car.parkingSenzor = true;
+        this.car.USBPort = true;
+        this.car.parktronicSystem = true;
+        this.car.infotainmentSystem = true;
+        this.car.radio = RadioType.DIGITAL;
      }
      this._carService.getCategories().subscribe(
         categories =>{ this.categories = categories},
@@ -153,12 +213,12 @@ export class AddEditModalComponent implements OnInit{
           }
         );
      if (this.categories != null){
-        const selectedCategory = this.categories.find(s => s.name == this.addedCar?.category?.name);
-        if (this.addedCar!= null){
-            this.addedCar.category = selectedCategory != null ? selectedCategory : null;
+        const selectedCategory = this.categories.find(s => s.name == this.car?.category?.name);
+        if (this.car!= null){
+            this.car.category = selectedCategory != null ? selectedCategory : null;
      }}
 
-     this._carService.addCar(this.addedCar).subscribe(
+     this._carService.addCar(this.car).subscribe(
               result =>{
               this.router.navigate(['/cars']);
                console.log('success: ', result);
@@ -167,10 +227,11 @@ export class AddEditModalComponent implements OnInit{
                 console.log('error', error);
               }
       );
+      this.activeModal.close();
 
-      const modalComponent = this.modalService.open(ModalComponent);
-      modalComponent.componentInstance.car = this.addedCar;
-      modalComponent.componentInstance.from = 'addCar';
+      // const modalComponent = this.modalService.open(ModalComponent);
+      // modalComponent.componentInstance.car = this.addedCar;
+      // modalComponent.componentInstance.from = 'addCar';
 
   }
   
