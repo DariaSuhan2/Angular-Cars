@@ -35,6 +35,8 @@ export class AddEditModalComponent implements OnInit{
   // @Input() engineCapacity: number = 0;
   // @Input() weight: number = 0;
   selectedCategory : string | null = null;
+  selectedCars: ICar[] = [];
+  cars: ICar[] = [];
   x: any;
   y: any;
   addedCategory?: string;
@@ -225,6 +227,8 @@ export class AddEditModalComponent implements OnInit{
               }
       );
       this.activeModal.close();
+      window.location.reload();
+      
 
       // const modalComponent = this.modalService.open(ModalComponent);
       // modalComponent.componentInstance.car = this.addedCar;
