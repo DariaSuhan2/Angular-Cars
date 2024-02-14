@@ -5,7 +5,7 @@ padding: 3px;
 margin: 3px; */
 }
  </style>
- 
+
 <div id="modal-edit-specification-attributes">
    
                         <button class="btn-close" (click)="close()"></button>
@@ -55,8 +55,7 @@ margin: 3px; */
                              </div>
                             <br>
                             <button type="submit" class="btn btn-primary" [disabled]="checkForm()"   (click)="onSubmit()">Save</button>
-                           <!-- <button type="submit" class="btn btn-primary"  [disabled]="carForm.controls.type.invalid || carForm.controls.category.controls.name.invalid || carForm.controls.doorNr.invalid || carForm.controls.brand.invalid ||carForm.controls.color.invalid || carForm.controls.vin.invalid"  (click)="onSubmit()">Save</button> -->
-                            <button type="button" class="btn btn-primary" (keyup.enter)="close()" (click)="close()">Close</button>
+                          
                         <!--   <em *ngIf="carForm.invalid && carForm.dirty">Incomplete form</em>-->
                           </form>
                         </div>
