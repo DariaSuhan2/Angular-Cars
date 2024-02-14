@@ -47,7 +47,7 @@ export class AddEditModalComponent implements OnInit{
     vin:  [0, Validators.compose([Validators.min(0), Validators.required])],
     color: ['', Validators.required],
     brand: ['', Validators.required],
-    doorNr: [1, Validators.min(1)],
+    doorNr: [0, Validators.compose([Validators.min(0), Validators.required])],
     category: this.fb.nonNullable.group({
       name: [null, Validators.required],
       engineCapacity: [0, Validators.min(0)],
