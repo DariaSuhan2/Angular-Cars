@@ -1,10 +1,13 @@
-<div id="modal-edit-specification-attributes"
-     class="fixed absolute-fill w-100 h-100 z-500 outline-0 overflow-y-auto pointer-events-auto bg-white scrolling-touch db">
-    <div class="flex flex-column min-vh-100">
-            <div class="flex-1 flex flex-column items-center justify-center ph5 pb7">
-            <div class="w-100 mw3">
-                <div class="grid gap-4">
-                    <div class="pb4 bb b-gray-300">
+<style>
+ div {
+padding: 3px;
+/* border:3px;
+margin: 3px; */
+}
+ </style>
+ 
+<div id="modal-edit-specification-attributes">
+   
                         <button class="btn-close" (click)="close()"></button>
                         <div *ngIf="from =='add'">
                         <h2>Add specifications</h2>
@@ -17,28 +20,30 @@
                               <em *ngIf = "carForm.controls.vin.invalid && carForm.controls.vin.touched">Please enter a vin</em>
                               <br>
                               <!-- {{carForm.controls.vin.valid}}
-                              <br> <br><br> -->
+                              <br> <br><br>  -->
                               <label>Car color:</label>
                               <input formControlName="color" [class.error]="carForm.controls.color.invalid && carForm.controls.color.touched" placeholder="Color"  />
                               <br>
                               <em *ngIf = "carForm.controls.color.invalid && carForm.controls.color.touched">Please enter a color</em>
                               <br> 
                               <label>Car make:</label>
-                              <input formControlName="brand" [class.error]="carForm.controls.brand.invalid && carForm.controls.brand.touched"placeholder="Brand" />
+                              <input formControlName="brand" [class.error]="carForm.controls.brand.invalid && carForm.controls.brand.touched"placeholder="make" />
                               <br>
-                              <em *ngIf = "carForm.controls.brand.invalid && carForm.controls.brand.touched">Please enter a brand</em>
+                              <em *ngIf = "carForm.controls.brand.invalid && carForm.controls.brand.touched">Please enter a make</em>
                               <br> 
                               <label>Car number of doors:</label>
-                              <input formControlName="doorNr" [class.error]="carForm.controls.doorNr.invalid && carForm.controls.doorNr.touched" placeholder="DoorNr" />
+                              <input formControlName="doorNr" [class.error]="carForm.controls.doorNr.invalid  && carForm.controls.doorNr.touched " placeholder="DoorNr" />
                               <br>
                               <em *ngIf = "carForm.controls.doorNr.invalid && carForm.controls.doorNr.touched">Please enter the number of doors</em>
                         
                               <br> 
                               <form formGroupName="category" class="category">
                                 <label>Car category:</label>
-                                <ng-select *ngIf="categories != null" [items]="categories" [class.error]="carForm.controls.category.controls.name.invalid && carForm.controls.category.controls.name.touched" formControlName="name"
+                                <ng-select *ngIf="categories != null" [items]="categories" [class.error]="carForm.controls.category.controls.name.invalid && carForm.controls.category.controls.name.touched " formControlName="name"
                                   placeholder="Category" bindLabel="name" bindValue="name">
                                 </ng-select>
+                                
+                                
                                 <em *ngIf = "carForm.controls.category.controls.name.invalid && carForm.controls.category.controls.name.touched">Please enter the type of the car</em>
                               </form>
                         
@@ -49,11 +54,14 @@
                               <em *ngIf = "carForm.controls.type.invalid && carForm.controls.type.touched">Please enter the type of the car</em>
                              </div>
                             <br>
-                            <button type="submit" class="btn btn-primary" [disabled]="carForm.invalid"   (click)="onSubmit()">Save</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="checkForm()"   (click)="onSubmit()">Save</button>
+                           <!-- <button type="submit" class="btn btn-primary"  [disabled]="carForm.controls.type.invalid || carForm.controls.category.controls.name.invalid || carForm.controls.doorNr.invalid || carForm.controls.brand.invalid ||carForm.controls.color.invalid || carForm.controls.vin.invalid"  (click)="onSubmit()">Save</button> -->
                             <button type="button" class="btn btn-primary" (keyup.enter)="close()" (click)="close()">Close</button>
                         <!--   <em *ngIf="carForm.invalid && carForm.dirty">Incomplete form</em>-->
                           </form>
                         </div>
+
+
                         <div *ngIf="from =='update'">
                             <h2>Edit specifications</h2>
                             <br>
@@ -71,13 +79,22 @@
                                   <input id="car-doorNr" [(ngModel)]="car.doorNr" placeholder="doorNr">
                                   <br><br><br>
                                    <label >Car category name: </label>
-                                   <ng-select *ngIf="categories != null"
+                                   <ng-select  *ngIf="categories != null"
                                         [items]="categories"
                                         name="category"
                                         bindLabel="name"
                                         bindValue="name"
                                         [(ngModel)]="selectedCategory">
                                     </ng-select>
+
+                                    <!-- <div style="display: block; height: 40px;">
+                                      <ng-select [searchable]="false" style="position: absolute; width: 200px;">
+                                        <ng-option *ngFor="let category of categories" [value]="category.name">
+                                          {{ category.name }}
+                                        </ng-option>
+                                      </ng-select>
+                                    </div> -->
+
                                     <br>
                                   <label>Car category engine capacity: </label>
                                   <div>   {{x}} </div>
@@ -128,9 +145,5 @@
                         <!-- <a (keyup.enter)="cancel()" (click)="cancel()" class="btn btn-white">Cancel</a> -->
                         <!-- <button type="button" (keyup.enter)="save()" (click)="save()" class="btn btn-green">Save -->
                         <!-- </button> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+         
 </div>

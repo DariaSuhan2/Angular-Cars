@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { ICar, RadioType } from '../models/car';
@@ -8,13 +8,26 @@ import { ICarCategory } from '../models/category';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
+import { NgSelectConfig } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-add-edit-modal',
   templateUrl: './add-edit-modal.component.html',
-  styleUrl: './add-edit-modal.component.css'
+  styleUrl: './add-edit-modal.component.css',
+  // encapsulation: ViewEncapsulation.None
 })
 export class AddEditModalComponent implements OnInit{
+
+
+  constructor(private modalService: NgbModal,
+    public activeModal: NgbActiveModal, 
+    private _carService: CarService,
+    private router: Router,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private ngSelectConfig: NgSelectConfig,
+     ) {this.ngSelectConfig.appendTo = '';
+  }
 
   @Input() car?: ICar;
   @Input() from: string = '';
@@ -31,14 +44,14 @@ export class AddEditModalComponent implements OnInit{
   addedCar?: ICar;
 
   carForm = this.fb.nonNullable.group({
-    vin:  [0, Validators.min(1)],
+    vin:  [0, Validators.compose([Validators.min(0), Validators.required])],
     color: ['', Validators.required],
     brand: ['', Validators.required],
-    doorNr: [0, Validators.min(1)],
+    doorNr: [1, Validators.min(1)],
     category: this.fb.nonNullable.group({
       name: [null, Validators.required],
-      engineCapacity: [0, Validators.min(1)],
-      weight:[0, Validators.min(1)],
+      engineCapacity: [0, Validators.min(0)],
+      weight:[0, Validators.min(0)],
     }),
     airConditioning: <boolean | null>null,
     electricWindow: <boolean | null>null,
@@ -52,27 +65,9 @@ export class AddEditModalComponent implements OnInit{
   }
   );
  
-  constructor(private modalService: NgbModal,
-    public activeModal: NgbActiveModal, 
-    private _carService: CarService,
-    private router: Router,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-     ) {
-  }
   //public activeModal: MdbModalRef<ModalComponent>
 
   ngOnInit(): void {
-    // this._carService.getCategories().subscribe(categories => this.categories = categories);
-    // if (this.car?.category != null){ 
-    //   this.selectedCategory= this.car?.category?.name;
-      
-    // }
-    
-    // this.x= this.car?.category?.engineCapacity;
-    // this.y= this.car?.category?.weight;
-
-
     this._carService.getCategories().subscribe(
       categories =>{ this.categories = categories;
         if (this.car?.category != null){ 
@@ -83,7 +78,6 @@ export class AddEditModalComponent implements OnInit{
                 this.car.category = selectedCategory != null ? selectedCategory : null;
          }}
         }
-        
         this.x= this.car?.category?.engineCapacity;
         this.y= this.car?.category?.weight;
     },
@@ -92,14 +86,8 @@ export class AddEditModalComponent implements OnInit{
         console.log('error', error)
         }
       );
-  //   if (this.categories != null){
-  //     const selectedCategory = this.categories.find(s => s.name == this.addedCar?.category?.name);
-  //     if (this.addedCar!= null){
-  //         this.addedCar.category = selectedCategory != null ? selectedCategory : null;
-  //  }} 
-  
-  
-    this.types = ["Budget", "Premium", "Luxury"];
+
+      this.types = ["Budget", "Premium", "Luxury"];
   
     
     // if (this.car?.category != null){ 
@@ -107,8 +95,7 @@ export class AddEditModalComponent implements OnInit{
     // }
       
   
-   
-    
+     
    
     // if (this.categories != null) {
     //   const selectedCategory = this.categories.find(s => s.name == this.addedCar?.category?.name);
@@ -159,6 +146,16 @@ export class AddEditModalComponent implements OnInit{
           }
         // this._carService.updateCar(this.car)
         //         .subscribe(() => this.goBack())
+
+        this._carService.updateCar(this.car).subscribe(
+          result =>{
+          // this.router.navigate(['/cars']);
+           console.log('success: ', result);
+          },
+          error => {
+            console.log('error', error);
+          }
+        );
         this.activeModal.close();
       }
     }
@@ -220,7 +217,7 @@ export class AddEditModalComponent implements OnInit{
 
      this._carService.addCar(this.car).subscribe(
               result =>{
-              this.router.navigate(['/cars']);
+              // this.router.navigate(['/cars']);
                console.log('success: ', result);
               },
               error => {
@@ -233,6 +230,17 @@ export class AddEditModalComponent implements OnInit{
       // modalComponent.componentInstance.car = this.addedCar;
       // modalComponent.componentInstance.from = 'addCar';
 
+  }
+
+  checkForm(): boolean {
+    let check = this.carForm.invalid;
+    // let check = this.carForm.controls.type.invalid || 
+    //   this.carForm.controls.category.controls.name.invalid || 
+    //   this.carForm.controls.doorNr.invalid ||  
+    //   this.carForm.controls.brand.invalid || 
+    //   this.carForm.controls.color.invalid || 
+    //   this.carForm.controls.vin.invalid;
+    return check;
   }
   
 
