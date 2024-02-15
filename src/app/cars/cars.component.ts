@@ -18,18 +18,16 @@ import { ICarCategory } from '../models/category';
 export class CarsComponent implements OnInit, OnDestroy {
 
   selectedCar?: ICar;
-  //selectedCategory : string | null = null;
   selectedCars: ICar[] = [];
   cars: ICar[] = [];
   errorMessage: string = '';
   sub!: Subscription;
   categories?: Array<ICarCategory>;
-  //closeResult: string = "";
+
   from: string = '';
   //const modal = this.modalService.open(ModalComponent);
 
   constructor (private _carService: CarService,
-   // private _messageService: MessageService,
     private route: ActivatedRoute,
     private router: Router,
     public modalService: NgbModal) {}
@@ -51,12 +49,10 @@ export class CarsComponent implements OnInit, OnDestroy {
 
   onSelect(car: ICar): void {
     this.selectedCar = car;
-   // this._messageService.add(`CarsComponent: Selected car vin=${car.vin}`);
     this.router.navigate([`/car/details/${car.vin}`]);
   }
 
   update(car:ICar): void {
-    // this.selectedCategory= car.category?.name || null;
     this._carService.getCategories().subscribe(categories => this.categories = categories);
     if (this.categories != null){
       const selectedCategory = this.categories.find(s => s.name == car?.category?.name);
@@ -64,46 +60,26 @@ export class CarsComponent implements OnInit, OnDestroy {
           car.category = selectedCategory != null ? selectedCategory : null;
    }}
 
-    // this._carService.getCategories().subscribe(categories => this.categories = categories);
-    // if (car.category?.name == this.categories){
-    //   car.category?.engineCapacity =this.categories?.engineCapacity;
-    // }
-    
-    const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
-  //  this.cars.category?.name = 
+      const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
+  
     modalComponent.componentInstance.car = car;
-   // this._carService.getCategories().subscribe(categories => this.categories = categories);
-    // const cat = this.categories.filter(c => c = car.category?.name);
-    // modalComponent.componentInstance.category = car.category?.name;
-    //  modalComponent.componentInstance.engineCapacity = car.category?.engineCapacity;
-    //  modalComponent.componentInstance.weight = car.category?.weight;
     modalComponent.componentInstance.from = 'update';
     modalComponent.result.then((result) => {
       this._carService.getCars();
      });
-
-     
   }
-
- 
 
   add(): void {
     const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
     modalComponent.componentInstance.from = 'add';
      modalComponent.result.then((result) => {
       this._carService.getCars();
-      
      });
-   
   }
-
-
 
   getCars(): void {
       this._carService.getCars().subscribe(cars => this.cars = cars);
   }
-
-
 
   // getCar(): void {
   //   const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
@@ -143,7 +119,6 @@ export class CarsComponent implements OnInit, OnDestroy {
     modalComponent.result.then((result) => {
       this._carService.getCars();
      });
-   
   }
 
   deleteAll(): void {
@@ -154,56 +129,5 @@ export class CarsComponent implements OnInit, OnDestroy {
      modalComponent.result.then((result) => {
       this._carService.getCars();
      });
-    
    }
-
-
-  //    save(): void {
-  //   if (this.car) {
-  //     if (this.car.type == "Budget") {
-  //       this.car.airConditioning = false;
-  //       this.car.electricWindow = false;
-  //       this.car.parkingSenzor = false;
-  //       this.car.USBPort = false;
-  //       this.car.parktronicSystem = false;
-  //       this.car.infotainmentSystem = false;
-  //       this.car.radio = RadioType.ANALOG;
-  //     }
-  //     else if (this.car.type == "Premium"){
-  //       this.car.airConditioning = true;
-  //       this.car.electricWindow = true;
-  //       this.car.parkingSenzor = true;
-  //       this.car.USBPort = true;
-  //       this.car.parktronicSystem = false;
-  //       this.car.infotainmentSystem = false;
-  //       this.car.radio = RadioType.DIGITAL;
-  //     }
-  //     else if (this.car.type == "Luxury"){
-  //       this.car.airConditioning = true;
-  //       this.car.electricWindow = true;
-  //       this.car.parkingSenzor = true;
-  //       this.car.USBPort = true;
-  //       this.car.parktronicSystem = true;
-  //       this.car.infotainmentSystem = true;
-  //       this.car.radio = RadioType.DIGITAL;
-  //     }
-  //     if (this.car.category != null) {
-  //         this.car.category.name = this.selectedCategory;
-  //       }
-  //     this._carService.updateCar(this.car)
-  //             .subscribe(() => this.goBack())
-
-  //   }
-  // }
-
-  //  private getDismissReason(reason: any): string {
-  //   if (reason === ModalDismissReasons.ESC) {
-  //     return 'by pressing ESC';
-  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-  //     return 'by clicking on a backdrop';
-  //   } else {
-  //     return  `with: ${reason}`;
-  //   }
-
-  // }
 }

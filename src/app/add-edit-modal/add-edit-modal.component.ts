@@ -89,28 +89,7 @@ export class AddEditModalComponent implements OnInit{
         }
       );
 
-      this.types = ["Budget", "Premium", "Luxury"];
-  
-    
-    // if (this.car?.category != null){ 
-    //   this.selectedCategory= this.car?.category?.name;
-    // }
-      
-  
-     
-   
-    // if (this.categories != null) {
-    //   const selectedCategory = this.categories.find(s => s.name == this.addedCar?.category?.name);
-    //   // this.selectedCategory= this.car.category?.name || null;
-    //   // this.car.category?.engineCapacity= this.categories
-    // }
-
-  //   if (this.categories != null){
-  //     const selectedCategory = this.categories.find(s => s.name == this.addedCar?.category?.name);
-  //     if (this.addedCar!= null){
-  //         this.addedCar.category = selectedCategory != null ? selectedCategory : null;
-  //  }}
-   
+      this.types = ["Budget", "Premium", "Luxury"];      
    }
    
 
@@ -228,12 +207,7 @@ export class AddEditModalComponent implements OnInit{
       );
       this.activeModal.close();
       window.location.reload();
-      
-
-      // const modalComponent = this.modalService.open(ModalComponent);
-      // modalComponent.componentInstance.car = this.addedCar;
-      // modalComponent.componentInstance.from = 'addCar';
-
+  
   }
 
   checkForm(): boolean {

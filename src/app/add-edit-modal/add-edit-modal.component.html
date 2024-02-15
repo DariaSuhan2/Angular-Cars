@@ -55,7 +55,7 @@ margin: 3px; */
                              </div>
                             <br>
                             <button type="submit" class="btn btn-primary" [disabled]="checkForm()"   (click)="onSubmit()">Save</button>
-                          
+                            <button type="button" class="btn btn-primary" (click)="close()">Close</button>
                         <!--   <em *ngIf="carForm.invalid && carForm.dirty">Incomplete form</em>-->
                           </form>
                         </div>
@@ -124,16 +124,8 @@ margin: 3px; */
                                     <div>  digital  </div>
                                   </ng-template>
                                 </div>
-                        
-                       
-
-
-                        
-                        <!--  <button type="submit" class="btn btn-primary" [disabled]="carForm.invalid" (click)="onSubmit()">Save</button>-->
                           <button type="submit" class="btn btn-primary"  (click)="save()">Save</button>
                           <button type="button" class="btn btn-primary" (click)="close()">Close</button>
-                        <!-- <a (keyup.enter)="cancel()" (click)="cancel()" class="btn btn-white">Cancel</a> -->
-                        <!-- <button type="button" (keyup.enter)="save()" (click)="save()" class="btn btn-green">Save -->
-                        <!-- </button> -->
+                    
          
 </div>
