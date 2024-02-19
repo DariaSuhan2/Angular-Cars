@@ -58,23 +58,23 @@ export class CarsComponent implements OnInit, OnDestroy {
       const selectedCategory = this.categories.find(s => s.name == car?.category?.name);
       if (car!= null){
           car.category = selectedCategory != null ? selectedCategory : null;
-   }}
-
-      const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
-  
-    modalComponent.componentInstance.car = car;
-    modalComponent.componentInstance.from = 'update';
-    modalComponent.result.then((result) => {
-      this._carService.getCars();
-     });
+     }}
+    // const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
+    // modalComponent.componentInstance.car = car;
+    // modalComponent.componentInstance.from = 'update';
+    // modalComponent.result.then((result) => {
+    //   this._carService.getCars();
+    //  });
+    this._carService.getCars();
   }
 
   add(): void {
-    const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
-    modalComponent.componentInstance.from = 'add';
-     modalComponent.result.then((result) => {
-      this._carService.getCars();
-     });
+    // const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
+    // modalComponent.componentInstance.from = 'add';
+    //  modalComponent.result.then((result) => {
+    //   this._carService.getCars();
+    //  });
+     this._carService.getCars();
   }
 
   getCars(): void {
@@ -103,7 +103,6 @@ export class CarsComponent implements OnInit, OnDestroy {
         },
         error => {
           console.log('error', error);
-          debugger;
         }
       );
        
@@ -122,8 +121,7 @@ export class CarsComponent implements OnInit, OnDestroy {
   }
 
   deleteAll(): void {
-    this._carService.deleteAllCars();
-         
+    this._carService.deleteAllCars();   
      const modalComponent = this.modalService.open(ModalComponent);
      modalComponent.componentInstance.from = 'deleteAll';
      modalComponent.result.then((result) => {
