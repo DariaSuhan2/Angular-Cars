@@ -66,12 +66,16 @@ export class CarService {
         data => console.log('deletedAll', JSON.stringify(data)),
         catchError(err => this.handleError(err))
         );
+    // this._http.delete(url).pipe(
+    //   tap(data => {console.log('deletedAll', JSON.stringify(data));
+    //   }),
+    //   catchError(err => this.handleError(err))
+    //   );
   }
 
   getCategories(): Observable<ICarCategory[]> {
       return this._http.get<ICarCategory[]>(this._categoryUrl).pipe(
-      tap(data => {
-        console.log('All', JSON.stringify(data));
+      tap(data => {console.log('All', JSON.stringify(data));
     }),
       catchError(err => this.handleError(err))
       );

@@ -59,21 +59,21 @@ export class CarsComponent implements OnInit, OnDestroy {
       if (car!= null){
           car.category = selectedCategory != null ? selectedCategory : null;
      }}
-    // const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
-    // modalComponent.componentInstance.car = car;
-    // modalComponent.componentInstance.from = 'update';
-    // modalComponent.result.then((result) => {
-    //   this._carService.getCars();
-    //  });
+    const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
+    modalComponent.componentInstance.car = car;
+    modalComponent.componentInstance.from = 'update';
+    modalComponent.result.then((result) => {
+      this._carService.getCars();
+     });
     this._carService.getCars();
   }
 
   add(): void {
-    // const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
-    // modalComponent.componentInstance.from = 'add';
-    //  modalComponent.result.then((result) => {
-    //   this._carService.getCars();
-    //  });
+    const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
+    modalComponent.componentInstance.from = 'add';
+     modalComponent.result.then((result) => {
+      this._carService.getCars();
+     });
      this._carService.getCars();
   }
 
@@ -127,5 +127,7 @@ export class CarsComponent implements OnInit, OnDestroy {
      modalComponent.result.then((result) => {
       this._carService.getCars();
      });
+   
+     
    }
 }
