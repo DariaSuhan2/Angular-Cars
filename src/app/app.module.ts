@@ -16,6 +16,7 @@ import { AddCarComponent } from './add/add-car.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal.component';
 import { AddEditModalComponent } from './add-edit-modal/add-edit-modal.component';
+import { CarTableComponent } from './car-table/car-table.component';
 // import { CarService } from '../service/car.service';
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AddEditModalComponent } from './add-edit-modal/add-edit-modal.component
     CarDetailComponent,
     AddCarComponent,
     ModalComponent,
-    AddEditModalComponent
+    AddEditModalComponent,
+    CarTableComponent
   ],
   imports: [
     BrowserModule,
@@ -42,10 +44,12 @@ import { AddEditModalComponent } from './add-edit-modal/add-edit-modal.component
     RouterModule.forRoot([
       {path: 'cars', component: CarsComponent},
      //{path: 'car/add', component: AddCarComponent},
+      {path: 'car/table', component: CarTableComponent},
       {path: 'car/details/:vin', component: CarDetailComponent},
       {path: 'welcome', component: WelcomeComponent},
       {path: '', redirectTo: 'cars', pathMatch: 'full'},
       {path: '**', redirectTo: 'cars', pathMatch: 'full'},
+     
 
     ])
   ],
