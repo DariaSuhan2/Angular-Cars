@@ -27,7 +27,6 @@ export class ModalComponent implements OnInit {
 
   close():void {
       this.activeModal.close(true);
-      window.location.reload();
       //window.location.reload();
       //this.router.navigate([`/cars`]);
       // this._carService.getCars();

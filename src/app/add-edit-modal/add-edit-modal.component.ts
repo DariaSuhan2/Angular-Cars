@@ -205,7 +205,7 @@ export class AddEditModalComponent implements OnInit{
                 console.log('error', error);
               }
       );
-      this.activeModal.close();
+      
       window.location.reload();
   
   }

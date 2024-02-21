@@ -11,3 +11,25 @@
 <!-- <ul class="cars bg"></ul> -->
 <!-- 
 <app-cars></app-cars> -->
+<header>
+    <h1>Logo</h1>
+    <p>Some additional information here</p>
+  </header>
+  <nav class='navbar navbar-expand navbar-light bg-light'>
+      <a class='navbar-brand'>{{title}}</a>
+      <ul class='nav nav-pills'>
+        <li><a class='nav-link' routerLinkActive='active' routerLink='/welcome'>Home</a></li>
+        <li><a class='nav-link' routerLinkActive='active' routerLink='/cars'>Car List</a></li>
+        <!-- <li><a class='nav-link' routerLinkActive='active' routerLink='car/add'>Car Add</a></li> -->
+        
+      </ul>
+  </nav>
+  
+  <div class='container'>
+    <router-outlet></router-outlet>
+  </div>
+  <footer>
+  <p>2024</p>
+  <p><a href="mailto:hege@example.com">Email</a></p>
+  </footer>
+
