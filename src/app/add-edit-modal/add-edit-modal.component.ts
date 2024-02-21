@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
-import { ICar, RadioType } from '../models/car';
+import { ICar, RadioType, Fuel } from '../models/car';
 import { CarService } from '../service/car.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { ICarCategory } from '../models/category';
@@ -42,6 +42,7 @@ export class AddEditModalComponent implements OnInit{
   addedCategory?: string;
   subscriptionCategories = Observable<ICarCategory[]>;
   types?: Array<string>;
+  fuels? : Array<string>;
   categories?: Array<ICarCategory>;
   addedCar?: ICar;
 
@@ -62,7 +63,8 @@ export class AddEditModalComponent implements OnInit{
     parktronicSystem: <boolean | null>null,
     infotainmentSystem: <boolean | null>null,
     radio: <RadioType | null>null,
-    type: [null, Validators.required]
+    type: [null, Validators.required],
+    fuel: [null, Validators.required]
 
   }
   );
@@ -90,6 +92,7 @@ export class AddEditModalComponent implements OnInit{
       );
 
       this.types = ["Budget", "Premium", "Luxury"];      
+      this.fuels = ["Gasoline", "Diesel", "Hybrid"];
    }
    
 
@@ -186,7 +189,6 @@ export class AddEditModalComponent implements OnInit{
      this._carService.getCategories().subscribe(
         categories =>{ this.categories = categories},
         error => {
-
           console.log('error', error)
           }
         );
@@ -199,14 +201,14 @@ export class AddEditModalComponent implements OnInit{
      this._carService.addCar(this.car).subscribe(
               result =>{
               // this.router.navigate(['/cars']);
-               console.log('success: ', result);
+             
+                console.log('success: ', result);
               },
               error => {
                 console.log('error', error);
               }
       );
-      
-      window.location.reload();
+      this.close();
   
   }
 

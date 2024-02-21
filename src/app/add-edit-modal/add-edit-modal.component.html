@@ -52,7 +52,15 @@ margin: 3px; */
                                 <ng-select *ngIf="types != null" [items]="types" [class.error]="carForm.controls.type.invalid && carForm.controls.type.touched" formControlName="type"
                                  placeholder="Type"></ng-select>
                               <em *ngIf = "carForm.controls.type.invalid && carForm.controls.type.touched">Please enter the type of the car</em>
-                             </div>
+                           
+
+                             <br>
+                             <label>Car fuel:</label>
+                             <ng-select *ngIf="fuels != null" [items]="fuels" [class.error]="carForm.controls.fuel.invalid && carForm.controls.fuel.touched" formControlName="fuel"
+                              placeholder="Fuel"></ng-select>
+                           <em *ngIf = "carForm.controls.fuel.invalid && carForm.controls.fuel.touched">Please enter the fuel of the car</em>
+                          </div>
+                             
                             <br>
                             <button type="submit" class="btn btn-primary" [disabled]="checkForm()"   (click)="onSubmit()">Save</button>
                             <button type="button" class="btn btn-primary" (click)="close()">Close</button>
@@ -123,6 +131,13 @@ margin: 3px; */
                                     <label>Car radio: </label>
                                     <div>  digital  </div>
                                   </ng-template>
+                                  <br>
+                                  <label>Fuel: </label>
+                                  <ng-select *ngIf="fuels != null"
+                                         [items]="fuels"
+                                        name="fuel"
+                                        [(ngModel)]="car.fuel">
+                                    </ng-select>
                                 </div>
                           <button type="submit" class="btn btn-primary"  (click)="save()">Save</button>
                           <button type="button" class="btn btn-primary" (click)="close()">Close</button>

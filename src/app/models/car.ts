@@ -15,6 +15,7 @@ export interface ICar {
   infotainmentSystem: boolean | null;
   radio: RadioType | null;
   type: string| null;
+  fuel: Fuel | null;
 
  
 
@@ -24,6 +25,12 @@ export interface ICar {
  export enum RadioType {
   'ANALOG',
   'DIGITAL'
+}
+
+export enum Fuel {
+  'GASOLINE',
+  'DIESEL',
+  'HYBRID'
 }
 
 

@@ -71,10 +71,10 @@ export class CarsComponent implements OnInit, OnDestroy {
   add(): void {
     const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
     modalComponent.componentInstance.from = 'add';
-     modalComponent.result.then((result) => {
+    modalComponent.result.then((result) => {
       this._carService.getCars();
      });
-     this._carService.getCars();
+    //  this._carService.getCars();
   }
 
   getCars(): void {
@@ -128,6 +128,6 @@ export class CarsComponent implements OnInit, OnDestroy {
       this._carService.getCars();
      });
    
-     
+     window.location.reload();
    }
 }

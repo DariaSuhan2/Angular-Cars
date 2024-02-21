@@ -12,7 +12,7 @@ import { CarDetailComponent } from './car-detail/car-detail.component';
 import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import {WelcomeComponent} from './home/welcome.component';
-import { AddCarComponent } from './add/add-car.component';
+//import { AddCarComponent } from './add/add-car.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal.component';
 import { AddEditModalComponent } from './add-edit-modal/add-edit-modal.component';
@@ -25,7 +25,7 @@ import { CarTableComponent } from './car-table/car-table.component';
     WelcomeComponent,
     AppComponent,
     CarDetailComponent,
-    AddCarComponent,
+   // AddCarComponent,
     ModalComponent,
     AddEditModalComponent,
     CarTableComponent

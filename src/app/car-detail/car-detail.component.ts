@@ -40,6 +40,8 @@ export class CarDetailComponent implements OnInit {
         this.selectedCategory= carFromServer.category?.name || null;
       });
     }
+
+    
   }
 
   goBack(): void {
