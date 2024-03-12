@@ -16,6 +16,8 @@ export interface ICar {
   radio: RadioType | null;
   type: string| null;
   fuel: Fuel | null;
+  // createdOn: Date | null;
+  // updatedOn: Date | null;
 
  
 

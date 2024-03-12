@@ -17,6 +17,8 @@ export class CarDetailComponent implements OnInit {
 
   car?: ICar;
   selectedCategory : string | null = null;
+  radioo?: string;
+  fuell?: string;
  
   constructor(private _carService: CarService,
     private route: ActivatedRoute,
@@ -38,10 +40,24 @@ export class CarDetailComponent implements OnInit {
       .subscribe(carFromServer => {
         this.car = carFromServer;
         this.selectedCategory= carFromServer.category?.name || null;
+        if (this.car.radio==0) {
+          this.radioo = 'analog';
+        } 
+        else if (this.car.radio==1)
+        { this.radioo = 'digital';}
+        if (this.car.fuel==0) {
+          this.fuell = 'gasoline';
+        } 
+        else if (this.car.fuel==1)
+        { this.fuell = 'diesel';}
+        else if (this.car.fuel==2)
+        { this.fuell = 'hybrid';}
+
       });
     }
-
     
+
+
   }
 
   goBack(): void {

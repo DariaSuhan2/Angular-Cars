@@ -58,7 +58,7 @@
       <div>  {{car.parktronicSystem}} </div>
       <label>Car infotainment system:  </label>
       <div>  {{car.infotainmentSystem}} </div>
-      <div *ngIf="car.radio ==0 else elseBlock2">
+      <!-- <div *ngIf="car.radio ==0 else elseBlock2">
         <label>Car radio:  </label>
         <div>  analog </div>
       </div>
@@ -66,10 +66,12 @@
         <label>Car radio: </label>
         <div>  digital  </div>
       </ng-template>
-    </div>
+    </div> -->
+    <label>Car radio:  </label>
+        <div>  {{radioo}} </div>
     <br>
     <label>Car fuel:  </label>
-    <div>  {{car.fuel}}</div>
+    <div>  {{fuell}}</div>
   <button  type="button" class="btn btn-primary"  (click)="goBack()">Go back</button>
     <!-- <button type="button" class="btn btn-primary" (click)="save()">Save</button> -->
   </div>

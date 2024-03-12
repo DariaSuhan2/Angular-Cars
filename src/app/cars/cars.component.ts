@@ -127,7 +127,9 @@ export class CarsComponent implements OnInit, OnDestroy {
      modalComponent.result.then((result) => {
       this._carService.getCars();
      });
+
+    //  this._carService.getCars();
    
-     window.location.reload();
+     //window.location.reload();
    }
 }
