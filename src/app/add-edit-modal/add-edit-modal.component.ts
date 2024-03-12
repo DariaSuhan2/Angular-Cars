@@ -39,6 +39,9 @@ export class AddEditModalComponent implements OnInit{
   cars: ICar[] = [];
   x: any;
   y: any;
+  z: any;
+  zz: any;
+  fuell?: string;
   addedCategory?: string;
   subscriptionCategories = Observable<ICarCategory[]>;
   types?: Array<string>;
@@ -82,8 +85,18 @@ export class AddEditModalComponent implements OnInit{
                 this.car.category = selectedCategory != null ? selectedCategory : null;
          }}
         }
-        this.x= this.car?.category?.engineCapacity;
-        this.y= this.car?.category?.weight;
+        this.x = this.car?.category?.engineCapacity;
+        this.y = this.car?.category?.weight;
+        this.z = this.car?.fuel;
+        if (this.car?.fuel==0) {
+          this.fuell = 'gasoline';
+        } 
+        else if (this.car?.fuel==1)
+        { this.fuell = 'diesel';}
+        else if (this.car?.fuel==2)
+        { this.fuell = 'hybrid';}
+        this.zz = this.fuell;
+        //this.zz = this.car?.type;
     },
       error => {
 
