@@ -99,8 +99,8 @@ export class AddEditModalComponent implements OnInit{
                 this.car.category = selectedCategory != null ? selectedCategory : null;
          }}
         }
-        // this.x = this.car?.category?.engineCapacity;
-        // this.y = this.car?.category?.weight;
+        this.x = this.car?.category?.engineCapacity;
+        this.y = this.car?.category?.weight;
         // this.z = this.car?.fuel;
         if (this.selectedFuel != null && this.selectedFuel != undefined){
           //this.selectedFuel.id= this.car?.fuel;
@@ -155,7 +155,14 @@ export class AddEditModalComponent implements OnInit{
             this.car.category.name = this.selectedCategory;
           }
 
-        
+          if (this.car.fuel != null && this.car.fuel != undefined) {
+              if (this.selectedFuel != null && this.selectedFuel!= undefined) {
+                this.zz = this.fuels?.find(s => s.id == this.selectedFuel);
+                this.car.fuel = this.zz.id;
+                
+              }            
+          }
+
         // this._carService.updateCar(this.car)
         //         .subscribe(() => this.goBack())
 
@@ -220,11 +227,20 @@ export class AddEditModalComponent implements OnInit{
           console.log('error', error)
           }
         );
-     if (this.categories != null){
-        const selectedCategory = this.categories.find(s => s.name == this.car?.category?.name);
-        if (this.car!= null){
-            this.car.category = selectedCategory != null ? selectedCategory : null;
-     }}
+    //  if (this.categories != null){
+    //     const selectedCategory = this.categories.find(s => s.name == this.car?.category?.name);
+    //     if (this.car!= null){
+    //         this.car.category = selectedCategory != null ? selectedCategory : null;
+     //}}
+     
+
+      if (this.car.fuel != null && this.car.fuel != undefined) {
+        if (this.selectedFuel != null && this.selectedFuel!= undefined) {
+          this.zz = this.fuels?.find(s => s.id == this.selectedFuel);
+          this.car.fuel = this.zz.id;
+          
+        }            
+    }
 
      this._carService.addCar(this.car).subscribe(
               result =>{
