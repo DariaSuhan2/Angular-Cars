@@ -44,12 +44,13 @@ export class AddEditModalComponent implements OnInit{
   y: any;
   z: any;
   zz: any;
-  //fuell?: string;
+ // fuell?: string;
   selectedFuel?: Fuels | null;
   addedCategory?: string;
   subscriptionCategories = Observable<ICarCategory[]>;
   types?: Array<string>;
   fuels? : Array<Fuels>;
+  fuelss?: Array<string>;
   categories?: Array<ICarCategory>;
   addedCar?: ICar;
 
@@ -78,11 +79,18 @@ export class AddEditModalComponent implements OnInit{
   }
   );
  
+  
   //public activeModal: MdbModalRef<ModalComponent>
 
   ngOnInit(): void {
     //this.selectedFuel = new Fuels ( {id: 0, name: "Gasoline"});
-   
+    this.selectedFuel = new Fuels (null);
+    // this.selectedFuel = new Fuels ( {id: 0, name: "Gasoline"});
+     this.fuels = [
+       new Fuels({id: 0, name: "Gasoline"}),
+       new Fuels({id: 1, name: "Diesel"}),
+       new Fuels({id: 2, name: "Hybrid"})
+   ];
     this._carService.getCategories().subscribe(
       categories =>{ this.categories = categories;
         if (this.car?.category != null){ 
@@ -93,20 +101,14 @@ export class AddEditModalComponent implements OnInit{
                 this.car.category = selectedCategory != null ? selectedCategory : null;
          }}
         }
-        this.selectedFuel = new Fuels (null);
-       // this.selectedFuel = new Fuels ( {id: 0, name: "Gasoline"});
-        this.fuels = [
-          new Fuels({id: 0, name: "Gasoline"}),
-          new Fuels({id: 1, name: "Diesel"}),
-          new Fuels({id: 2, name: "Hybrid"})
-      ];
+    
    
         this.x = this.car?.category?.engineCapacity;
         this.y = this.car?.category?.weight;
         this.z = this.car?.fuel;
         if (this.selectedFuel != null && this.selectedFuel != undefined){
           //this.selectedFuel.id= this.car?.fuel;
-          this.selectedFuel = this.fuels.find(s => s.id == this.car?.fuel);
+          this.selectedFuel = this.fuels?.find(s => s.id == this.car?.fuel);
           this.zz = this.selectedFuel?.name;
           //if (this.categories != null){
            // const selectedCategory = this.categories.find(s => s.name == car?.category?.name);
@@ -114,8 +116,6 @@ export class AddEditModalComponent implements OnInit{
           
 
         }
-       
-
         // if (this.car?.fuel==0) {
         //   this.fuell = 'gasoline';
         // } 
@@ -124,6 +124,8 @@ export class AddEditModalComponent implements OnInit{
         // else if (this.car?.fuel==2)
         // { this.fuell = 'hybrid';}
         // this.zz = this.fuell;
+
+        
         //this.zz = this.car?.type;
     },
       error => {
@@ -134,9 +136,14 @@ export class AddEditModalComponent implements OnInit{
    
 
       this.types = ["Budget", "Premium", "Luxury"];      
-     // this.fuels = ["Gasoline", "Diesel", "Hybrid"];
+      this.fuelss = ["Gasoline", "Diesel", "Hybrid"];
    }
    
+
+   
+   compareFn(item: Fuels, selectedFuel: Fuels) {
+    return item.id === selectedFuel.id
+  }
 
    save(): void {
       if (this.car) {

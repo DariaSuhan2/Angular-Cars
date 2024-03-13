@@ -56,7 +56,7 @@ margin: 3px; */
 
                              <br>
                              <label>Car fuel:</label>
-                             <ng-select *ngIf="fuels != null" [items]="fuels" [class.error]="carForm.controls.fuel.invalid && carForm.controls.fuel.touched" formControlName="fuel"
+                             <ng-select *ngIf="fuelss != null" [items]="fuelss" [class.error]="carForm.controls.fuel.invalid && carForm.controls.fuel.touched" formControlName="fuel"
                               placeholder="Fuel"></ng-select>
                            <em *ngIf = "carForm.controls.fuel.invalid && carForm.controls.fuel.touched">Please enter the fuel of the car</em>
                           </div>
@@ -133,16 +133,17 @@ margin: 3px; */
                                   </ng-template>
                                   <br>
                                   <label>Fuel: </label>
-                                  <!-- <ng-select *ngIf="fuels != null"
-                                         [items]="fuels"
-                                        name="fuel"
-                                        [(ngModel)]="">
+                                  <!-- <ng-select *ngIf="fuelss != null"
+                                         [items]="fuelss"
+                                         name="fuel"
+                                        [(ngModel)]="fuell">
                                     </ng-select> -->
 
-                                    <ng-select *ngIf="fuels != null"
+                                    <ng-select #select *ngIf="fuels != null"
                                        [items]="fuels" 
                                        bindLabel="name" 
                                        bindValue="id" 
+                                       [compareWith]="compareFn"
                                        [(ngModel)]="selectedFuel">
                                     </ng-select>
 
