@@ -74,9 +74,8 @@ export class CarsComponent implements OnInit, OnDestroy {
     modalComponent.componentInstance.from = 'add';
     modalComponent.result.then((result: IModalOutput) => {
       if(result.closeStatus){
-        this._carService.getCars();
+        this.getCars();
       }
-    
      });
     //  this._carService.getCars();
   }

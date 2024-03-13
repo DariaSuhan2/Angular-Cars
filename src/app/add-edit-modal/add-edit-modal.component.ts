@@ -230,13 +230,14 @@ export class AddEditModalComponent implements OnInit{
                 //this._carService.getCars();
                 this.modalOutput.closeStatus  = true;
                 console.log('success: ', result);
+                this.close(this.modalOutput);
               },
               error => {
                 this.modalOutput.closeStatus  = false;
                 console.log('error', error);
+                this.close(this.modalOutput);
               }
       );
-      this.close(this.modalOutput);
   }
 
   checkForm(): boolean {
