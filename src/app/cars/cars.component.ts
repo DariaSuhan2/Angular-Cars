@@ -8,6 +8,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {ModalComponent} from "../modal/modal.component";
 import {AddEditModalComponent} from "../add-edit-modal/add-edit-modal.component";
 import { ICarCategory } from '../models/category';
+import { IModalOutput } from '../models/IModalOutput';
 
 @Component({
   //selector: 'app-cars',
@@ -71,8 +72,11 @@ export class CarsComponent implements OnInit, OnDestroy {
   add(): void {
     const modalComponent = this.modalService.open(AddEditModalComponent, { size: 'xl', backdrop: 'static' });
     modalComponent.componentInstance.from = 'add';
-    modalComponent.result.then((result) => {
-      this._carService.getCars();
+    modalComponent.result.then((result: IModalOutput) => {
+      if(result.closeStatus){
+        this._carService.getCars();
+      }
+    
      });
     //  this._carService.getCars();
   }

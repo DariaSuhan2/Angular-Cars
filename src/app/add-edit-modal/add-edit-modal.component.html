@@ -8,7 +8,7 @@ margin: 3px; */
 
 <div id="modal-edit-specification-attributes">
    
-                        <button class="btn-close" (click)="close()"></button>
+                        <button class="btn-close" (click)="close(modalOutput)"></button>
                         <div *ngIf="from =='add'">
                         <h2>Add specifications</h2>
                         <br>
@@ -63,7 +63,7 @@ margin: 3px; */
                              
                             <br>
                             <button type="submit" class="btn btn-primary" [disabled]="checkForm()"   (click)="onSubmit()">Save</button>
-                            <button type="button" class="btn btn-primary" (click)="close()">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="close(modalOutput)">Close</button>
                         <!--   <em *ngIf="carForm.invalid && carForm.dirty">Incomplete form</em>-->
                           </form>
                         </div>
@@ -150,7 +150,7 @@ margin: 3px; */
                                    
                                 </div>
                           <button type="submit" class="btn btn-primary"  (click)="save()">Save</button>
-                          <button type="button" class="btn btn-primary" (click)="close()">Close</button>
+                          <button type="button" class="btn btn-primary" (click)="close(modalOutput)">Close</button>
                     
          
 </div>

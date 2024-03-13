@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
 import { NgSelectConfig } from '@ng-select/ng-select';
 import  { Fuels } from '../models/IdName';
+import { IModalOutput } from '../models/IModalOutput';
 
 @Component({
   selector: 'app-add-edit-modal',
@@ -44,7 +45,6 @@ export class AddEditModalComponent implements OnInit{
   y: any;
   z: any;
   zz: any;
- // fuell?: string;
   selectedFuel?: Fuels | null;
   addedCategory?: string;
   subscriptionCategories = Observable<ICarCategory[]>;
@@ -54,7 +54,7 @@ export class AddEditModalComponent implements OnInit{
   categories?: Array<ICarCategory>;
   addedCar?: ICar;
 
-  
+  modalOutput = {closeStatus: false} as IModalOutput;
 
   carForm = this.fb.nonNullable.group({
     vin:  [0, Validators.compose([Validators.min(0), Validators.required])],
@@ -75,12 +75,8 @@ export class AddEditModalComponent implements OnInit{
     radio: <RadioType | null>null,
     type: [null, Validators.required],
     fuel: [null, Validators.required]
-
-  }
+    }
   );
- 
-  
-  //public activeModal: MdbModalRef<ModalComponent>
 
   ngOnInit(): void {
     this.selectedFuel = new Fuels (null);
@@ -101,9 +97,8 @@ export class AddEditModalComponent implements OnInit{
         }
         this.x = this.car?.category?.engineCapacity;
         this.y = this.car?.category?.weight;
-        // this.z = this.car?.fuel;
+       
         if (this.selectedFuel != null && this.selectedFuel != undefined){
-          //this.selectedFuel.id= this.car?.fuel;
           this.selectedFuel = this.fuels?.find(s => s.id == this.car?.fuel);
         }
       ;
@@ -115,9 +110,7 @@ export class AddEditModalComponent implements OnInit{
       this.types = ["Budget", "Premium", "Luxury"];      
       this.fuelss = ["Gasoline", "Diesel", "Hybrid"];
    }
-   
-
-   
+     
    compareFn(item: Fuels, selectedFuel: Fuels) {
     return item.id === selectedFuel.id
   }
@@ -168,7 +161,7 @@ export class AddEditModalComponent implements OnInit{
 
         this._carService.updateCar(this.car).subscribe(
           result =>{
-          // this.router.navigate(['/cars']);
+            //this.router.navigate(['/cars']);
            console.log('success: ', result);
           },
           error => {
@@ -178,8 +171,6 @@ export class AddEditModalComponent implements OnInit{
         this.activeModal.close();
       }
     }
-
-  
 
   onSubmit() {
     console.log('in onSubmit: ', this.carForm.valid);
@@ -227,11 +218,6 @@ export class AddEditModalComponent implements OnInit{
           console.log('error', error)
           }
         );
-    //  if (this.categories != null){
-    //     const selectedCategory = this.categories.find(s => s.name == this.car?.category?.name);
-    //     if (this.car!= null){
-    //         this.car.category = selectedCategory != null ? selectedCategory : null;
-     //}}
      
       if (this.car.fuel != null && this.car.fuel != undefined) {
           this.zz = this.fuels?.find(s => s.name == this.car?.fuel);
@@ -240,32 +226,25 @@ export class AddEditModalComponent implements OnInit{
 
      this._carService.addCar(this.car).subscribe(
               result =>{
-              // this.router.navigate(['/cars']);
-             
+                //this.router.navigate(['/cars']);
+                //this._carService.getCars();
+                this.modalOutput.closeStatus  = true;
                 console.log('success: ', result);
               },
               error => {
+                this.modalOutput.closeStatus  = false;
                 console.log('error', error);
               }
       );
-      this.close();
-  
+      this.close(this.modalOutput);
   }
 
   checkForm(): boolean {
     let check = this.carForm.invalid;
-    // let check = this.carForm.controls.type.invalid || 
-    //   this.carForm.controls.category.controls.name.invalid || 
-    //   this.carForm.controls.doorNr.invalid ||  
-    //   this.carForm.controls.brand.invalid || 
-    //   this.carForm.controls.color.invalid || 
-    //   this.carForm.controls.vin.invalid;
     return check;
   }
-  
 
-  close():void {
-      this.activeModal.close();
-          
+  close(modalOutput: IModalOutput):void {
+      this.activeModal.close(modalOutput);   
   }
 }
