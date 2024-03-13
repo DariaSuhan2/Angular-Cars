@@ -233,13 +233,9 @@ export class AddEditModalComponent implements OnInit{
     //         this.car.category = selectedCategory != null ? selectedCategory : null;
      //}}
      
-
       if (this.car.fuel != null && this.car.fuel != undefined) {
-        if (this.selectedFuel != null && this.selectedFuel!= undefined) {
-          this.zz = this.fuels?.find(s => s.id == this.selectedFuel);
-          this.car.fuel = this.zz.id;
-          
-        }            
+          this.zz = this.fuels?.find(s => s.name == this.car?.fuel);
+          this.car.fuel = this.zz.id;           
     }
 
      this._carService.addCar(this.car).subscribe(
