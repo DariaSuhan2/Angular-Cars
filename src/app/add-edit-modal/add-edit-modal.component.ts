@@ -9,6 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
 import { NgSelectConfig } from '@ng-select/ng-select';
+import  { Fuels } from '../models/IdName';
 
 @Component({
   selector: 'app-add-edit-modal',
@@ -16,6 +17,8 @@ import { NgSelectConfig } from '@ng-select/ng-select';
   styleUrl: './add-edit-modal.component.css',
   // encapsulation: ViewEncapsulation.None
 })
+
+
 export class AddEditModalComponent implements OnInit{
 
 
@@ -41,13 +44,16 @@ export class AddEditModalComponent implements OnInit{
   y: any;
   z: any;
   zz: any;
-  fuell?: string;
+  //fuell?: string;
+  selectedFuel?: Fuels | null;
   addedCategory?: string;
   subscriptionCategories = Observable<ICarCategory[]>;
   types?: Array<string>;
-  fuels? : Array<string>;
+  fuels? : Array<Fuels>;
   categories?: Array<ICarCategory>;
   addedCar?: ICar;
+
+  
 
   carForm = this.fb.nonNullable.group({
     vin:  [0, Validators.compose([Validators.min(0), Validators.required])],
@@ -75,6 +81,8 @@ export class AddEditModalComponent implements OnInit{
   //public activeModal: MdbModalRef<ModalComponent>
 
   ngOnInit(): void {
+    //this.selectedFuel = new Fuels ( {id: 0, name: "Gasoline"});
+   
     this._carService.getCategories().subscribe(
       categories =>{ this.categories = categories;
         if (this.car?.category != null){ 
@@ -85,17 +93,37 @@ export class AddEditModalComponent implements OnInit{
                 this.car.category = selectedCategory != null ? selectedCategory : null;
          }}
         }
+        this.selectedFuel = new Fuels (null);
+       // this.selectedFuel = new Fuels ( {id: 0, name: "Gasoline"});
+        this.fuels = [
+          new Fuels({id: 0, name: "Gasoline"}),
+          new Fuels({id: 1, name: "Diesel"}),
+          new Fuels({id: 2, name: "Hybrid"})
+      ];
+   
         this.x = this.car?.category?.engineCapacity;
         this.y = this.car?.category?.weight;
         this.z = this.car?.fuel;
-        if (this.car?.fuel==0) {
-          this.fuell = 'gasoline';
-        } 
-        else if (this.car?.fuel==1)
-        { this.fuell = 'diesel';}
-        else if (this.car?.fuel==2)
-        { this.fuell = 'hybrid';}
-        this.zz = this.fuell;
+        if (this.selectedFuel != null && this.selectedFuel != undefined){
+          //this.selectedFuel.id= this.car?.fuel;
+          this.selectedFuel = this.fuels.find(s => s.id == this.car?.fuel);
+          this.zz = this.selectedFuel?.name;
+          //if (this.categories != null){
+           // const selectedCategory = this.categories.find(s => s.name == car?.category?.name);
+         
+          
+
+        }
+       
+
+        // if (this.car?.fuel==0) {
+        //   this.fuell = 'gasoline';
+        // } 
+        // else if (this.car?.fuel==1)
+        // { this.fuell = 'diesel';}
+        // else if (this.car?.fuel==2)
+        // { this.fuell = 'hybrid';}
+        // this.zz = this.fuell;
         //this.zz = this.car?.type;
     },
       error => {
@@ -103,9 +131,10 @@ export class AddEditModalComponent implements OnInit{
         console.log('error', error)
         }
       );
+   
 
       this.types = ["Budget", "Premium", "Luxury"];      
-      this.fuels = ["Gasoline", "Diesel", "Hybrid"];
+     // this.fuels = ["Gasoline", "Diesel", "Hybrid"];
    }
    
 

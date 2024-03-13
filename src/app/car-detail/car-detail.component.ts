@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ICarCategory } from '../models/category';
 
+
 @Component({
   selector: 'app-car-detail',
   templateUrl: './car-detail.component.html',

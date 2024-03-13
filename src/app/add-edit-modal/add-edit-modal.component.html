@@ -133,10 +133,17 @@ margin: 3px; */
                                   </ng-template>
                                   <br>
                                   <label>Fuel: </label>
-                                  <ng-select *ngIf="fuels != null"
+                                  <!-- <ng-select *ngIf="fuels != null"
                                          [items]="fuels"
                                         name="fuel"
-                                        [(ngModel)]="car.fuel">
+                                        [(ngModel)]="">
+                                    </ng-select> -->
+
+                                    <ng-select *ngIf="fuels != null"
+                                       [items]="fuels" 
+                                       bindLabel="name" 
+                                       bindValue="id" 
+                                       [(ngModel)]="selectedFuel">
                                     </ng-select>
 
                                    
