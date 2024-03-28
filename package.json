@@ -24,6 +24,7 @@
     "cors": "^2.8.5",
     "mdb-angular-ui-kit": "^6.0.0",
     "moment": "^2.30.1",
+    "moment-parseformat": "^4.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"

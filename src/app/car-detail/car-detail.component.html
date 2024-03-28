@@ -77,8 +77,10 @@
     <div>  {{car.createdOn}}</div>
     <br>
     <label>Modified:  </label>
-    <div>  {{car.updatedOn}}</div>
-    <div id="datedisplay" style="font-size:25px;"></div>
+    <!-- <div>  {{car.updatedOn | ' date: medium'}}</div> -->
+    <!-- <div>  {{car.updatedOn}}</div> -->
+    <div>  {{formattedDate}}</div>
+  
   <button  type="button" class="btn btn-primary"  (click)="goBack()">Go back</button>
     <!-- <button type="button" class="btn btn-primary" (click)="save()">Save</button> -->
   </div>

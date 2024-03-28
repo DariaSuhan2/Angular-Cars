@@ -113,6 +113,7 @@ export class AddEditModalComponent implements OnInit{
       );
       this.types = ["Budget", "Premium", "Luxury"];      
       this.fuelss = ["Gasoline", "Diesel", "Hybrid"];
+     //var a = moment.parseFormat(this.car?.createdOn);
    }
      
    compareFn(item: Fuels, selectedFuel: Fuels) {
@@ -234,7 +235,8 @@ export class AddEditModalComponent implements OnInit{
     // const formattedDate = timeNow.format('dddd, MMMM Do YYYY');
     
    this.car.createdOn = timeNow; 
-  
+   //this.car.createdOn =  moment().toDate();
+  //timeNow.format(LL, TT)
    //moment().format('MMMM Do YYYY, h:mm:ss a');
    
 

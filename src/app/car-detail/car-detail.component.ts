@@ -35,10 +35,14 @@ export class CarDetailComponent implements OnInit {
       this.getCar();
       // this._carService.getCategories().subscribe(categories => this.categories = categories);
       // this.types = ["Budget", "Premium", "Luxury"];
-      // if(this.car?.createdOn != null ){
-      //   const timeNow= this.car.createdOn ;
-      //   const formattedDate = timeNow.format('dddd, MMMM Do YYYY');
-      // }
+      if(this.car?.createdOn != null ){
+        
+        const timeNow= this.car.createdOn ;
+        const formattedDate = timeNow.format('dddd, MMMM Do YYYY');
+        //const formattedDate = timeNow.format('MMMM Do YYYY');
+        //const formattedDate = moment(timeNow).format('YYYY-MM-DD');
+       
+      }
       
   }
 

@@ -17,12 +17,11 @@ export interface ICar {
   radio: RadioType | null;
   type: string| null;
   fuel: Fuel | null;
-  //createdOn: Date | null;
-  //updatedOn: Date | null;
-
   createdOn: Moment | null;
   updatedOn: Moment | null;
 
+  //createdOn: Date | null;
+  //updatedOn: Date | null;
  
 
 
