@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ICarCategory } from '../models/category';
+import { Moment } from 'moment';
+import moment from 'moment';
 
 
 @Component({
@@ -20,6 +22,8 @@ export class CarDetailComponent implements OnInit {
   selectedCategory : string | null = null;
   radioo?: string;
   fuell?: string;
+  formattedDate?: Moment;
+
  
   constructor(private _carService: CarService,
     private route: ActivatedRoute,
@@ -31,6 +35,11 @@ export class CarDetailComponent implements OnInit {
       this.getCar();
       // this._carService.getCategories().subscribe(categories => this.categories = categories);
       // this.types = ["Budget", "Premium", "Luxury"];
+      // if(this.car?.createdOn != null ){
+      //   const timeNow= this.car.createdOn ;
+      //   const formattedDate = timeNow.format('dddd, MMMM Do YYYY');
+      // }
+      
   }
 
   getCar(): void {

@@ -11,6 +11,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { NgSelectConfig } from '@ng-select/ng-select';
 import  { Fuels } from '../models/IdName';
 import { IModalOutput } from '../models/IModalOutput';
+import moment, { Moment } from 'moment';
 
 @Component({
   selector: 'app-add-edit-modal',
@@ -74,7 +75,10 @@ export class AddEditModalComponent implements OnInit{
     infotainmentSystem: <boolean | null>null,
     radio: <RadioType | null>null,
     type: [null, Validators.required],
-    fuel: [null, Validators.required]
+    fuel: [null, Validators.required],
+    createdOn: [null, Validators.required],
+    updatedOn: [null, Validators.required]
+    
     }
   );
 
@@ -223,6 +227,16 @@ export class AddEditModalComponent implements OnInit{
           this.zz = this.fuels?.find(s => s.name == this.car?.fuel);
           this.car.fuel = this.zz.id;           
     }
+
+   
+    
+    const timeNow: Moment = moment();
+    // const formattedDate = timeNow.format('dddd, MMMM Do YYYY');
+    
+   this.car.createdOn = timeNow; 
+  
+   //moment().format('MMMM Do YYYY, h:mm:ss a');
+   
 
      this._carService.addCar(this.car).subscribe(
               result =>{

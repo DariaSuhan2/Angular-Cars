@@ -1,3 +1,4 @@
+import { Moment } from "moment";
 import { ICarCategory } from "./category";
 //import { RadioType } from "./enums";
 
@@ -16,8 +17,11 @@ export interface ICar {
   radio: RadioType | null;
   type: string| null;
   fuel: Fuel | null;
-  // createdOn: Date | null;
-  // updatedOn: Date | null;
+  //createdOn: Date | null;
+  //updatedOn: Date | null;
+
+  createdOn: Moment | null;
+  updatedOn: Moment | null;
 
  
 
