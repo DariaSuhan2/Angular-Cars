@@ -12,7 +12,7 @@ margin: 3px; */
                         <div *ngIf="from =='add'">
                         <h2>Add specifications</h2>
                         <br>
-                        <form [formGroup]="carForm"  (ngSubmit)="onSubmit()">
+                        <form [formGroup]="carForm"  (ngSubmit)="addCar()">
                             <div>
                               <label >Car VIN:</label>
                               <input formControlName="vin" [class.error]="carForm.controls.vin.invalid && carForm.controls.vin.touched" placeholder="VIN" />
@@ -60,9 +60,10 @@ margin: 3px; */
                               placeholder="Fuel"></ng-select>
                            <em *ngIf = "carForm.controls.fuel.invalid && carForm.controls.fuel.touched">Please enter the fuel of the car</em>
                           </div>
-                             
+                    
                             <br>
-                            <button type="submit" class="btn btn-primary" [disabled]="checkForm()"   (click)="onSubmit()">Save</button>
+                            <!-- <button type="submit" class="btn btn-primary" [disabled]="checkForm()"   (click)="onSubmit()">Save</button> -->
+                            <button type="submit" class="btn btn-primary"  (click)="addCar()">Save</button>
                             <button type="button" class="btn btn-primary" (click)="close(modalOutput)">Close</button>
                         <!--   <em *ngIf="carForm.invalid && carForm.dirty">Incomplete form</em>-->
                           </form>
@@ -133,24 +134,14 @@ margin: 3px; */
                                   </ng-template>
                                   <br>
                                   <label>Fuel: </label>
-                                  <!-- <ng-select *ngIf="fuelss != null"
-                                         [items]="fuelss"
-                                         name="fuel"
-                                        [(ngModel)]="fuell">
-                                    </ng-select> -->
-
-                                    <ng-select #select *ngIf="fuels != null"
+                                  <ng-select #select *ngIf="fuels != null"
                                        [items]="fuels" 
                                        bindLabel="name" 
                                        bindValue="id" 
                                        [compareWith]="compareFn"
                                        [(ngModel)]="selectedFuel">
                                     </ng-select>
-
-                                   
                                 </div>
-                          <button type="submit" class="btn btn-primary"  (click)="save()">Save</button>
-                          <button type="button" class="btn btn-primary" (click)="close(modalOutput)">Close</button>
-                    
-         
+                          <button type="submit" class="btn btn-primary"  (click)="editCar()">Save</button>
+                          <button type="button" class="btn btn-primary" (click)="close(modalOutput)">Close</button>         
 </div>

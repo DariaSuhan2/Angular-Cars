@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-//import {NgIf, UpperCasePipe} from '@angular/common';
 import {ICar, RadioType} from "../models/car";
 import { CarService } from '../service/car.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,13 +16,13 @@ import moment from 'moment';
 })
 
 export class CarDetailComponent implements OnInit {
-
   car?: ICar;
   selectedCategory : string | null = null;
   radioo?: string;
   fuell?: string;
-  formattedDate?: Moment;
-
+  formattedDateC?: string;
+  formattedDateU?: string;
+  a?: any;
  
   constructor(private _carService: CarService,
     private route: ActivatedRoute,
@@ -32,18 +31,7 @@ export class CarDetailComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-      this.getCar();
-      // this._carService.getCategories().subscribe(categories => this.categories = categories);
-      // this.types = ["Budget", "Premium", "Luxury"];
-      if(this.car?.createdOn != null ){
-        
-        const timeNow= this.car.createdOn ;
-        const formattedDate = timeNow.format('dddd, MMMM Do YYYY');
-        //const formattedDate = timeNow.format('MMMM Do YYYY');
-        //const formattedDate = moment(timeNow).format('YYYY-MM-DD');
-       
-      }
-      
+      this.getCar();     
   }
 
   getCar(): void {
@@ -67,17 +55,20 @@ export class CarDetailComponent implements OnInit {
         else if (this.car.fuel==2)
         { this.fuell = 'hybrid';}
 
+        if(this.car?.createdOn != null ){
+          const timeC= this.car.createdOn;
+          const timeU = this.car.updatedOn;
+          //const formattedDate = moment(timeNow).format('MMMM Do YYYY, h:mm:ss a');
+          this.formattedDateC = moment(timeC).format('MMMM Do YYYY');
+          this.formattedDateU = moment(timeU).format('MMMM Do YYYY');    
+        }
       });
     }
-  
-
   }
 
   goBack(): void {
-    //this.location.back();
     this.router.navigate([`/cars`]);
   }
-
 }
 
 

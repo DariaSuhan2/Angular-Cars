@@ -19,16 +19,11 @@ export class ModalComponent implements OnInit {
     private _carService: CarService,
     private router: Router ) {
   }
-  //public activeModal: MdbModalRef<ModalComponent>
 
   ngOnInit(): void {
-
   }
 
   close():void {
       this.activeModal.close(true);
-      //window.location.reload();
-      //this.router.navigate([`/cars`]);
-      // this._carService.getCars();
   }
 }

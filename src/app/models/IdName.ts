@@ -3,7 +3,6 @@ export class Fuels {
     name: string | null | undefined;
   //IdName - in loc de fuels, generic
 
-
     constructor (fuels: Fuels | null)
     {
       this.id = fuels?.id;

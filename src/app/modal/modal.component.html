@@ -5,17 +5,10 @@
        }
      </style>
     <button class="btn-close" (click)="close()"></button>
-       <!-- <img width="200" align="right"  alt="Angular Logo" src="./assets/images/DSC_0526.jpg"> -->
     <div class="f4">Angular Cars</div>
     <div *ngIf="from =='deleteOne'">
         <h3>The car with VIN {{car?.vin}} was deleted</h3>
     </div>
-    <!-- <div *ngIf="from =='addCar'">
-        <h2>The car with VIN {{car?.vin}} was added</h2>
-    </div>
-    <div *ngIf="from =='updateCar'">
-        <h2>The car with VIN {{car?.vin}} was updated</h2>
-    </div> -->
     <div *ngIf="from =='deleteAll'">
         <h2>All the cars were deleted</h2>
     </div>

@@ -13,7 +13,5 @@ export class AppComponent {
     this.config.notFoundText = 'Custom not found';
     this.config.appendTo = 'body';
     this.config.bindValue = 'value';
-  }
-
- 
+  } 
 }

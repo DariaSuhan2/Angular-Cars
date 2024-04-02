@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ICar} from "../models/car";
 import {Observable, of, catchError, tap, throwError, map} from 'rxjs';
-//import { MessageService } from '../service-message/message.service';
 import { HttpClient, HttpErrorResponse,  HttpHeaders  } from '@angular/common/http';
 import { ICarCategory } from '../models/category';
+import { Moment } from 'moment';
+import moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
-  //private _carUrl = 'api/cars/cars.json';
   private _carUrl = 'http://localhost:55726/api/car';
   private _categoryUrl = 'http://localhost:55726/api/category';
 
@@ -66,11 +66,6 @@ export class CarService {
         data => console.log('deletedAll', JSON.stringify(data)),
         catchError(err => this.handleError(err))
         );
-    // this._http.delete(url).pipe(
-    //   tap(data => {console.log('deletedAll', JSON.stringify(data));
-    //   }),
-    //   catchError(err => this.handleError(err))
-    //   );
   }
 
   getCategories(): Observable<ICarCategory[]> {
@@ -92,31 +87,5 @@ export class CarService {
       console.error(errorMessage);
       return throwError(()=>errorMessage);
     }
-
-  // updateColorCar(car: ICar): Observable<any> {
-  //   return this._http.patch(this._carUrl, car, this.httpOptions).pipe(
-  //     tap(_ => console.log(`updated the color of car vin=${car.vin}`)),
-  //     catchError(err => this.handleError(err))
-  //   );
-  // }
-
-
-
-   // category1: ICarCategory  = {
-  //   name : "SmallCar",
-  //   engineCapacity : 2000,
-  //   weight : 2
-  // };
-  // category2 : ICarCategory  = {
-  //   name : "Bus",
-  //   engineCapacity : 3000,
-  //   weight : 2
-  // };
-  // category3 : ICarCategory  = {
-  //   name : "Goodvehicle",
-  //   engineCapacity : 5000,
-  //   weight : 6
-  // };
-
 }
 

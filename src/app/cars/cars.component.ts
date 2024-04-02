@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit, Input} from '@angular/core';
 import {ICar} from "../models/car";
 import { CarService } from '../service/car.service';
-//import { MessageService } from '../service-message/message.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
@@ -11,10 +10,8 @@ import { ICarCategory } from '../models/category';
 import { IModalOutput } from '../models/IModalOutput';
 
 @Component({
-  //selector: 'app-cars',
   templateUrl: './cars.component.html',
   styleUrl: './cars.component.css'
-  //providers: [CarService] - register service for one component and child components
 })
 export class CarsComponent implements OnInit, OnDestroy {
 
@@ -24,9 +21,7 @@ export class CarsComponent implements OnInit, OnDestroy {
   errorMessage: string = '';
   sub!: Subscription;
   categories?: Array<ICarCategory>;
-
   from: string = '';
-  //const modal = this.modalService.open(ModalComponent);
 
   constructor (private _carService: CarService,
     private route: ActivatedRoute,
@@ -77,7 +72,6 @@ export class CarsComponent implements OnInit, OnDestroy {
         this.getCars();
       }
      });
-    //  this._carService.getCars();
   }
 
   getCars(): void {
@@ -113,11 +107,6 @@ export class CarsComponent implements OnInit, OnDestroy {
     const modalComponent = this.modalService.open(ModalComponent);
     modalComponent.componentInstance.car = car;
     modalComponent.componentInstance.from = 'deleteOne';
-    // modalComponent.result.then((result) => {
-    // this.closeResult = `Closed with: ${result}`;
-    //   }, (reason) => {
-    //   this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    // });
     modalComponent.result.then((result) => {
       this._carService.getCars();
      });
@@ -130,9 +119,5 @@ export class CarsComponent implements OnInit, OnDestroy {
      modalComponent.result.then((result) => {
       this._carService.getCars();
      });
-
-    //  this._carService.getCars();
-   
-     //window.location.reload();
    }
 }

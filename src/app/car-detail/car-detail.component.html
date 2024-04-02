@@ -1,47 +1,26 @@
 <div *ngIf="car">
     <h2>{{car.brand | uppercase}} Details</h2>
-   <!-- <img width="300" align="right"  alt="Angular Logo" src="./assets/images/DSC_0565.jpg"> -->
     <label>Car VIN: </label>
     <div>   {{car.vin}} </div>
      <div>
       <label for="car-brand">Car brand: </label>
       <div>   {{car.brand}} </div>
-      <!-- <input id="car-brand" [(ngModel)]="car.brand" placeholder="brand"> -->
-      <!-- <br><br> -->
       <label for="car-color">Car Color: </label>
       <div>   {{car.color}} </div>
-      <!-- <input id="car-color" [(ngModel)]="car.color" placeholder="color"> -->
-      <!-- <br><br> -->
-      <label for="car-doorNr">The number of doors: </label>
+       <label for="car-doorNr">The number of doors: </label>
       <div>   {{car.doorNr}} </div>
-      <!-- <input id="car-doorNr" [(ngModel)]="car.doorNr" placeholder="doorNr"> -->
-      <!-- <br><br><br> -->
       <br>
        <label >Car category name: </label>
        <div>   {{car.category?.name}} </div>
-      <!-- <ng-select *ngIf="categories != null"
-              [items]="categories"
-              name="category"
-              bindLabel="name"
-              bindValue="name"
-              [(ngModel)]="selectedCategory">
-      </ng-select> -->
       <label>Car category engine capacity: </label>
       <div>   {{car.category?.engineCapacity}} </div>
       <label>Car category engine capacity: </label>
       <div>  {{car.category?.weight}} </div>
-   <!-- <br> -->
-   <br>
+      <br>
       <label>Car type: </label>
       <div>   {{car.type}} </div>
-      <!-- <ng-select *ngIf="types != null"
-        [items]="types"
-        name="type"
-        [(ngModel)]="car.type">
-      </ng-select> -->
-      <label>Car air conditioning:  </label>
+       <label>Car air conditioning:  </label>
       <div>  {{car.airConditioning}} </div>
-
       <label>Car electric window:  </label>
       <div>  {{car.electricWindow}}</div>
       <label>Car parking senzor: </label>
@@ -58,15 +37,6 @@
       <div>  {{car.parktronicSystem}} </div>
       <label>Car infotainment system:  </label>
       <div>  {{car.infotainmentSystem}} </div>
-      <!-- <div *ngIf="car.radio ==0 else elseBlock2">
-        <label>Car radio:  </label>
-        <div>  analog </div>
-      </div>
-      <ng-template #elseBlock2>
-        <label>Car radio: </label>
-        <div>  digital  </div>
-      </ng-template>
-    </div> -->
     <label>Car radio:  </label>
         <div>  {{radioo}} </div>
     <br>
@@ -74,16 +44,12 @@
     <div>  {{fuell}}</div>
     <br>
     <label>Date:  </label>
-    <div>  {{car.createdOn}}</div>
+    <div>  {{formattedDateC}}</div>
     <br>
     <label>Modified:  </label>
-    <!-- <div>  {{car.updatedOn | ' date: medium'}}</div> -->
-    <!-- <div>  {{car.updatedOn}}</div> -->
-    <div>  {{formattedDate}}</div>
-  
-  <button  type="button" class="btn btn-primary"  (click)="goBack()">Go back</button>
-    <!-- <button type="button" class="btn btn-primary" (click)="save()">Save</button> -->
-  </div>
+    <div>  {{formattedDateU}}</div>
+    <button  type="button" class="btn btn-primary"  (click)="goBack()">Go back</button>
+    </div>
 
   <!-- {{car | json}} -->
 

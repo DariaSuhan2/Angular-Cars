@@ -1,23 +1,4 @@
 <h2>My Cars</h2>
-<!-- <img width="400" align="right"  alt="Angular Logo" src="./assets/images/DSC_0134.jpg"> -->
-<!-- <style>
- body {
-  background-image: url("./assets/images/DSC_0134.jpg");
- background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed; }
-</style> -->
-<!-- <div id="container"></div> -->
-<!-- <style>
-  body {
-     background-image: url("./assets/images/DSC_0134.jpg");
-     background-repeat: no-repeat;
-     background-size: cover;
-     background-attachment: fixed;
-  } 
-  </style> -->
-
-
 <ul class="cars ">
     <li *ngFor="let car of cars">
         <button [class.selected]="car === selectedCar" type="button" (click)="onSelect(car)">
@@ -39,15 +20,9 @@
   </ul>
       <button type="button" class="btn btn-primary" (click)="deleteAll()">Delete all cars</button>
       <button type="button" class="btn btn-primary" (click)="add()">Add a new car</button>
-     
       <br>
-   
-
-
 <app-car-detail [car]="selectedCar"></app-car-detail>
 <br>
-
-
 <!-- {{cars | json}} -->
 
 

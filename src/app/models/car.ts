@@ -1,6 +1,5 @@
 import { Moment } from "moment";
 import { ICarCategory } from "./category";
-//import { RadioType } from "./enums";
 
 export interface ICar {
   vin: number | null;
@@ -51,3 +50,9 @@ export enum Fuel {
   { vin: 9, brand: 'Honda' },
   { vin: 10, brand: 'Toyota' },
 ];*/
+
+
+// export interface SelectProtected {
+//   readonly wrapperElement: HTMLDivElement;
+//   readonly inputElement: HTMLInputElement;
+// }

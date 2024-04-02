@@ -17,7 +17,6 @@ import moment, { Moment } from 'moment';
   selector: 'app-add-edit-modal',
   templateUrl: './add-edit-modal.component.html',
   styleUrl: './add-edit-modal.component.css',
-  // encapsulation: ViewEncapsulation.None
 })
 
 
@@ -37,8 +36,6 @@ export class AddEditModalComponent implements OnInit{
   @Input() car?: ICar;
   @Input() from: string = '';
   @Input() category?: ICarCategory;
-  // @Input() engineCapacity: number = 0;
-  // @Input() weight: number = 0;
   selectedCategory : string | null = null;
   selectedCars: ICar[] = [];
   cars: ICar[] = [];
@@ -89,6 +86,7 @@ export class AddEditModalComponent implements OnInit{
        new Fuels({id: 1, name: "Diesel"}),
        new Fuels({id: 2, name: "Hybrid"})
     ];
+   
     this._carService.getCategories().subscribe(
       categories =>{ this.categories = categories;
         if (this.car?.category != null){ 
@@ -113,14 +111,13 @@ export class AddEditModalComponent implements OnInit{
       );
       this.types = ["Budget", "Premium", "Luxury"];      
       this.fuelss = ["Gasoline", "Diesel", "Hybrid"];
-     //var a = moment.parseFormat(this.car?.createdOn);
    }
      
    compareFn(item: Fuels, selectedFuel: Fuels) {
     return item.id === selectedFuel.id
   }
 
-   save(): void {
+   editCar(): void {
       if (this.car) {
         if (this.car.type == "Budget") {
           this.car.airConditioning = false;
@@ -153,20 +150,15 @@ export class AddEditModalComponent implements OnInit{
             this.car.category.name = this.selectedCategory;
           }
 
-          if (this.car.fuel != null && this.car.fuel != undefined) {
+        if (this.car.fuel != null && this.car.fuel != undefined) {
               if (this.selectedFuel != null && this.selectedFuel!= undefined) {
                 this.zz = this.fuels?.find(s => s.id == this.selectedFuel);
                 this.car.fuel = this.zz.id;
-                
               }            
           }
 
-        // this._carService.updateCar(this.car)
-        //         .subscribe(() => this.goBack())
-
         this._carService.updateCar(this.car).subscribe(
           result =>{
-            //this.router.navigate(['/cars']);
            console.log('success: ', result);
           },
           error => {
@@ -177,10 +169,16 @@ export class AddEditModalComponent implements OnInit{
       }
     }
 
-  onSubmit() {
+    addCar() {
     console.log('in onSubmit: ', this.carForm.valid);
      this.car = this.carForm.getRawValue();
-
+     const timeNow: Moment = moment();
+     const formattedDate = timeNow.format('dddd, MMMM Do YYYY');
+     if (this.car?.createdOn != null){
+       this.car.createdOn = timeNow; 
+       this.car.updatedOn = timeNow;
+     }
+ 
      if (this.car.vin){
         let vinn: number = + this.car.vin ;
         this.car.vin = vinn;
@@ -228,17 +226,6 @@ export class AddEditModalComponent implements OnInit{
           this.zz = this.fuels?.find(s => s.name == this.car?.fuel);
           this.car.fuel = this.zz.id;           
     }
-
-   
-    
-    const timeNow: Moment = moment();
-    // const formattedDate = timeNow.format('dddd, MMMM Do YYYY');
-    
-   this.car.createdOn = timeNow; 
-   //this.car.createdOn =  moment().toDate();
-  //timeNow.format(LL, TT)
-   //moment().format('MMMM Do YYYY, h:mm:ss a');
-   
 
      this._carService.addCar(this.car).subscribe(
               result =>{
