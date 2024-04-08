@@ -35,32 +35,25 @@ margin: 3px; */
                               <input formControlName="doorNr" [class.error]="carForm.controls.doorNr.invalid  && carForm.controls.doorNr.touched " placeholder="DoorNr" />
                               <br>
                               <em *ngIf = "carForm.controls.doorNr.invalid && carForm.controls.doorNr.touched">Please enter the number of doors</em>
-                        
                               <br> 
                               <form formGroupName="category" class="category">
                                 <label>Car category:</label>
                                 <ng-select *ngIf="categories != null" [items]="categories" [class.error]="carForm.controls.category.controls.name.invalid && carForm.controls.category.controls.name.touched " formControlName="name"
                                   placeholder="Category" bindLabel="name" bindValue="name">
                                 </ng-select>
-                                
-                                
                                 <em *ngIf = "carForm.controls.category.controls.name.invalid && carForm.controls.category.controls.name.touched">Please enter the type of the car</em>
                               </form>
-                        
                                 <br>
                                 <label>Car type:</label>
                                 <ng-select *ngIf="types != null" [items]="types" [class.error]="carForm.controls.type.invalid && carForm.controls.type.touched" formControlName="type"
                                  placeholder="Type"></ng-select>
                               <em *ngIf = "carForm.controls.type.invalid && carForm.controls.type.touched">Please enter the type of the car</em>
-                           
-
                              <br>
                              <label>Car fuel:</label>
                              <ng-select *ngIf="fuelss != null" [items]="fuelss" [class.error]="carForm.controls.fuel.invalid && carForm.controls.fuel.touched" formControlName="fuel"
                               placeholder="Fuel"></ng-select>
                            <em *ngIf = "carForm.controls.fuel.invalid && carForm.controls.fuel.touched">Please enter the fuel of the car</em>
                           </div>
-                    
                             <br>
                             <!-- <button type="submit" class="btn btn-primary" [disabled]="checkForm()"   (click)="onSubmit()">Save</button> -->
                             <button type="submit" class="btn btn-primary"  (click)="addCar()">Save</button>

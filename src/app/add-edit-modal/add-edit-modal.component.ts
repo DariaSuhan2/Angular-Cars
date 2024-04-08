@@ -73,8 +73,8 @@ export class AddEditModalComponent implements OnInit{
     radio: <RadioType | null>null,
     type: [null, Validators.required],
     fuel: [null, Validators.required],
-    createdOn: [null, Validators.required],
-    updatedOn: [null, Validators.required]
+    createdOn: [null],
+    updatedOn: [null]
     
     }
   );
