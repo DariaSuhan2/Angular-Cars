@@ -172,13 +172,10 @@ export class AddEditModalComponent implements OnInit{
     addCar() {
     console.log('in onSubmit: ', this.carForm.valid);
      this.car = this.carForm.getRawValue();
-     const timeNow: Moment = moment();
-     const formattedDate = timeNow.format('dddd, MMMM Do YYYY');
-     if (this.car?.createdOn != null){
-       this.car.createdOn = timeNow; 
-       this.car.updatedOn = timeNow;
-     }
- 
+     const timeNow: Moment = moment();  
+     this.car.createdOn = timeNow.toString(); 
+     //this.car.createdOn = moment().toString();
+        
      if (this.car.vin){
         let vinn: number = + this.car.vin ;
         this.car.vin = vinn;
@@ -227,6 +224,7 @@ export class AddEditModalComponent implements OnInit{
           this.car.fuel = this.zz.id;           
     }
 
+
      this._carService.addCar(this.car).subscribe(
               result =>{
                 //this.router.navigate(['/cars']);
@@ -241,6 +239,7 @@ export class AddEditModalComponent implements OnInit{
                 this.close(this.modalOutput);
               }
       );
+
   }
 
   checkForm(): boolean {

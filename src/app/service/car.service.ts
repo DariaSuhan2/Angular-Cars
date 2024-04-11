@@ -70,7 +70,7 @@ export class CarService {
 
   getCategories(): Observable<ICarCategory[]> {
       return this._http.get<ICarCategory[]>(this._categoryUrl).pipe(
-      tap(data => {console.log('All', JSON.stringify(data));
+      tap(data => {console.log('AllCategories', JSON.stringify(data));
     }),
       catchError(err => this.handleError(err))
       );
