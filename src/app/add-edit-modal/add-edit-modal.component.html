@@ -12,7 +12,7 @@ margin: 3px; */
                         <div *ngIf="from =='add'">
                         <h2>Add specifications</h2>
                         <br>
-                        <form [formGroup]="carForm"  (ngSubmit)="addCar()">
+                        <form [formGroup]="carForm" >
                             <div>
                               <label >Car VIN:</label>
                               <input formControlName="vin" [class.error]="carForm.controls.vin.invalid && carForm.controls.vin.touched" placeholder="VIN" />
