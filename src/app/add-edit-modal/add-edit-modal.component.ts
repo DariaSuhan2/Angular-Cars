@@ -152,7 +152,7 @@ export class AddEditModalComponent implements OnInit{
 
         if (this.car.fuel != null && this.car.fuel != undefined) {
               if (this.selectedFuel != null && this.selectedFuel!= undefined) {
-                this.zz = this.fuels?.find(s => s.id == this.selectedFuel);
+                this.zz = this.fuels?.find(s => s.id == this.selectedFuel?.id);
                 this.car.fuel = this.zz.id;
               }            
           }
@@ -165,15 +165,19 @@ export class AddEditModalComponent implements OnInit{
             console.log('error', error);
           }
         );
-        this.activeModal.close();
+    
       }
+      this.activeModal.close();
     }
 
     addCar() {
     console.log('in onSubmit: ', this.carForm.valid);
      this.car = this.carForm.getRawValue();
      const timeNow: Moment = moment();  
+
+    // this.car.createdOn = timeNow.toISOString(); 
      this.car.createdOn = timeNow.toString(); 
+    //  this.car.updatedOn = timeNow.toString();
      //this.car.createdOn = moment().toString();
         
      if (this.car.vin){
