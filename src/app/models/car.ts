@@ -16,8 +16,8 @@ export interface ICar {
   radio: RadioType | null;
   type: string| null;
   fuel: Fuel | null;
-  createdOn: Moment | null | string;
-  updatedOn: Moment | null | string;
+  createdOn: string;
+  updatedOn: string;
   //createdOn:  null | string;
   //updatedOn: null | string;
 

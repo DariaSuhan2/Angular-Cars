@@ -173,13 +173,8 @@ export class AddEditModalComponent implements OnInit{
     addCar() {
      console.log('in onSubmit: ', this.carForm.valid);
      this.car = this.carForm.getRawValue();
-     const timeNow: Moment = moment();  
-
-    this.car.createdOn = timeNow.toISOString(); 
-    // this.car.createdOn = timeNow.toString(); 
-    //  this.car.updatedOn = timeNow.toString();
-     //this.car.createdOn = moment().toString();
-        
+     
+          
      if (this.car.vin){
         let vinn: number = + this.car.vin ;
         this.car.vin = vinn;
